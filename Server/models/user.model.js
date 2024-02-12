@@ -1,12 +1,12 @@
 const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  firstName: {
+const user_schema = new mongoose.Schema({
+  first_name: {
     type: String,
     required: true,
   },
-  lastName: {
+  last_name: {
     type: String,
     required: true,
   },
@@ -47,11 +47,11 @@ const userSchema = new mongoose.Schema({
           type: String,
           required: true,
         },
-        startDate: {
+        start_date: {
           type: Date,
           required: true,
         },
-        endDate: {
+        end_date: {
           type: Date,
         },
         description: {
@@ -74,15 +74,15 @@ const userSchema = new mongoose.Schema({
           type: String,
           required: true,
         },
-        fieldOfStudy: {
+        field_of_study: {
           type: String,
           required: true,
         },
-        startDate: {
+        start_date: {
           type: Date,
           required: true,
         },
-        endDate: {
+        end_date: {
           type: Date,
         },
         description: {
@@ -97,8 +97,14 @@ const userSchema = new mongoose.Schema({
   skills: {
     type: [
       {
-        type: String,
-        required: true,
+        skill:{
+          type: String,
+          required: true,
+        },
+        time_stamp:{
+          type: Date,
+          default:null
+        }
       },
     ],
     required: false,
@@ -116,4 +122,4 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", user_schema);

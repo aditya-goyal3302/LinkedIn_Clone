@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
     res.send('Hello World');
  })
 
-router.use('/posts', require('./posts_routes'));
-router.use('/auth', require('./auth_routes'));
+router.use('/posts', require('./posts.routes'));
+router.use('/auth', require('./auth.routes'));
 
 module.exports = router;

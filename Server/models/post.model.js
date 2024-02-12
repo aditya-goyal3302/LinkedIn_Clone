@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 
-const linkedPostSchema = new mongoose.Schema({
+const linked_post_schema = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -13,14 +13,14 @@ const linkedPostSchema = new mongoose.Schema({
   link: {
     type: String,
   },
-  userId:{
+  user_Id:{
     type: ObjectId,
     ref: 'User',
   },
-  createdAt: {
+  time_stamp: {
     type: Date,
     default: Date.now()
   }
 });
 
-module.exports = mongoose.model('LinkedPost', linkedPostSchema);;
+module.exports = mongoose.model('LinkedPost', linked_post_schema);;

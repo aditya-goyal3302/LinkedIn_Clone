@@ -1,8 +1,8 @@
-const { Post } = require("../models/index");
+const { post } = require("../models/index");
 
 exports.getposts = async (req, res, next) => {
   const data = await Post.find();
-  console.log(" user  ",req.user)
+//   console.log(" user  ",req.user)
   return res.status(200).send(data);
 };
 
@@ -12,8 +12,9 @@ exports.postposts = async (req, res, next) => {
     title,
     content:body,
     link,
-    // userId: req.session.userId,  
+    // userId: req.user._id,  
   });
   const resp = post.save();
   res.status(201).send(resp);
 };
+
