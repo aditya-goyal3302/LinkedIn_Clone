@@ -7,7 +7,7 @@ exports.verify_auth = async (req,res,next)=>{
         return res.status(401).send({ code:401 ,message: 'Unauthorized' });
       }
     try{
-        const decodetoken = jwt.verify(token,process.env.JWT_SECRET)
+        const decodetoken = jwt.verify(token,"hfff")
         console.log('decodetoken: ', decodetoken);
         next();
     }
