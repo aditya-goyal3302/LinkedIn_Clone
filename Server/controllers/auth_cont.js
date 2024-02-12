@@ -46,9 +46,6 @@ exports.login = async (req, res) => {
             id:user._id,
             name:user.name,
             email:user.email,
-            currentbalance:user.currentbalance,
-            e_cats:user.e_cats,
-            transactions:user.transactions,
             image:user.image
         }
         res.status(201).send({code:1,data:userdata,token:token});
