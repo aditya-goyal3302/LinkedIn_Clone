@@ -1,20 +1,32 @@
-const { post } = require("../models/index");
+const { post_service } = require("../services");
 
-exports.getposts = async (req, res, next) => {
-  const data = await Post.find();
-//   console.log(" user  ",req.user)
-  return res.status(200).send(data);
+exports.get_posts = async (req, res) => {
+  try{
+    const responseonse = await post_service.get_posts();
+    return res.status(200).send(responseonse);
+  }
+  catch(err){
+    console.log(err)
+    res.status(500).send(err);
+  }
 };
-
-exports.postposts = async (req, res, next) => {
-  const { title, body } = req.body;
-  const post = new Post({
-    title,
-    content:body,
-    link,
-    // userId: req.user._id,  
-  });
-  const resp = post.save();
-  res.status(201).send(resp);
+exports.post_posts = async (req, res ) => {
+  try {
+    const response = await post_service.post_posts(req);
+    res.status(201).send(response);
+  } catch (error) {
+    console.log('error: ', error);
+    res.status(500).send(error );
+  }
+  
 };
-
+exports.Update_posts = async (req, res) => {
+  try {
+    const response = await post_service.Update_posts(req);
+    res.status(response.code).send(response.m);
+  }
+  catch(err){
+    console.log(err)
+    res.status(500).send(err);
+  } 
+}

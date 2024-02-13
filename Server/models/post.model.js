@@ -13,8 +13,8 @@ const linked_post_schema = new mongoose.Schema({
   link: {
     type: String,
   },
-  user_Id:{
-    type: ObjectId,
+  user_id:{
+    type: String,
     ref: 'User',
   },
   time_stamp: {

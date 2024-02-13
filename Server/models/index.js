@@ -1,4 +1,4 @@
 module.exports = {
-    user_modal: require('./user.model'),
-    post:require('./post.model'),
+    user_model: require('./user.model'),
+    post_model:require('./post.model'),
 }

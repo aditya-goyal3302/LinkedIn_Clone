@@ -110,16 +110,6 @@ const user_schema = new mongoose.Schema({
     required: false,
     default: [],
   },
-  connections:{
-    type: [
-      {
-        type: ObjectId,
-        ref: "User",
-      },
-    ],
-    required:false,
-    default:[],
-  },
 });
 
 module.exports = mongoose.model("User", user_schema);

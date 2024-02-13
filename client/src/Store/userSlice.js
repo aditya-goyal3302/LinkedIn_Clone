@@ -4,7 +4,7 @@ import axios from 'axios';
 export const Login_user = createAsyncThunk(
     'user/fetchUser',
     async (thunkAPI) => {
-        const response = axios.post('http://localhost:2948/admin/login',
+        const responseonse = axios.post('http://localhost:2948/admin/login',
         {
             method:"POST",
             body:JSON.stringify({
@@ -15,7 +15,7 @@ export const Login_user = createAsyncThunk(
                 "Content-Type":"application/json"
             }
         });
-        return response.json();
+        return responseonse.json();
     }
 );
 
