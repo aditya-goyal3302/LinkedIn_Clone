@@ -31,3 +31,12 @@ exports.Update_posts = async (req) => {
   if (link) data.link = link;
   return post_model.updateOne({ _id: post_id }, data);
 };
+exports.show_posts_on_scroll = async (req) => {
+  const { time } = req.params;
+  return post_model
+    .find({time_stamp: { $lt: new Date(time) }})
+    .sort({ time_stamp: -1 })
+    .limit(10)
+    .populate("user_id", "username image")
+    .exec();
+}

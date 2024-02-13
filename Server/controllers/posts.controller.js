@@ -42,3 +42,4 @@ exports.show_posts_on_scroll = async ()=>{
     throw new Error(err);
   }
 }
+exports.delete_post = async (req,res)=>{ }

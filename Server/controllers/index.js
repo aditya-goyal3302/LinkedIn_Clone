@@ -3,6 +3,7 @@ module.exports = {
     auth_controller: require('./auth.controller'),
     posts_controller: require('./posts.controller'),
     comments_controller: require('./comments.controller'),
+    reactions_controller: require('./reactions.controller'),
     // like: require('./like'),
     // friend: require('./friend'),
     // message: require('./message'),
