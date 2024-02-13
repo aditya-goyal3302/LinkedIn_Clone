@@ -1,8 +1,8 @@
 module.exports = {
     // user: require('./userCont'),
-    auth: require('./auth.controller'),
-    posts: require('./posts.controller'),
-    // comment: require('./comment'),
+    auth_controller: require('./auth.controller'),
+    posts_controller: require('./posts.controller'),
+    comments_controller: require('./comments.controller'),
     // like: require('./like'),
     // friend: require('./friend'),
     // message: require('./message'),

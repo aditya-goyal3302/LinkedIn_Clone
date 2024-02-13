@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
 
 router.use('/posts', require('./posts.routes'));
 router.use('/auth', require('./auth.routes'));
+router.use('/comments', require('./comments.routes'));
 // router.use('/users', require('./users.routes'));
 router.use('/',require('./404.routes'));
 

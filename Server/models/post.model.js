@@ -1,26 +1,26 @@
-const { ObjectId } = require('mongodb');
-const mongoose = require('mongoose');
+const { ObjectId } = require("mongodb");
+const mongoose = require("mongoose");
 
 const linked_post_schema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   content: {
     type: String,
-    required: true
+    required: true,
   },
   link: {
     type: String,
   },
-  user_id:{
+  user_id: {
     type: String,
-    ref: 'User',
+    ref: "User",
   },
   time_stamp: {
     type: Date,
-    default: Date.now()
-  }
+    default: Date.now(),
+  },
 });
 
-module.exports = mongoose.model('LinkedPost', linked_post_schema);;
+module.exports = mongoose.model("LinkedPost", linked_post_schema);

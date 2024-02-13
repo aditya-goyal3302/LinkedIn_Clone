@@ -1,8 +1,8 @@
 const { post_service } = require("../services");
 
-exports.get_posts = async (req, res) => {
+exports.show_posts = async (req, res) => {
   try{
-    const responseonse = await post_service.get_posts();
+    const responseonse = await post_service.show_posts();
     return res.status(200).send(responseonse);
   }
   catch(err){
@@ -10,9 +10,9 @@ exports.get_posts = async (req, res) => {
     res.status(500).send(err);
   }
 };
-exports.post_posts = async (req, res ) => {
+exports.create_posts = async (req, res ) => {
   try {
-    const response = await post_service.post_posts(req);
+    const response = await post_service.create_posts(req);
     res.status(201).send(response);
   } catch (error) {
     console.log('error: ', error);
@@ -23,10 +23,22 @@ exports.post_posts = async (req, res ) => {
 exports.Update_posts = async (req, res) => {
   try {
     const response = await post_service.Update_posts(req);
-    res.status(response.code).send(response.m);
+    console.log('response: ', response);
+    res.status(200).send(response);
   }
   catch(err){
     console.log(err)
     res.status(500).send(err);
   } 
+}
+exports.show_posts_on_scroll = async ()=>{
+  try{
+    const response = await post_service.show_posts();
+    //logic pending
+    return response;
+  }
+  catch(err){
+    console.log(err)
+    throw new Error(err);
+  }
 }

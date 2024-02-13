@@ -1,5 +1,5 @@
-const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const user_schema = new mongoose.Schema({
   first_name: {
@@ -111,5 +111,29 @@ const user_schema = new mongoose.Schema({
     default: [],
   },
 });
+
+user_schema.pre("save", async function (next) {
+  try {
+    // if (!this.isModified("password")) {
+    //   return next();
+    // }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    console.log('hashedPassword: ', hashedPassword);
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+user_schema.methods.comparePassword = async function (password) {
+  try {
+    return await bcrypt.compare(password, this.password);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 
 module.exports = mongoose.model("User", user_schema);

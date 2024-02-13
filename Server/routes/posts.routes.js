@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { posts } = require('../controllers/index');
-const {auth} = require('../middleware/index')
+const { posts_controller } = require('../controllers/index');
+const {auth} = require('../middlewares')
 
-router.get('/', auth.verify_auth,posts.get_posts)
-router.post('/', auth.verify_auth,posts.post_posts)
-router.put('/', auth.verify_auth,posts.Update_posts)
+router.get('/', auth.verify_auth, posts_controller.show_posts)
+router.post('/', auth.verify_auth, posts_controller.create_posts)
+router.put('/', auth.verify_auth, posts_controller.Update_posts)
 
 module.exports = router
