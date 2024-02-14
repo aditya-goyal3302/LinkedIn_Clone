@@ -4,7 +4,7 @@ exports.signup = async (req) => {
     const {first_name, last_name,username,email,password} = req.body;
     const exesting_user = await user_model.findOne({ email: email})
     if(exesting_user){
-        throw Object.assign(new Error("email_already_exists"), { code: 403 });
+        throw Object.assign(new Error("email_already_exists"), { code: 409 });
     }
     const user = new user_model({
         first_name,
