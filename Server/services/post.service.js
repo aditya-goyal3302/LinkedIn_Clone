@@ -32,11 +32,15 @@ exports.Update_posts = async (req) => {
   return post_model.updateOne({ _id: post_id }, data);
 };
 exports.show_posts_on_scroll = async (req) => {
-  const { time } = req.params;
+  const time = req.params.time ;
   return post_model
-    .find({time_stamp: { $lt: new Date(time) }})
+    .find({time_stamp: { $lt: time }})
     .sort({ time_stamp: -1 })
     .limit(10)
     .populate("user_id", "username image")
     .exec();
+}
+exports.delete_post = async (req) => {
+  const { post_id } = req.body;
+  return post_model.deleteOne({ _id: post_id });
 }

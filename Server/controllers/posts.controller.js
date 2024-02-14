@@ -31,15 +31,23 @@ exports.Update_posts = async (req, res) => {
     res.status(500).send(err);
   } 
 }
-exports.show_posts_on_scroll = async ()=>{
+exports.show_posts_on_scroll = async (req,res)=>{
   try{
-    const response = await post_service.show_posts();
-    //logic pending
-    return response;
+    const response = await post_service.show_posts_on_scroll(req);
+    return res.send(response);
   }
   catch(err){
     console.log(err)
     throw new Error(err);
   }
 }
-exports.delete_post = async (req,res)=>{ }
+exports.delete_post = async (req,res)=>{
+  try{
+    const response = await post_service.delete_post(req);
+    res.status(200).send(response);
+  }
+  catch(err){
+    console.log(err)
+    res.status(500).send(err);
+  }
+ }
