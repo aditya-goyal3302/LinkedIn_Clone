@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json( { extended: true }));
 app.use(express.urlencoded({ extended: true }));
 //routes
-app.use('/', require('./routes/index'));
+app.use('/', require('./routes'));
 
 app.listen(process.env.PORT, 
     () => console.log(`Server Up and running on port ${process.env.PORT}`)

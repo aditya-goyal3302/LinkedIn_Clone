@@ -3,4 +3,5 @@ module.exports ={
     user_service : require('./user.service'),
     auth_service : require('./auth.service'),
     comments_service : require('./comments.service'),
+    reactions_service : require('./reactions.service'),
 }

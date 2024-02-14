@@ -3,19 +3,18 @@ const mongoose = require('mongoose');
 
 const reaction_schema = new Schema({
     post_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'post',
+        type: String,
         required: true
     },
     user_id: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'User',
         required: true
     },
     reaction: {
         type: String,
         enum:['like','love','haha','wow','sad','angry'],
-        required: true
+        
     },
     time_stamp: {
         type: Date,
