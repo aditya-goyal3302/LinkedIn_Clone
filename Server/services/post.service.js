@@ -15,7 +15,7 @@ exports.create_posts = (req) => {
     title,
     content,
     link,
-    user_id: req.user.user_id,
+    user_id: req.body.user.user_id,
   });
   return (response = post.save());
 };
@@ -39,5 +39,5 @@ exports.show_posts_on_scroll = async (req) => {
 };
 exports.delete_post = async (req) => {
   const { post_id } = req.body;
-  return post_model.deleteOne({ _id: post_id, user_id: req.user.user_id});
+  return post_model.deleteOne({ _id: post_id, user_id: req.body.user.user_id});
 };

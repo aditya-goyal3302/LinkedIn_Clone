@@ -9,7 +9,7 @@ exports.verify_auth = async (req,res,next)=>{
     try{
         const decodetoken = jwt_tokens.verifyToken(token)
         // console.log('decodetoken: ', decodetoken);
-        req.user = decodetoken
+        req.body.user = decodetoken
         next();
     }
     catch(err){

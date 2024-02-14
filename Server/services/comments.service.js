@@ -11,7 +11,7 @@ exports.create_comments = async (req) => {
   const { content } = req.body;
   const comment = new comments_model({
     content,
-    user_id: req.user.user_id,
+    user_id: req.body.user.user_id,
     post_id: req.params.post_id,
   });
   return comment.save();
@@ -19,13 +19,13 @@ exports.create_comments = async (req) => {
 exports.delete_comments = async (req) => {
   const response = comments_model.deleteOne({
     _id: req.params.comment_id,
-    user_id: req.user.user_id,
+    user_id: req.body.user.user_id,
   });
   return response;
 };
 exports.update_comments = async (req) => {
   return comments_model.updateOne(
-    { _id: req.params.comment_id, user_id: req.user.user_id },
+    { _id: req.params.comment_id, user_id: req.body.user.user_id },
     { content: req.body.content }
   );
 };
@@ -42,7 +42,7 @@ exports.create_sub_comments = async (req) => {
   const { content } = req.body;
   const comment = new comments_model({
     content,
-    user_id: req.user.user_id,
+    user_id: req.body.user.user_id,
     comment_id: req.params.comment_id,
   });
   return comment.save();

@@ -17,20 +17,20 @@ exports.set_reactions = async (req) => {
 };
 exports.get_reactions_of_same_user = async (req) => {
   const { post_id } = req.params;
-  return reactions_model.find({ post_id, user_id: req.user.user_id });
+  return reactions_model.find({ post_id, user_id: req.body.user.user_id });
 };
 exports.update_reactions = async (req) => {
   const { post_id } = req.params;
   const { reaction } = req.body;
   return reactions_model
-    .find({ post_id, user_id: req.user.user_id })
+    .find({ post_id, user_id: req.body.user.user_id })
     .updateOne({ reaction });
 };
 exports.delete_reactions = async (req) => {
   const { post_id } = req.params;
   return reactions_model.deleteOne({
     post_id: post_id,
-    user_id: req.user.user_id,
+    user_id: req.body.user.user_id,
   });
 };
 //comments reactions
@@ -51,19 +51,19 @@ exports.set_comment_reactions = async (req) => {
 };
 exports.get_comment_reactions_of_same_user = async (req) => {
   const { comment_id } = req.params;
-  return reactions_model.find({ comment_id, user_id: req.user.user_id });
+  return reactions_model.find({ comment_id, user_id: req.body.user.user_id });
 };
 exports.update_comment_reactions = async (req) => {
   const { comment_id } = req.params;
   const { reaction } = req.body;
   return reactions_model
-    .find({ comment_id, user_id: req.user.user_id })
+    .find({ comment_id, user_id: req.body.user.user_id })
     .updateOne({ reaction });
 };
 exports.delete_comment_reactions = async (req) => {
   const { comment_id } = req.params;
   return reactions_model.deleteOne({
     comment_id: comment_id,
-    user_id: req.user.user_id,
+    user_id: req.body.user.user_id,
   });
 };
