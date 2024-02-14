@@ -7,7 +7,7 @@ exports.show_posts = async (req, res) => {
       return res.status(200).send(response);
     } else throw new Error("Error_in_fetching_post");
   } catch (err) {
-    console.log(err);
+    console.log("error_in_fetching_post", err);
     res.status(500).send(err);
   }
 };
@@ -33,10 +33,10 @@ exports.Update_posts = async (req, res) => {
 exports.show_posts_on_scroll = async (req, res) => {
   try {
     const response = await post_service.show_posts_on_scroll(req);
-    return res.send(response);
+    return res.status(200).send(response);
   } catch (err) {
     console.log("Error_in_fetching_post_on_scroll: ", err);
-    throw new Error(err);
+    res.status(500).send(err)
   }
 };
 exports.delete_post = async (req, res) => {

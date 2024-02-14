@@ -32,8 +32,7 @@ exports.set_comment_reactions = async (req, res) => {
       .get_comment_reactions_of_same_user(req);
     if (resp?.length > 0) {
       if (resp[0].reaction == req.body.reaction || false) {
-        const response = await reactions_service.delete_comment_reactions(req);
-        console.log(response, "response");
+        await reactions_service.delete_comment_reactions(req);
         res.send("reaction deleted");
       } else {
         await reactions_service.update_comment_reactions(req);
@@ -49,7 +48,11 @@ exports.set_comment_reactions = async (req, res) => {
   }
 };
 exports.get_comment_reactions = async (req, res) => {
-  const response = await reactions_service.get_comment_reactions(req, res);
-  console.log(response);
+  try {
+    const response = await reactions_service.get_comment_reactions(req, res);
   res.status(200).send(response); 
+  } catch (error) {
+    console.log("error_in_get_comment_reactions:", error);
+    res.status(500).send(error);
+  }
 };

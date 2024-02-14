@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 dotenv.config();
 // Connect to DB
-require('./config/mongo_db');
+require('./config/mongo_db').connectDB();
 //middleware
 app.use(cors());
 app.use(express.json( { extended: true }));
