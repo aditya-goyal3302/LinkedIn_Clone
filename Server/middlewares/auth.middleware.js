@@ -14,5 +14,7 @@ exports.verify_auth = async (req,res,next)=>{
     }
     catch(err){
         console.log("err  ",err)
+        res.status(401).send({ code:401 ,message: 'Unauthorized' });
+        next(err)
     }
 }

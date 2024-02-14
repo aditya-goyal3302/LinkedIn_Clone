@@ -27,13 +27,8 @@ exports.login = async (req, res) => {
         throw Object.assign(new Error("Invalid_email_or_password"), { code: 401 });
     }
     else{
-        const token = await jwt_tokens.generateToken({email:user.email,user_id:user._id, username:user.username});
-        const user_data = {
-            id:user._id,
-            name:user.name,
-            email:user.email,
-            image:user.image
-        }
-        return {data:user_data,token:token}
+        const token = await jwt_tokens.createToken({email:user.email,user_id:user._id, username:user.username});
+        user.password = undefined;
+        return {data:user,token:token}
     }
 }

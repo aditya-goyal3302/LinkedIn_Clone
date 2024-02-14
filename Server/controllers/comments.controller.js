@@ -8,6 +8,7 @@ exports.create_comment = async (req, res) => {
     }
     res.status(200).send(response);
   } catch (error) {
+    console.log("error_in_creating_comment: ", error);
     res.status(500).send(error);
   }
 };
@@ -16,26 +17,35 @@ exports.view_comment = async (req, res) => {
     const response = await comments_service.view_comments(req);
     res.status(200).send(response);
   } catch (error) {
-    console.log("error: ", error);
+    console.log("error_in_fetching_comment: ", error);
     res.status(500).send(error);
   }
 };
 exports.delete_comment = async (req, res) => {
   try {
     const response = await comments_service.delete_comments(req);
-    if (response.nModified === 0) throw new Error("No comment found or anauthorized user");
-    res.status(200).send(response);
+    if (response.deletedCount === 0)
+      throw Object.assign(new Error("No comment found or unauthorized user"), {
+        status: 401,
+      });
+    res.status(200).send(true);
   } catch (error) {
-    res.status(500).send(error);
+    console.log("error_in_deleting_comment: ", error);
+    res.status(error.code || 500).send(error.message || error);
   }
 };
 exports.update_comment = async (req, res) => {
   try {
     const response = await comments_service.update_comments(req);
-    if (response.modifiedCount === 0) throw Object.assign(new Error("No comment found or anauthorized user"), { status: 401 });
-    res.status(200).send(response);
+    console.log("response: ", response);
+    if (response.matchedCount === 0)
+      throw Object.assign(new Error("No comment found or unauthorized user"), {
+        status: 401,
+      });
+    res.status(200).send(true);
   } catch (error) {
-    res.status(error.code||500).send(error.message||error);
+    console.log("error: ", error);
+    res.status(error.code || 500).send(error.message || error);
   }
 };
 

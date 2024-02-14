@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const reaction_schema = new Schema({
   post_id: {
     type: String,
-    required: true,
+  },
+  comment_id:{
+    type: String,
   },
   user_id: {
     type: String,

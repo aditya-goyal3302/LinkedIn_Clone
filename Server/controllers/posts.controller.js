@@ -2,9 +2,9 @@ const { post_service } = require("../services");
 
 exports.show_posts = async (req, res) => {
   try {
-    const responseonse = await post_service.show_posts();
+    const response = await post_service.show_posts();
     if (response) {
-      return res.status(200).send(responseonse);
+      return res.status(200).send(response);
     } else throw new Error("Error_in_fetching_post");
   } catch (err) {
     console.log(err);

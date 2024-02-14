@@ -116,7 +116,7 @@ paths:
                 properties:
                   error:
                     type: string
-  /auth:
+  # /auth:
 components:
   schemas:
     posts:
@@ -132,4 +132,29 @@ components:
           type: string
         time_stamp:
           type: string
-        
+    user:
+      type: object
+      properties:
+        _id:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        time_stamp:
+          type: string
+        education:
+          type: object
+          properties:
+            school:
+              type: string
+            degree:
+              type: string
+            field_of_study:
+              type: string
+            start_date:
+              type: string
+            end_date:
+              type: string
