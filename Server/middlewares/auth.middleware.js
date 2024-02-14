@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const {jwt_tokens} = require('../libs')
 
 exports.verify_auth = async (req,res,next)=>{
     const token = req.headers.authorization
@@ -7,7 +7,7 @@ exports.verify_auth = async (req,res,next)=>{
         return res.status(401).send({ code:401 ,message: 'Unauthorized' });
       }
     try{
-        const decodetoken = jwt.verify(token,process.env.JWT_SECRET)
+        const decodetoken = jwt_tokens.verifyToken(token)
         // console.log('decodetoken: ', decodetoken);
         req.user = decodetoken
         next();

@@ -17,10 +17,7 @@ exports.create_posts = (req) => {
     link,
     user_id: req.user.user_id,
   });
-  const response = post.save();
-  if (response) {
-    return response;
-  } else throw new Error("Error in creating post");
+  return (response = post.save());
 };
 
 exports.Update_posts = async (req) => {
@@ -32,15 +29,15 @@ exports.Update_posts = async (req) => {
   return post_model.updateOne({ _id: post_id }, data);
 };
 exports.show_posts_on_scroll = async (req) => {
-  const time = req.params.time ;
+  const time = req.params.time;
   return post_model
-    .find({time_stamp: { $lt: time }})
+    .find({ time_stamp: { $lt: time } })
     .sort({ time_stamp: -1 })
     .limit(10)
     .populate("user_id", "username image")
     .exec();
-}
+};
 exports.delete_post = async (req) => {
   const { post_id } = req.body;
-  return post_model.deleteOne({ _id: post_id });
-}
+  return post_model.deleteOne({ _id: post_id, user_id: req.user.user_id});
+};
