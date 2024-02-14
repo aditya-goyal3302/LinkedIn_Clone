@@ -13,6 +13,9 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
+        if (!req.body.email || !req.body.password) {
+            throw Object.assign(new Error("Invalid_email_or_password"), { code: 400 });
+        }
         const result = await auth_service.login(req);
         res.status(200).send(result);
     } catch (error) {
