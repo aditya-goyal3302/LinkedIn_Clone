@@ -2,6 +2,8 @@ const { comments_service } = require("../services");
 
 exports.create_comment = async (req, res) => {
   try {
+    if (!req.body.comment)
+      throw Object.assign(new Error("Invalid_input"), { code: 400 });
     const response = await comments_service.create_comments(req);
     if (!response) {
       throw new Error("Error_in_creating_post");
@@ -26,9 +28,9 @@ exports.delete_comment = async (req, res) => {
     const response = await comments_service.delete_comments(req);
     if (response.deletedCount === 0)
       throw Object.assign(new Error("No_comment_found_or_unauthorized_user"), {
-        status: 401,
+        code: 401,
       });
-    res.status(202).send(true);
+    res.status(204).send(true);
   } catch (error) {
     console.log("error_in_deleting_comment: ", error);
     res.status(error.code || 500).send(error.message || error);
@@ -39,7 +41,7 @@ exports.update_comment = async (req, res) => {
     const response = await comments_service.update_comments(req);
     if (response.matchedCount === 0)
       throw Object.assign(new Error("No_comment_found_or_unauthorized_user"), {
-        status: 401,
+        code: 401,
       });
     res.status(202).send(true);
   } catch (error) {
