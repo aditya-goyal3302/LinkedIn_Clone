@@ -24,7 +24,7 @@ exports.Update_posts = async (req, res) => {
   try {
     const response = await post_service.Update_posts(req);
     // console.log("response: ", response);
-    res.status(200).send(response);
+    res.status(202).send(response);
   } catch (err) {
     console.log("Error_in_updating_post: ",err);
     res.status(500).send(err);
@@ -43,7 +43,7 @@ exports.delete_post = async (req, res) => {
   try {
     const response = await post_service.delete_post(req);
     if(response.deletedCount === 0) throw new Error("Error_in_deleting_post");
-    else res.status(200).send(response);
+    else res.status(202).send(response);
   } catch (err) {
     console.log("Error_in_deleting_post:", err);
     res.status(500).send(err);
