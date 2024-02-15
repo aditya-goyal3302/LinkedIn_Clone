@@ -1,5 +1,4 @@
 const { auth_service } = require("../services/index");
-const { auth_service } = require("../services/index");
 
 exports.signup = async (req, res) => {
     const{ first_name, last_name, username, email, password } = req.body;

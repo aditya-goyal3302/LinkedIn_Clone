@@ -21,6 +21,6 @@ const comment_schema = new mongooes.Schema({
     type: Date,
     default: Date.now(),
   },
-});F
+});
 
 module.exports = mongooes.model("comment", comment_schema);
