@@ -1,0 +1,47 @@
+.root{
+    width: 100vw;
+    height: 100vh;
+}
+.logo{
+    width: 100%;
+    height: auto;
+    min-height: 66px;
+    margin: 0 0;
+    display: block;
+}
+.logo>svg{
+    float: left;
+    margin-top:33px;
+    margin-left:57px;
+    height: 28px; 
+    width: 110px;   
+}
+.box{
+    width: 303px;
+    height: 590px;
+    margin: 0 auto;
+    padding: 25px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.box>h1{
+    text-align: left;
+    font-weight: 600;
+    width: 100%;
+    margin: 5px 0;
+}
+.box>span{
+    float: left;
+    font-weight: 400;
+    /* width: 100%; */
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 14px;
+}
+.login_inputs{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.6) !important;
+    border-radius: 4px;
+    margin: 20px 0;
+}
