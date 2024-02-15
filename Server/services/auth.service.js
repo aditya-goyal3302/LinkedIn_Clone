@@ -1,5 +1,5 @@
 const {user_model} = require('../models/index');
-const {jwt_tokens} = require('../libs')
+const {utils} = require('../libs')
 exports.signup = async (req) => {
     const {first_name, last_name,username,email,password} = req.body;
     const exesting_user = await user_model.findOne({ email: email})
@@ -27,7 +27,7 @@ exports.login = async (req, res) => {
         throw Object.assign(new Error("Invalid_email_or_password"), { code: 401 });
     }
     else{
-        const token = await jwt_tokens.createToken({email:user.email,user_id:user._id, username:user.username});
+        const token = await utils.createToken({email:user.email,user_id:user._id, username:user.username});
         user.password = undefined;
         return {data:user,token:token}
     }

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async() => {
     try {
+        
         mongoose.connection
         .on('error', (err) => {
             console.log('Mongoose connecting error !!!!', err);

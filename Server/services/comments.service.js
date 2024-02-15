@@ -32,18 +32,21 @@ exports.update_comments = async (req) => {
 //comments_routes
 //sub-comments_routes
 exports.view_sub_comments = async (req, res) => {
+  const { sub_comment_id } = req.params;
   const response = await comments_model
-    .find({ comment_id: req.params.comment_id })
+    .find({ comment_id: sub_comment_id})
     .populate("user_id", "username image")
     .exec();
   return response;
 };
 exports.create_sub_comments = async (req) => {
   const { content } = req.body;
+  const { sub_comment_id } = req.params;
+  const { user_id } = req.body.user;
   const comment = new comments_model({
     content,
-    user_id: req.body.user.user_id,
-    comment_id: req.params.comment_id,
+    user_id,
+    comment_id: sub_comment_id,
   });
   return comment.save();
 };

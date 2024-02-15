@@ -1,4 +1,4 @@
-const {jwt_tokens} = require('../libs')
+const {utils} = require('../libs')
 
 exports.verify_auth = async (req,res,next)=>{
     const token = req.headers.authorization
@@ -7,14 +7,13 @@ exports.verify_auth = async (req,res,next)=>{
         return res.status(401).send({ code:401 ,message: 'Unauthorized' });
       }
     try{
-        const decodetoken = jwt_tokens.verifyToken(token)
+        const decodetoken = utils.verifyToken(token)
         // console.log('decodetoken: ', decodetoken);
         req.body.user = decodetoken
         next();
     }
     catch(err){
-        console.log("err  ",err)
+        console.log("err_in_auth_verify: ",err)
         res.status(401).send({ code:401 ,message: 'Unauthorized' });
-        next(err)
     }
 }
