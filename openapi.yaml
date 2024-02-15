@@ -185,7 +185,25 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/posts"
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    title:
+                      type: string
+                    content:
+                      type: string
+                    user_id:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        username:
+                          type: string
+                        image:
+                          type: string
+                    time_stamp:
+                      type: string
         "400":
           description: Bad request
           content:

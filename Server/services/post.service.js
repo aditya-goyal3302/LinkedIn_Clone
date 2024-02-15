@@ -1,7 +1,7 @@
 const { post_model } = require("../models/index");
 const { post } = require("../routes/posts.routes");
 
-exports.show_posts = () => {
+exports.show_posts = async () => {
   return post_model
     .find()
     .sort({ time_stamp: -1 })
@@ -9,7 +9,7 @@ exports.show_posts = () => {
     .exec();
 };
 
-exports.create_posts = (req) => {
+exports.create_posts = async (req) => {
   const { title, content, link } = req.body;
   const post = new post_model({
     title,

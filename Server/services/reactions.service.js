@@ -2,7 +2,7 @@ const { reactions_model } = require("../models");
 //posts reactions
 exports.get_reactions = async (req) => {
   const { post_id } = req.params;
-  console.log('post_id: ', post_id);
+  console.log("post_id: ", post_id);
   return reactions_model.find({ post_id });
 };
 exports.set_reactions = async (req) => {
@@ -36,7 +36,7 @@ exports.delete_reactions = async (req) => {
 //comments reactions
 exports.get_comment_reactions = async (req) => {
   const { comment_id } = req.params;
-  console.log('comment_id: ', comment_id); 
+  console.log("comment_id: ", comment_id);
   return reactions_model.find({ comment_id });
 };
 exports.set_comment_reactions = async (req) => {

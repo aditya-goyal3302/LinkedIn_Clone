@@ -10,14 +10,14 @@ const user_schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username:{
+  username: {
     type: String,
-    required:true,
-    unique:true
+    required: true,
+    unique: true,
   },
-  image:{
-    type:String,
-    required:false
+  image: {
+    type: String,
+    required: false,
   },
   email: {
     type: String,
@@ -97,14 +97,14 @@ const user_schema = new mongoose.Schema({
   skills: {
     type: [
       {
-        skill:{
+        skill: {
           type: String,
           required: true,
         },
-        time_stamp:{
+        time_stamp: {
           type: Date,
-          default:null
-        }
+          default: null,
+        },
       },
     ],
     required: false,
@@ -119,7 +119,7 @@ user_schema.pre("save", async function (next) {
     // }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(this.password, salt);
-    console.log('hashedPassword: ', hashedPassword);
+    console.log("hashedPassword: ", hashedPassword);
     this.password = hashedPassword;
     next();
   } catch (error) {
@@ -134,6 +134,5 @@ user_schema.methods.comparePassword = async function (password) {
     throw new Error(error);
   }
 };
-
 
 module.exports = mongoose.model("User", user_schema);
