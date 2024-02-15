@@ -8,7 +8,7 @@ exports.get_reactions = async (req) => {
 exports.set_reactions = async (req) => {
   const { reaction } = req.body;
   const { post_id } = req.params;
-  const { user_id } = req.user;
+  const { user_id } = req.body.user;
   return reactions_model.create({
     reaction,
     post_id,
@@ -42,7 +42,7 @@ exports.get_comment_reactions = async (req) => {
 exports.set_comment_reactions = async (req) => {
   const { reaction } = req.body;
   const { comment_id } = req.params;
-  const { user_id } = req.user;
+  const { user_id } = req.body.user;
   return reactions_model.create({
     reaction,
     comment_id,
