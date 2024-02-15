@@ -5,7 +5,7 @@ const reaction_schema = new Schema({
   post_id: {
     type: String,
   },
-  comment_id:{
+  comment_id: {
     type: String,
   },
   user_id: {

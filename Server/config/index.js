@@ -1,3 +1,3 @@
 exports.modules = {
-    mongo_db: require('./mongodb')
-}
+  mongo_db: require("./mongodb"),
+};

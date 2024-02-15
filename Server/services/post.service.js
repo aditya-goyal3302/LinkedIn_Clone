@@ -8,7 +8,7 @@ exports.show_posts = () => {
   });
 };
 
-exports.create_posts = (req) => {
+exports.create_posts = async (req) => {
   const { title, content, link } = req.body;
   const post = new post_model({
     title,
@@ -16,7 +16,7 @@ exports.create_posts = (req) => {
     link,
     user_id: req.body.user.user_id,
   });
-  return (response = post.save());
+  return post.save();
 };
 
 exports.update_posts = async (req) => {
@@ -40,5 +40,6 @@ exports.show_posts_on_scroll = async (req) => {
 
 exports.delete_post = async (req) => {
   const { post_id } = req.body;
+  return post_model.deleteOne({ _id: post_id, user_id: req.body.user.user_id });
   return post_model.deleteOne({ _id: post_id, user_id: req.body.user.user_id });
 };

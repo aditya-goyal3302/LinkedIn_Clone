@@ -34,6 +34,7 @@ exports.update_posts = async (req, res) => {
     else res.status(200).send(response);
   } catch (err) {
     console.log("Error_in_updating_post: ", err);
+    console.log("Error_in_updating_post: ", err);
     res.status(500).send(err);
   }
 };
@@ -47,6 +48,7 @@ exports.show_posts_on_scroll = async (req, res) => {
     else res.status(200).send(response);
   } catch (err) {
     console.log("Error_in_fetching_post_on_scroll: ", err);
+    res.status(500).send(err);
     res.status(500).send(err);
   }
 };

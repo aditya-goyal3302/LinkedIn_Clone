@@ -1,4 +1,4 @@
-const express = require('express');     
+const express = require("express");
 const app = express();
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -24,6 +24,6 @@ app.use((req, res) => {
 
 })
 
-app.listen(process.env.PORT, 
-    () => console.log(`Server Up and running on port ${process.env.PORT}`)
+app.listen(process.env.PORT, () =>
+  console.log(`Server Up and running on port ${process.env.PORT}`)
 );
