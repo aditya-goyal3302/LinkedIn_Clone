@@ -11,14 +11,17 @@
 }
 .logo>svg{
     float: left;
-    margin-top:33px;
-    margin-left:57px;
+    margin-top:30.5px;
+    margin-left:56px;
     height: 28px; 
     width: 110px;   
 }
+.form{
+    /* margin-bottom: 15px; */
+}
 .box{
     width: 303px;
-    height: 590px;
+    height: auto;
     margin: 0 auto;
     padding: 25px;
     border-radius: 8px;
@@ -26,22 +29,90 @@
     -moz-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-.box>h1{
-    text-align: left;
-    font-weight: 600;
-    width: 100%;
-    margin: 5px 0;
+.title{
+    text-align: left !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+    margin:0 !important;
+    font-size: 1.9rem !important;
 }
-.box>span{
-    float: left;
-    font-weight: 400;
+.title2{
+    float: left !important;
+    font-weight: 400 !important;
     /* width: 100%; */
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7) !important;
+    font-size: 14px !important;
+    margin-top:-5px !important;
 }
 .login_inputs{
-    width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.6) !important;
+    margin: 0 auto !important;
+    margin-top: 25px !important;
+    width: 300px !important;
     border-radius: 4px;
-    margin: 20px 0;
+    /* margin: 20px 0; */
+}
+.login_inputs>div>fieldset{
+    border-color:rgba(0, 0, 0, 0.8) ;
+}
+.show_btn{
+    color: #0a66c2 !important;
+    background-color: transparent !important;
+    border: 2px solid transparent !important;
+    box-shadow: none !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    height: auto !important;
+    padding: 4px 7px !important;
+    text-align: center !important;
+    text-transform: none !important;
+    justify-content: right !important;
+}
+.show_btn:hover{
+    border: 2px solid #0a66c2 !important;
+
+}
+.show_btn:hover,
+.forget_password:hover
+{
+    background-color: #0a66c21e !important;
+}
+.show_btn_wrap{
+    margin-right: -10px;
+    margin-top: 2px;
+}
+.forget_password{
+    margin-top: 5px!important;  
+    margin-left: -10px !important;
+    width: 180px !important;    
+    padding: 4px 8px !important;
+    background-color: transparent !important;
+    border: 2px solid transparent !important;
+    height: auto !important;
+    box-shadow: none !important;
+    font-size: 15px !important;
+    justify-content: left !important;
+    color: #0a66c2 !important;
+    text-transform: none !important;
+    font-weight: 600 !important;
+}
+.sign_in_btn{
+    margin-top: 15px !important;
+    background-color: #0a66c2 !important;
+    color: white !important;
+    font-weight: 6  00 !important;
+    font-size: 16px !important;
+    padding: 10px 0 !important;
+    box-shadow: none !important;
+    border: 2px solid transparent !important;
+    text-transform: none !important;
+}
+.divider{
+    color: #0000005b;
+    margin: 12px 0 !important;
+}
+.txt_oauth_text{
+    /* margin-top: 15px !important; */
+    text-align: left !important;
+    font-size: 11px !important;
+    color: rgba(0, 0, 0, 0.89) !important;
 }
