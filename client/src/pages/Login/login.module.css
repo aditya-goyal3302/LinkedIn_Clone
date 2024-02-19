@@ -19,17 +19,17 @@
 .form{
     /* margin-bottom: 15px; */
 }
-.box{
+.box_wraper{
     position: absolute !important;
-    /* top:50% !important;
-    bottom: 50% !important; */
-    width: 303px;
-    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.box{
+    width: 303px;
+    height: auto;
     margin: 0 auto !important;
-    padding: 24px;
+    padding: 14px 24px;
     border-radius: 8px;
     -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     -moz-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -65,8 +65,9 @@
 .login_inputs>div>fieldset{
     border-color:rgba(0, 0, 0, 0.8) ;
 }
-.MuiTextField-root
+.MuiInputBase-input-MuiOutlinedInput-input
 {
+    padding: 0px 0px !important;
 }
 .show_btn{
     color: #0a57a5 !important;
@@ -161,4 +162,22 @@
 }
 .policy_links:hover{
     text-decoration: underline;
+}
+.sign_up_text{
+    position: relative !important;
+    height: 16px;
+    margin-top: 32px !important;
+    font-size: 16px     !important;
+    text-align:unset !important;
+    color: rgba(0, 0, 0, 0.9) !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+    padding-top: 15px !important;
+}
+.sign_up_text>p{
+}
+.sign_up_link{
+    color: #0a66c2 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
 }
