@@ -1,78 +1,95 @@
-.root{
+.root {
     width: 100vw;
+    background-color: #f3f2f0;
     height: 100vh;
 }
-.logo{
-    width: 100%;
+
+.main_wrap {
+    max-width: 1100px;
+    width: 100% !important;
+    max-height: 700px;
+    padding: 24px 16px !important;
     height: auto;
-    min-height: 66px;
+    position: absolute !important;
+    margin: 0 50% !important;
+    transform: translate(-50%, 0%);
+}
+
+.logo {
+    width: 100%;
+    height: auto !important;
+    /* min-height: 66px; */
     margin: 0 0;
     display: block;
 }
-.logo>svg{
+
+.logo>svg {
     float: left;
-    margin-top:31.8px;
-    margin-left:56px;
-    height: 28px; 
-    width: 110px;   
+    margin-top: 0px;
+    margin-left: 0px;
+    height: 28px;
+    width: 110px;
 }
-.form{
+
+.form {
     /* margin-bottom: 15px; */
 }
-.box_wraper{
-    position: absolute !important;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.box{
+
+/* .box_wraper{
+    
+} */
+.box {
     width: 303px;
     height: auto;
     margin: 0 auto !important;
     padding: 14px 24px;
     border-radius: 8px;
-    -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: #fff !important;
 }
-.title{
-    text-align: left !important;
-    font-weight: 600 !important;
+
+.title {
+    text-align: center !important;
+    font-weight: 400 !important;
     width: 100% !important;
-    margin:0 !important;
+    margin: 0 !important;
     padding: 0 !important;
     font-size: 32px !important;
-    color :#000000ec !important;
+    color: #000000ec !important;
     line-height: 1.25rem;
+    padding: 24px 16px !important;
     margin-top: -2px !important;
 }
-.title2{
+
+.title2 {
     float: left !important;
     font-weight: 400 !important;
     /* width: 100%; */
     color: rgba(0, 0, 0, 0.8) !important;
     font-size: 14px !important;
-    margin-top:0px !important;
+    margin-top: 0px !important;
 }
-.login_inputs{
+
+.login_inputs {
     margin: 0 auto !important;
     margin-top: 22px !important;
     max-width: 350px !important;
     width: 100% !important;
     border-radius: 4px;
     font-size: 28px;
-    height : 52px !important;
-    background-color: unset !important;
+    padding: 0px 0px !important;
+    /* background-color: black !important; */
+    /* height : 2px !important; */
 }
-.login_inputs>div>fieldset{
-    border-color:rgba(0, 0, 0, 0.8) ;
+
+.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedEnd {
+     padding: 0px !important;
+     background-color: black !important;
+ }
+.login_inputs>div>fieldset {
+    border-color: rgba(0, 0, 0, 0.8);
 }
-/* .login_inputs>div>input,.password_input,.m
-{
-    padding: 0px !important;
-    background-color: 0px !important;
-} */
-.show_btn{
+
+.show_btn {
     color: #0a57a5 !important;
     background-color: transparent !important;
     border: 2px solid transparent !important;
@@ -85,23 +102,26 @@
     text-transform: none !important;
     justify-content: right !important;
 }
-.show_btn:hover{
+
+.show_btn:hover {
     border: 2px solid #0a66c2 !important;
 
 }
+
 .show_btn:hover,
-.forget_password:hover
-{
+.forget_password:hover {
     background-color: #0a66c21e !important;
 }
-.show_btn_wrap{
+
+.show_btn_wrap {
     margin-right: -10px;
     margin-top: 2px;
 }
-.forget_password{
-    margin-top: 10px !important;  
+
+.forget_password {
+    margin-top: 10px !important;
     margin-left: -10px !important;
-    width: 150px !important;    
+    width: 150px !important;
     padding: 0px 8px !important;
     background-color: transparent !important;
     border: 2px solid transparent !important;
@@ -113,7 +133,8 @@
     text-transform: none !important;
     font-weight: 600 !important;
 }
-.sign_in_btn{
+
+.sign_in_btn {
     margin-top: 16px !important;
     background-color: #0a66c2 !important;
     color: white !important;
@@ -124,20 +145,24 @@
     border: 2px solid transparent !important;
     text-transform: none !important;
 }
-.divider{
+
+.divider {
     color: #00000098;
     margin: 11px 0 !important;
 }
-.txt_oauth_text{
+
+.txt_oauth_text {
     margin-top: 2px !important;
     text-align: left !important;
     font-size: 12px !important;
     color: rgba(0, 0, 0, 0.89) !important;
 }
-.oauth_btn{
+
+.oauth_btn {
     margin-top: 13px;
 }
-.oauth_btn_google{
+
+.oauth_btn_google {
     border: 1px solid black !important;
     height: auto !important;
     box-shadow: none !important;
@@ -146,70 +171,80 @@
     font-size: 16px !important;
     font-weight: 500 !important;
     text-transform: none !important;
-    padding-top:  6px !important;
+    padding-top: 6px !important;
     padding-bottom: 6px !important;
-    margin-bottom: 12px !important;   
-    color:hsla(0, 0%, 0%, 0.589) !important; 
-    font-family: "Google Sans",arial,sans-serif !important;
+    margin-bottom: 12px !important;
+    color: hsla(0, 0%, 0%, 0.589) !important;
+    font-family: "Google Sans", arial, sans-serif !important;
 }
-.oauth_btn_google:hover{
+
+.oauth_btn_google:hover {
     background-color: #f3f3f3 !important;
 }
+
 .oauth_btn_google>img,
-.oauth_btn_google>svg{
+.oauth_btn_google>svg {
     width: 22px !important;
     height: 22px !important;
     margin-right: 10px !important;
 }
-.policy_links{
+
+.policy_links {
     font-weight: 600 !important;
     text-decoration: none !important;
-    color:#0a66c2 !important;
+    color: #0a66c2 !important;
 }
-.policy_links:hover{
+
+.policy_links:hover {
     text-decoration: underline;
 }
-.sign_up_text{
+
+.sign_up_text {
     position: relative !important;
     height: 20px;
     margin-top: 32px !important;
-    font-size: 16px     !important;
-    text-align:unset !important;
+    font-size: 16px !important;
+    text-align: unset !important;
     color: rgba(0, 0, 0, 0.9) !important;
     font-weight: 400 !important;
     line-height: 24px !important;
     /* padding-top: 15px !important; */
 }
-.sign_up_link{
+
+.sign_up_link {
     color: #0a66c2 !important;
     font-weight: 600 !important;
     text-decoration: none !important;
 }
-.sign_up_link:hover{
+
+.sign_up_link:hover {
     text-decoration: underline !important;
 }
-.footer_wrap{
+
+.footer_wrap {
     position: absolute !important;
     bottom: 0 !important;
     width: 100% !important;
     text-align: center !important;
     height: auto !important;
-    min-height: 72px !important;
+    min-height: 50px !important;
+    background-color: #fff !important;
     display: flex !important;
 }
-.footer{
+
+.footer {
     position: relative !important;
     padding: 0 !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     margin: auto !important;
-    align-items: center !important;
-    justify-items: center !important;
+    align-items: start !important;
+    justify-items: start !important;
     flex-wrap: wrap !important;
-    
 }
-.footer_text{
+
+.footer_text {
     font-size: 12px !important;
     color: #00000099 !important;
     font-weight: 600 !important;
@@ -217,23 +252,27 @@
     margin: 0 6px !important;
     padding: 0 !important;
     text-decoration: none !important;
-    display : flex !important;  
-    align-items: center!important;
-    justify-content: center  !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
-.footer_text>img{
+
+.footer_text>img {
     width: 60px !important;
-    height: 16px    !important;
-    margin-right: 3px  !important;
+    height: 16px !important;
+    margin-right: 3px !important;
 
 }
-.footer_text:hover{
+
+.footer_text:hover {
     text-decoration: underline !important;
 }
-.footer_text:nth-child(1):hover{
+
+.footer_text:nth-child(1):hover {
     text-decoration: none !important;
 }
-@media screen and (max-width: 770px) {
+
+/* @media screen and (max-width: 770px) {
     .logo>svg{
         margin-left: 32px; 
     }
@@ -246,7 +285,6 @@
         margin-top: 16px !important;
     }
     .box{
-        /* width:100% !important; */
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
@@ -273,7 +311,6 @@
         margin-top: 16px !important;
     }
     .box{
-        /* width:100% !important; */
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
@@ -286,4 +323,4 @@
     .footer_wrap{
         display: none !important;
     }
-}
+} */
