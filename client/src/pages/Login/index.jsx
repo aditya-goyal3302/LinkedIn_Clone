@@ -35,24 +35,26 @@ function Login() {
                     <Typography className={styles.title2}>Stay updated on your professional world</Typography>
                     <FormControl className={styles.form}>
                         <TextField
-                            id="outlined-error-helper-text"
-                            label="Email"
+                            id="filled-error-helper-text"
+                            label="Email or Phone"
                             // value={data.email}
                             className={styles.login_inputs}
                             error={error.email}
                             helperText={error.email ? "Invalid Email" : ""}
-                            variant="outlined"
+                            variant="filled"
                         />
                         <TextField
                             label="Password"
                             className={styles.login_inputs}
-                            id="outlined-start-adornment-helper-text"
+                            id="filled-start-adornment-helper-text"
+                            variant="filled"
+                            style= {{border: "none"}}
                             error={error.password}
                             helperText={error.password ? "Invalid password" : ""}
                             InputProps={{
                                 endAdornment:
                                 <InputAdornment position="center" className={styles.show_btn_wrap}>
-                                    <Fab className={styles.show_btn}
+                                    <Fab className={`${styles.show_btn} show_btn`}
                                         variant="extended"
                                         onClick={handleClickShowPassword}
                                         onMouseDown={handleMouseDownPassword}
@@ -102,7 +104,7 @@ function Login() {
                     <Link className={styles.footer_text}>Privacy Policy</Link>
                     <Link className={styles.footer_text}>Community Guidelines</Link>
                     <Link className={styles.footer_text}>Cookie Policy</Link>
-                    <Link className={styles.footer_text}>Copyright Policy</Link>
+                    <Link className={styles.footer_text}>CopyRight Policy</Link>
                     <Link className={styles.footer_text}>Send Feedback</Link>
                     <Link className={styles.footer_text}>Language</Link>
                 </Box>

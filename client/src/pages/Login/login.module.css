@@ -67,11 +67,7 @@
 .login_inputs>div>fieldset{
     border-color:rgba(0, 0, 0, 0.8) ;
 }
-/* .login_inputs>div>input,.password_input,.m
-{
-    padding: 0px !important;
-    background-color: 0px !important;
-} */
+
 .show_btn{
     color: #0a57a5 !important;
     background-color: transparent !important;
@@ -84,6 +80,7 @@
     text-align: center !important;
     text-transform: none !important;
     justify-content: right !important;
+    background-color: unset !important;
 }
 .show_btn:hover{
     border: 2px solid #0a66c2 !important;

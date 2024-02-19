@@ -1,0 +1,22 @@
+input.MuiInputBase-input{
+    padding-bottom: 0 !important;
+    background-color: unset !important   ;
+    border: unset !important;
+    outline: unset !important;
+}
+input.MuiInputBase-input:focus{
+    border: none !important;
+    outline: none !important;
+} 
+.MuiInputBase-root{
+    background-color: #fff  !important;
+    border: 1px solid black !important;
+}
+
+.MuiFilledInput-root::before,.MuiFilledInput-root::after{
+    border: none !important;
+}
+
+.MuiFormLabel-root.Mui-focused{
+    color:unset !important;
+}
