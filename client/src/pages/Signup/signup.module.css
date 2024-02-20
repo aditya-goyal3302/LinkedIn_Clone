@@ -108,6 +108,8 @@
     text-transform: none !important;
     justify-content: right !important;
     margin-right: 8.5px !important;
+    margin-top: -2px !important;
+    
 }
 
 .show_btn_wrap {
@@ -137,7 +139,7 @@
     text-align: center !important;
     font-size: 12px !important;
     color: rgba(0, 0, 0, 0.6) !important;
-    /* padding: 0px 12px !important; */
+    line-height: 16px !important;
 }
 
 .oauth_btn {
@@ -149,15 +151,17 @@
     height: auto !important;
     box-shadow: none !important;
     background-color: transparent !important;
-    width: 100% !important;
+    width: 323.5px !important;
     font-size: 16px !important;
     font-weight: 500 !important;
     text-transform: none !important;
     padding-top: 6px !important;
     padding-bottom: 6px !important;
     margin-bottom: 15px !important;
-    color: hsla(0, 0%, 0%, 0.589) !important;
-    font-family: "Google Sans", arial, sans-serif !important;
+    margin-top: -2px !important;
+    font-stretch:88% !important;
+    color: #3c4043 !important;
+    font-family: "Google Sans",arial,sans-serif !important;
 }
 
 .oauth_btn_google:hover {
@@ -184,9 +188,11 @@
 .sign_up_text {
     position: relative !important;
     height: 20px;
-    margin:16px 16px 24px !important;
+    margin-top: 8px !important;
     font-size: 16px !important;
-    text-align: unset !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 16px 16px 24px !important;
     color: rgba(0, 0, 0, 0.9) !important;
     font-weight: 400 !important;
     line-height: 24px !important;
@@ -236,7 +242,7 @@
     color: #00000099 !important;
     font-weight: 600 !important;
     line-height: 1.5rem !important;
-    margin: 0 6px !important;
+    margin: 0 8px !important;
     padding: 0 !important;
     text-decoration: none !important;
     display: flex !important;
@@ -258,7 +264,15 @@
 .footer_text:nth-child(1):hover {
     text-decoration: none !important;
 }
-
+.helps{
+    margin-top: 16px !important;
+    font-size: 14px !important;
+}
+.helps_link{
+    color: #0a66c2 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
 /* @media screen and (max-width: 770px) {
     .logo>svg{
         margin-left: 32px; 

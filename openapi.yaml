@@ -353,12 +353,12 @@ paths:
             schema:
               type: object
               properties:
-                username:
+                email:
                   type: string
-                first_name:
-                  type: string
-                last_name:
-                  type: string
+                # first_name:
+                #   type: string
+                # last_name:
+                #   type: string
                 password:
                   type: string
       responses:
@@ -367,67 +367,68 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  _id:
-                    type: string
-                  username:
-                    type: string
-                  first_name:
-                    type: string
-                  last_name:
-                    type: string
-                  image:
-                    type: string
-                  headline:
-                    type: string
-                  summary:
-                    type: string
-                  email:
-                    type: string
+                type: boolean
+                example: true
+                # properties:
+                #   _id:
+                #     type: string
+                #   username:
+                #     type: string
+                #   first_name:
+                #     type: string
+                #   last_name:
+                #     type: string
+                #   image:
+                #     type: string
+                #   headline:
+                #     type: string
+                #   summary:
+                #     type: string
+                #   email:
+                #     type: string
                   # time_stamp:
                   #   type: string
-                  education:
-                    type: array
-                    items:
-                      type: object
-                    properties:
-                      school:
-                        type: string
-                      degree:
-                        type: string
-                      field_of_study:
-                        type: string
-                      start_date:
-                        type: string
-                      end_date:
-                        type: string
-                      description:
-                        type: string
-                  skill:
-                    type: array
-                    items:
-                      type: object
-                    properties:
-                      skill:
-                        type: string
-                      time_stamp:
-                        type: string
-                  experience:
-                    type: array
-                    items:
-                      type: object
-                    properties:
-                      title:
-                        type: string
-                      company:
-                        type: string
-                      start_date:
-                        type: string
-                      end_date:
-                        type: string
-                      description:
-                        type: string
+                  # education:
+                  #   type: array
+                  #   items:
+                  #     type: object
+                  #   properties:
+                  #     school:
+                  #       type: string
+                  #     degree:
+                  #       type: string
+                  #     field_of_study:
+                  #       type: string
+                  #     start_date:
+                  #       type: string
+                  #     end_date:
+                  #       type: string
+                  #     description:
+                  #       type: string
+                  # skill:
+                  #   type: array
+                  #   items:
+                  #     type: object
+                  #   properties:
+                  #     skill:
+                  #       type: string
+                  #     time_stamp:
+                  #       type: string
+                  # experience:
+                  #   type: array
+                  #   items:
+                  #     type: object
+                  #   properties:
+                  #     title:
+                  #       type: string
+                  #     company:
+                  #       type: string
+                  #     start_date:
+                  #       type: string
+                  #     end_date:
+                  #       type: string
+                  #     description:
+                  #       type: string
 
         "400":
           description: Bad request
