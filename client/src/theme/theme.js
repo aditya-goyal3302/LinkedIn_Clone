@@ -9,14 +9,20 @@ const theme = createTheme({
         // padding: 0, 
         // fontStretch: "200%"
     },
-    comnponents: {
-        MuiInputBase: {
-            styleOverrides: {
-                root: {
-                    padding: "0 !important",
-                },
+    components: {
+        MuiButtonBase: {
+          defaultProps: {
+            disableRipple: "true !important",
+          },
+        }, 
+        MuiButtonGroup: {
+            defaultProps: {
+                disableRipple: true,
             },
         },
-    },
+      },
+    
 });
+
+
 export default responsiveFontSizes(theme)

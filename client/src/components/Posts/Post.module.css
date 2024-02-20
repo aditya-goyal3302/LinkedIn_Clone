@@ -1,0 +1,149 @@
+.main{
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(2,2,2,2) !important;
+    -moz-box-shadow: 0px 0px 2px 0px rgba(2,2,2,2) !important;
+    box-shadow: 0px 0px 2px 0px rgba(2,2,2,2) !important;
+    border-radius: 6px;
+    max-width: 550px !important;
+    /* max-height: 790px !important;
+    min-height: 790px !important; */
+    width: 100% !important;
+    height: 100% !important;
+    /* background-color: rgb(245, 242, 239) !important;  */
+    margin: 10px !important;  
+}
+.cardHeader{
+    position:  relative !important;
+    flex-direction: row-reverse;
+    padding: unset !important;
+    margin-top: 3px !important;
+}
+.postHeaderWrap{
+    margin:unset  !important;
+    width:100% !important;
+    height:64px !important;
+    padding: 12px 76px 0px 16px !important;
+    margin-bottom: 8px  !important  ;
+    box-sizing: border-box !important;
+}
+.subpostHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    justify-content: flex-start;
+    width:100% !important;  
+    /* width:; */
+    margin-right:32px !important; ;
+    height: 52px !important;
+}
+.postHeaderUser{
+    display: flex;
+    flex-direction: column;
+    height: 52px !important;
+    align-items: center;
+    justify-content: left;
+    width: 100% !important;
+}
+.postHeaderAvatar{
+    height: 48px !important;
+    width: 48px !important  ;
+}
+.postHeaderUser p{
+    margin:unset !important;
+    padding-left: 10px !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    line-height: 16px !important;
+    /* float: left !important; */
+    /* width: 100% !important; */
+    margin-right: auto !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+}
+.postHeaderUser>p:nth-child(1){
+    color:rgb(0, 0, 0) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+.cardContent{
+    padding:0px 16px !important;
+}
+.postBody{
+    /* margin:unset !important; */
+    padding: 0px  !important;
+    height: auto !important;
+    width: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    /* flex-wrap: nowrap !important; */
+    /* background-color: red; */
+}
+.postBody>pre{
+    margin:unset !important;
+    padding: 0px 0px 0px 0px !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: rgb(0, 0, 0) !important;
+    line-height: 20px !important;
+    text-align: justify !important;
+    text-wrap: wrap !important;
+}
+.postBody>img{
+    margin: 0px -16px;
+}
+.postLikeCount{
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 8px 0px !important;
+    text-align: left !important;
+    height:35px !important;
+}
+.emojis{
+    word-spacing: 0;
+    letter-spacing: 0;
+
+}
+/* .emojis:nth-child(2){
+    margin-left: -10px !important;
+} */
+.likeCount{
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important; 
+    justify-content: flex-start !important;
+    font-size: 12px !important;
+}
+.count{
+    font-weight: 400 !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    line-height: 16px;
+}
+.postButtonGroup{
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    /* padding: 0px 16px !important; */
+    height: 48px !important;
+    box-sizing: border-box !important;
+}
+.postButtonGroup>button{
+    border: none !important;
+    padding-left: auto !important;
+    padding-right: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 24% !important;
+    box-sizing: border-box !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    border-radius: 6px !important;
+}
+.postButtonGroup>button:hover{
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.cardActions{
+    padding: 0px 16px !important;
+}

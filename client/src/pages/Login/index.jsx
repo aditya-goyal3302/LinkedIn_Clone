@@ -15,9 +15,12 @@ import footer_logo from "../../assets/images/footer_logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { login_reducer } from "../../store/";
 import { login } from "../../store/LoginSlice/LoginThunk";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const state = useSelector((state) => state.login_reducer);
   const [error, setError] = useState({
     email: false,
     password: false,
@@ -28,7 +31,7 @@ function Login() {
     password: "",
   });
   const handleClickShowPassword = () => {
-    setError({ ...error, show_password: !error.show_password });
+    setError((pre) => ({ ...pre, show_password: !pre.show_password }));
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -67,12 +70,19 @@ function Login() {
   };
   useEffect(() => {
     if (status.error) {
-      setError({ ...error, email: true, password: true });
+      setError((pre)=>({ ...pre, email: true, password: true }));
     } else {
-      setError({ ...error, email: false, password: false });
+      setError((pre)=>({ ...pre, email: false, password: false }));
     }
+    console.log("status: ", status);
   }, [status]);
 
+  useEffect(() => {
+
+    if (status.token) {
+      navigate("/feed");
+    }
+  }, [status]);
   return (
     <Box className={styles.root}>
       <Box className={styles.logo}>

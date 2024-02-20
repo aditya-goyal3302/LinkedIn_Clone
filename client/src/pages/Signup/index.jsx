@@ -18,7 +18,7 @@ import footer_logo from "../../assets/images/footer_logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/SignupSlice/SignupThunk";
 
-function Login() {
+function Signup() {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.login_reducer);
   const [error, setError] = useState({
@@ -211,4 +211,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

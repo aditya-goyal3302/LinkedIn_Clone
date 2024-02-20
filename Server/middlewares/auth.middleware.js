@@ -8,7 +8,7 @@ exports.verify_auth = async (req,res,next)=>{
       }
     try{
         const decodetoken = utils.verifyToken(token)
-        // console.log('decodetoken: ', decodetoken);
+        console.log('decodetoken: ', decodetoken);
         req.body.user = decodetoken
         next();
     }
