@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchFeed } from '../../store/FeedSlice/Feed.Thunk'
-import Post from '../../components/Posts/Post'
+import { fetchFeed } from '../../store/FeedSlice/Feed.api'
+import Post from '../../components/PostCard/Post.card'
 import Navbar from '../../components/Navbar'
 
 const Home = () => {

@@ -1,0 +1,6 @@
+.MuiDialog-root.MuiPaper-root{
+    max-width:unset !important;
+}
+.MuiDialogContent-root{
+    padding: unset !important;
+}

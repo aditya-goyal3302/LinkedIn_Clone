@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {fetchFeed} from './Feed.Thunk'
+import {fetchFeed, createPost} from './Feed.api'
 
 const initialState = {
     feed: [],
@@ -22,6 +22,17 @@ const FeepSlice = createSlice({
       state.feed = action.payload
     })
     .addCase(fetchFeed.rejected, (state, action) => {
+      state.isLoading = false
+      state.error = action.error
+    })
+    .addCase(createPost.pending, (state) => {
+      state.isLoading = true
+    })
+    .addCase(createPost.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.feed.unshift(action.payload)
+    })
+    .addCase(createPost.rejected, (state, action) => {
       state.isLoading = false
       state.error = action.error
     })

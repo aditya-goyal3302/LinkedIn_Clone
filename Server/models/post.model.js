@@ -11,7 +11,8 @@ const linked_post_schema = new mongoose.Schema({
     required: true,
   },
   link: {
-    type: String,
+    type: Array,
+    default: [String],
   },
   user_id: {
     type: String,

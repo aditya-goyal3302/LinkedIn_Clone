@@ -15,7 +15,9 @@ exports.show_posts = async (req, res) => {
 exports.create_posts = async (req, res) => {
   try {
     const { content, title, link } = req.body;
-    if (!content || !title || !link) res.status(400).send("Invalid_input");
+    console.log('req.body: ', req.body);
+    console.log('content, title, link: ', content, title, link);
+    if (!content || !title || !link) return res.status(400).send("Invalid_input");
     const response = await post_service.create_posts(req);
     if (!response) res.status(404).send("Error_in_creating_post");
     res.status(201).send(response);
@@ -28,7 +30,7 @@ exports.create_posts = async (req, res) => {
 exports.update_posts = async (req, res) => {
   try {
     const { content, title, link } = req.body;
-    if (!content || !title || !link) res.status(400).send("Invalid_input");
+    if (!content || !title || !link) return res.status(400).send("Invalid_input");
     const response = await post_service.update_posts(req);
     if (response.nModified === 0) res.status(404).send("Post_not_found");
     else res.status(200).send(response);
@@ -42,7 +44,7 @@ exports.update_posts = async (req, res) => {
 exports.show_posts_on_scroll = async (req, res) => {
   try {
     const { time } = req.params;
-    if (!time) res.status(400).send("Invalid_input");
+    if (!time) return res.status(400).send("Invalid_input");
     const response = await post_service.show_posts_on_scroll(req);
     if (response.length === 0) res.status(404).send("No_more_posts");
     else res.status(200).send(response);
@@ -56,7 +58,7 @@ exports.show_posts_on_scroll = async (req, res) => {
 exports.delete_post = async (req, res) => {
   try {
     const { post_id } = req.params;
-    if (!post_id) res.status(400).send("Invalid_input");
+    if (!post_id) return res.status(400).send("Invalid_input");
     const response = await post_service.delete_post(req);
     if (response.deletedCount === 0) res.status(404).send("Post_not_found");
     else res.status(200).send(response);
