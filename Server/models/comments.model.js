@@ -7,15 +7,15 @@ const comment_schema = new mongooes.Schema({
   },
   user_id: {
     type: String,
-    ref: "User",
+    ref: "user",
   },
   post_id: {
     type: String,
-    ref: "LinkedPost",
+    ref: "posts",
   },
   comment_id: {
     type: String,
-    ref: "comment",
+    ref: "comments",
   },
   time_stamp: {
     type: Date,
@@ -23,4 +23,4 @@ const comment_schema = new mongooes.Schema({
   },
 });
 
-module.exports = mongooes.model("comment", comment_schema);
+module.exports = mongooes.model("comments", comment_schema);

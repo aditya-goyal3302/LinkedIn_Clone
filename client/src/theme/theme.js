@@ -6,8 +6,6 @@ const theme = createTheme({
         letterSpacing: "0.25px",
         textOverflow: "ellipsis",
         fontSize: 16,
-        // padding: 0, 
-        // fontStretch: "200%"
     },
     components: {
         MuiButtonBase: {
@@ -20,8 +18,7 @@ const theme = createTheme({
                 disableRipple: true,
             },
         },
-      },
-    
+    },
 });
 
 

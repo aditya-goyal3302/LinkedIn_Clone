@@ -15,7 +15,7 @@ const linked_post_schema = new mongoose.Schema({
   },
   user_id: {
     type: String,
-    ref: "User",
+    ref: "user",
   },
   time_stamp: {
     type: Date,
@@ -23,4 +23,4 @@ const linked_post_schema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("LinkedPost", linked_post_schema);
+module.exports = mongoose.model("posts", linked_post_schema);

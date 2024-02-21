@@ -17,10 +17,13 @@ import { Link } from "@mui/material";
 import footer_logo from "../../assets/images/footer_logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/SignupSlice/SignupThunk";
+import { useNavigate } from "react-router-dom";
+import { reset } from "../../store/LoginSlice/LoginSlice";
 
 function Signup() {
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.login_reducer);
+  const status = useSelector((state) => state.signup_reducer);
+  const navigate = useNavigate();
   const [error, setError] = useState({
     email: null,
     password: null,
@@ -31,6 +34,10 @@ function Signup() {
     email: "",
     password: "",
   });
+
+  useEffect(()=>{
+    dispatch(reset());
+  })
   
   const handleClickShowPassword = () => {
     setError((pre) => ({ ...pre, show_password: !pre.show_password }));
@@ -49,30 +56,30 @@ function Signup() {
   };
   
   const validatePassword = (password) => {
-    return true
-    //  password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/);
+    return password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/);
+     
   };
   
-  function reset_err(){
+  async function reset_err(){
      setError((pre)=>({ ...pre, email: false, password: false }));
   }
   
-  function check_email(){
+  async function check_email(){
     if (data.email === "" || !validateEmail(data.email)) 
         setError((pre)=>({ ...pre, email: true }));
     else  setError((pre)=>({ ...pre, email: false }));
   }
   
-  function check_password(){
+  async function check_password(){
     if (data.password === "" || !validatePassword(data.password) || data.password.length < 6) 
         setError((pre)=>({ ...pre, password: true }));
     else  setError((pre)=>({ ...pre, password: false }));
     }
   
-    const HandleSubmit = async () => {
-    reset_err();
-    check_email();
-    check_password();
+  const HandleSubmit = async () => {
+    await reset_err();
+    await check_email();
+    await check_password();
     if (error.email || error.password) {
       return;
     }
@@ -84,6 +91,10 @@ function Signup() {
       setError((pre)=>({ ...pre, email: true, password: true }));
     } else {
       setError((pre)=>({ ...pre, email: false, password: false }));
+    }
+    if(status.status === 'sucessful'){
+      setdata({email: "", password: ""});
+      navigate('/login');
     }
     console.log("status: ", status);
   }, [status]);

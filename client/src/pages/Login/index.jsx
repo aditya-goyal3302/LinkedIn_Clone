@@ -20,7 +20,8 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const state = useSelector((state) => state.login_reducer);
+  const state = useSelector((state) => state.persistedReducer);
+
   const [error, setError] = useState({
     email: false,
     password: false,
@@ -36,7 +37,7 @@ function Login() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const status = useSelector((state) => state.login_reducer);
+  const status = useSelector((state) => state.persistedReducer);
   const validateEmail = (email) => {
     return email.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -78,7 +79,7 @@ function Login() {
   }, [status]);
 
   useEffect(() => {
-
+    console.log("status: ", status);
     if (status.token) {
       navigate("/feed");
     }

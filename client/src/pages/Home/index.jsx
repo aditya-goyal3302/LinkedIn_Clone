@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchFeed } from '../../store/FeedSlice/Feed.Thunk'
 import Post from '../../components/Posts/Post'
+import Navbar from '../../components/Navbar'
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const Home = () => {
 
     return (
         <div>
+            <Navbar />
             {state.feed.map((post) => { 
                 return <Post key={post._id} post={post} />
             })}

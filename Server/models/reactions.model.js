@@ -10,7 +10,7 @@ const reaction_schema = new Schema({
   },
   user_id: {
     type: String,
-    ref: "User",
+    ref: "user",
     required: true,
   },
   reaction: {

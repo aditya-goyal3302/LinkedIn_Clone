@@ -6,7 +6,7 @@ const connection_schema = new mongoose.Schema(
       type: [
         {
           type: String,
-          ref: "User",
+          ref: "user",
         },
       ],
       required: true,
@@ -15,4 +15,4 @@ const connection_schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("connection", connection_schema);
+module.exports = mongoose.model("connections", connection_schema);
