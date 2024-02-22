@@ -4,3 +4,6 @@
 .MuiDialogContent-root{
     padding: unset !important;
 }
+.MuiInputBase-input{
+    width: unset !important;
+}

@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { Avatar, Divider, Fab, InputBase } from '@mui/material';
-import { createPost } from '../../store/FeedSlice/Feed.api';
+import { createPost } from '../../store/PostSlice/Post.api';
 import { useDispatch } from 'react-redux';
 
 

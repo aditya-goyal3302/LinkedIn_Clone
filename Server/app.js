@@ -11,7 +11,7 @@ dotenv.config();
 //multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null,path.join(__dirname,"uploads/images/") );
+    cb(null,"uploads/images/");
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
@@ -35,6 +35,8 @@ const upload = multer({ storage, fileFilter }).fields([
   { name: "link", maxCount: 4 },
 ]);
 app.use(upload);
+app.use(express.static('public'));
+app.use('/uploads/images', express.static('uploads/images'));
 
 // Connect to DB
 require("./config/mongo_db").connectDB();

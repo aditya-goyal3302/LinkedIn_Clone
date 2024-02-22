@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {fetchFeed, createPost} from './Feed.api'
+import {fetchFeed, createPost} from './Post.api'
 
 const initialState = {
     feed: [],
@@ -8,8 +8,8 @@ const initialState = {
 
 }
 
-const FeepSlice = createSlice({
-  name: "feed",
+const PostSlice = createSlice({
+  name: "Post",
   initialState,
   reducers: {},
   extraReducers:(builder) => {
@@ -41,4 +41,4 @@ const FeepSlice = createSlice({
 
 // export const {} = FeepSlice.actions
 
-export default FeepSlice.reducer
+export default PostSlice.reducer

@@ -3,13 +3,14 @@ import { Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, D
 import styles from './Post.module.css'
 import { Avatar } from '@mui/material'
 import {Globe} from '../../assets/svg/PostSvg'
-import Comment from '../commentCard/index.card'
+import Comments from '../commentCard/index.card'
 
 function Post({post}) {
   useEffect(()=>{
     console.log(post.link[0])
   },[post])
   const img = "https://www.w3schools.com/howto/img_avatar.png"
+  console.log("post link",post.link[0])
   return (
     <Card className={styles.main}>
       <CardHeader
@@ -32,7 +33,7 @@ function Post({post}) {
           <pre>
             {post?.content}
           </pre>  
-          {post?.link && <img src={post.link[0]} alt="postImg" className={styles.postImage} />}
+          {post?.link && <img src={`${process.env.REACT_APP_IMG_BASE_URL}${post.link[0]}`} alt="postImg" className={styles.postImage} />}
         </Box>
         <Box className={styles.postLikeCount}>
           <Typography className={styles.likeCount}>
@@ -56,7 +57,7 @@ function Post({post}) {
           <Button className={styles.postButton}>Share</Button>
         </ButtonGroup>
       </CardActions>
-      <Comment/>
+      <Comments/>
     </Card >
   )
 }
