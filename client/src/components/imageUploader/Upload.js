@@ -21,11 +21,10 @@ const verify_file = async (tfile) => {
         return false;
     }
 }
-const Upload = async ({ file }) => {
+const Upload = async (file,randomString) => {
     // console.log("file in upload")
     try {
         if (verify_file(file)) {
-            const base_url = `https://${process.env.REACT_APP_AWS_BUCKET_NAME}.s3.${process.env.REACT_APP_AWS_REGION}.amazonaws.com/`
             AWS.config.update({
                 accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY,
                 secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
@@ -34,7 +33,6 @@ const Upload = async ({ file }) => {
                 params: { Bucket: process.env.REACT_APP_AWS_BUCKET_NAME },
                 region: process.env.REACT_APP_AWS_REGION,
             });
-            const randomString = await generateRandomString(file);
 
             const params = {
                 Bucket: process.env.REACT_APP_AWS_BUCKET_NAME,
@@ -50,19 +48,13 @@ const Upload = async ({ file }) => {
                     );
                 })
                 .promise();
-            var temp = ""
 
-            let resolvedUpload = Upload.then((err, data) => {
-                console.log(err);
-                temp = base_url + randomString;
-                console.log('temp: ', temp);
-                return temp;
+            Upload.then((err, data) => {
+               console.log("data", data)
             }).catch((err) => {
-                    console.log(err);
-                    return "Error";
+                console.log(err);
             });
 
-            return await resolvedUpload;
 
         }
         else {
@@ -75,17 +67,14 @@ const Upload = async ({ file }) => {
     // console.log("file in upload", file)   
 }
 let Uploader = (files) => {
-    let tempfiles = [...files]
-    console.log('haleleuyia')
     let urls = [];
-    tempfiles?.map( (f) => {
-        Upload({ file: f }).then((res)=>{
-            console.log("res",res)
-            urls.push(res);
-        })
-    })
-   
-    return  urls
+    files.forEach( async (file) => {
+        const randomString = await generateRandomString(file);
+        const base_url = `https://${process.env.REACT_APP_AWS_BUCKET_NAME}.s3.${process.env.REACT_APP_AWS_REGION}.amazonaws.com/`
+        let url = base_url + randomString;
+        Upload(file,randomString);
+        urls.push(url);
+    });
 }
 
 export default Uploader;

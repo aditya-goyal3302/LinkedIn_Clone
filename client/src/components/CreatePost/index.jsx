@@ -12,7 +12,6 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { Avatar, Divider, Fab, InputBase } from '@mui/material';
-import Uploader from '../imageUploader/Upload';
 import { createPost } from '../../store/FeedSlice/Feed.api';
 import { useDispatch } from 'react-redux';
 
@@ -40,33 +39,25 @@ function CustomizedDialogs() {
     };
     
     const handleSubmit = async () => {
-        // console.log("handleSubmit");
-        // console.log(data, file)
-        // setData((pre) => { return { ...pre, link: [] } })
-        console.log('hdjas')
+        console.log(file)
         try {
-            let urls;
+            const formData = new FormData()
+            formData.append('title', data.title)
+            formData.append('content', data.content)
             if (file) {
-                urls = Uploader(file);
-                console.log('urls: ', urls);
-                // await dispatch(createPost({ ...data, link: urls }))
+                for (let i = 0; i < file.length; i++) {
+                    formData.append('link', file[i])
+                }
             }
-            else console.log("no file")
-            // console.log('data: ', data);    
+            const res = await dispatch(createPost(formData))
+            console.log(res)
             
-            // await 
-            console.log('urls: ', urls);
-            // await dispatch(createPost({ ...data, link: urls }))
-
         } catch (error) {
             console.log(error)
         }
 
     }
-    // const handleclick = () => {
-    //     handleSubmit();
-    //     console.log('data: ', data);
-    // }
+    
     return (
         <React.Fragment>
 

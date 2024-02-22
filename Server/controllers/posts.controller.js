@@ -14,9 +14,8 @@ exports.show_posts = async (req, res) => {
 
 exports.create_posts = async (req, res) => {
   try {
+    req.body.link = req.files.link?.map((file) => file.path);
     const { content, title, link } = req.body;
-    console.log('req.body: ', req.body);
-    console.log('content, title, link: ', content, title, link);
     if (!content || !title || !link) return res.status(400).send("Invalid_input");
     const response = await post_service.create_posts(req);
     if (!response) res.status(404).send("Error_in_creating_post");

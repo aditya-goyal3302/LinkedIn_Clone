@@ -1,28 +1,14 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, Divider, Typography } from '@mui/material'
 import styles from './Post.module.css'
 import { Avatar } from '@mui/material'
-import img1 from '../../assets/images/footer_logo.png'
-import likeSvg from '../../assets/svg/like.svg'
-import {Globe, PostComment, PostRepost, PostSend} from '../../assets/svg/PostSvg'
+import {Globe} from '../../assets/svg/PostSvg'
+import Comment from '../commentCard/index.card'
 
 function Post({post}) {
-//   post={
-//     user_id: {
-//       username: "user1",
-//       // image: "https://www.w3schools.com/howto/img_avatar.png"
-//     },
-//     content: `This is a post body This is a post body 
-// This is a post body
-// This is a post body`,
-//     image: "https://www.w3schools.com/howto/img_avatar.png",
-//     title: "Post title",
-//     likeCount: 40,
-//     // commentCount: 20,
-//     // repostCount: 10,
-//     // shareCount: 5
-
-//   }
+  useEffect(()=>{
+    console.log(post.link[0])
+  },[post])
   const img = "https://www.w3schools.com/howto/img_avatar.png"
   return (
     <Card className={styles.main}>
@@ -46,7 +32,7 @@ function Post({post}) {
           <pre>
             {post?.content}
           </pre>  
-          {post?.link && <img src={post?.link} alt="postImg" className={styles.postImage} />}
+          {post?.link && <img src={post.link[0]} alt="postImg" className={styles.postImage} />}
         </Box>
         <Box className={styles.postLikeCount}>
           <Typography className={styles.likeCount}>
@@ -70,7 +56,7 @@ function Post({post}) {
           <Button className={styles.postButton}>Share</Button>
         </ButtonGroup>
       </CardActions>
-      
+      <Comment/>
     </Card >
   )
 }

@@ -25,10 +25,10 @@ export const createPost = createAsyncThunk(
         const state = getState()
         // let data = JSON.stringify(payload)
         console.log("state: ", state.persistedReducer.token)
-        const response = await axios.post('http://localhost:8080/posts',{...payload},
+        const response = await axios.post('http://localhost:8080/posts', payload,
         {
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "multipart/form-data",
                 Authorization: state.persistedReducer.token
             }
         });
