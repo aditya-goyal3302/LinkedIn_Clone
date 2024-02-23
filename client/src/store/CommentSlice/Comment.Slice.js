@@ -10,18 +10,19 @@ const commentSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchComments.pending, (state) => {
+            console.log('fetchComments.pending: ',);
             state.isLoading = false
         })
         builder.addCase(fetchComments.fulfilled, (state, action) => {
+            console.log('action: ', action.payload);
             state.isLoading = false
-            console.log("before",state.content)
             state.content = {
                 ...state.content,
                 [action.payload.postId]: action.payload.data
                 }
-            console.log("get",state.content)
         })
         builder.addCase(fetchComments.rejected, (state, action) => {
+            console.log('fetchComments.rejected: ', );
             state.isLoading = false
             state.error = action.error
         })

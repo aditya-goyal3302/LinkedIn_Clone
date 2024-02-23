@@ -1,16 +1,25 @@
-import React,{useEffect} from 'react'
-import { Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, Divider, Typography } from '@mui/material'
+import React,{ useEffect, useState }  from 'react'
+import { Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, Collapse, Divider, Typography } from '@mui/material'
 import styles from './Post.module.css'
 import { Avatar } from '@mui/material'
 import {Globe} from '../../assets/svg/PostSvg'
 import Comments from '../commentCard/index.card'
+import { useDispatch,useSelector } from 'react-redux'
+import { fetchPostReactions,addPostReaction } from '../../store/ReactionSlice/Reaction.api'
 
 function Post({post}) {
-  useEffect(()=>{
-    console.log(post.link[0])
-  },[post])
-  const img = "https://www.w3schools.com/howto/img_avatar.png"
-  console.log("post link",post.link[0])
+  const [showComments, setShowComments] = useState(false)
+  const reaction = useSelector(state => state.reactionReducer.reactions.post[post._id])
+  const dispatch = useDispatch()
+  // console.log('reaction: ', reaction);
+  useEffect(() => {
+    dispatch(fetchPostReactions(post._id))
+  }, [dispatch,post._id])
+  const handlereaction = (reaction) => {
+    console.log("reaction",{postId:post._id, reaction})
+    dispatch(addPostReaction({postId:post._id, reaction}))
+  }
+
   return (
     <Card className={styles.main}>
       <CardHeader
@@ -30,7 +39,10 @@ function Post({post}) {
       />
       <CardContent className={styles.cardContent}>
         <Box className={styles.postBody}>
-          <pre>
+          <Typography className={styles.postTitle}>
+            {post?.title}
+          </Typography>
+          <pre >
             {post?.content}
           </pre>  
           {post?.link && <img src={`${process.env.REACT_APP_IMG_BASE_URL}${post.link[0]}`} alt="postImg" className={styles.postImage} />}
@@ -40,7 +52,7 @@ function Post({post}) {
             <span className={styles.emojis}>👍</span>
             <span className={styles.emojis}>😂</span>
             <span className={styles.emojis}>❤️</span>
-            <span className={styles.count}>{post?.likeCount}</span>
+            <span className={styles.count}>{reaction?Object.keys(reaction).length:0}</span>
           </Typography>
         </Box>
         <Divider/>
@@ -51,13 +63,15 @@ function Post({post}) {
           className={styles.postButtonGroup}
           sx={{ '--ButtonGroup-separatorColor': `none !important` }}
         >
-          <Button className={styles.postButton}>Like</Button>
-          <Button className={styles.postButton}>Comment</Button>
+          <Button className={styles.postButton} onClick={()=>handlereaction("like")}>Like</Button>
+          <Button className={styles.postButton} onClick={()=>setShowComments(!showComments)}>Comment</Button>
           <Button className={styles.postButton}>Repost</Button>
           <Button className={styles.postButton}>Share</Button>
         </ButtonGroup>
       </CardActions>
-      <Comments/>
+      <Collapse in={showComments} timeout="auto" unmountOnExit>
+        <Comments postId={post._id}/>
+      </Collapse>
     </Card >
   )
 }

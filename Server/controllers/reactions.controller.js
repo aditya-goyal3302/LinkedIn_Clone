@@ -5,7 +5,9 @@ exports.set_posts_reactions = async (req, res) => {
     const { post_id } = req.params;
     if (!post_id) res.status(400).send("Invalid_input");
     const response = await reactions_service.create_update_post_reactions(req)
+    console.log('response: ', response);
     if (!response) res.status(404).send("Error_in_creating_reactions");
+    response.user_id.password = undefined;
     res.status(201).send(response);
   } catch (error) {
     console.log("error_in_set/update_reactions:", error);

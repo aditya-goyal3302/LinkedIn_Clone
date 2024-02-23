@@ -2,36 +2,38 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchComments = createAsyncThunk(
-    "comment/fetchComments",
-    async (postId, thunkAPI,{getState}) => {
-        let token = getState().persistedReducer.token;
+    "comments/fetchComments",
+    async (postId,{getState,rejectWithValue}) => {
         try {
-        const response = await axios.get(`/comment/${postId}`,{
+            let token = getState().persistedReducer.token;
+        const response = await axios.get(`http://localhost:8080/comments/${postId}`,{
             headers: {
                 "Content-Type": "application/json",
                 Authorization: token,
             },
-        });
-        return response.data;
+        })
+        console.log('{data:response.data, postId}: ', {data:response.data, postId});
+        return {data:response.data, postId};
         } catch (error) {
-        return thunkAPI.rejectWithValue({ error: error.message });
+        return rejectWithValue({ error: error.message });
         }
     }
 );
 export const createComment = createAsyncThunk(
-    "comment/createComment",
-    async (data, thunkAPI,{getState}) => {
+    "comments/createComment",
+    async (data,{getState,rejectWithValue}) => {
         try {
-        let token = getState().persistedReducer.token;
-        const response = await axios.post("/comment", data,{
+            let token = getState().persistedReducer.token;
+            console.log("data: ", data,token );
+        const response = await axios.post(`http://localhost:8080/comments/${data.postId}`, {content:data.content},{
             headers: {
                 "Content-Type": "application/json",
                 Authorization: token,
             },
         });
-        return response.data;
+        return {data:response.data ,postId:data.postId};
         } catch (error) {
-        return thunkAPI.rejectWithValue({ error: error.message });
+        return rejectWithValue({ error: error.message });
         }
     }
 );

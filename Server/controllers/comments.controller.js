@@ -2,7 +2,6 @@ const { comments_service } = require("../services");
 
 exports.create_comment = async (req, res) => {
   try {
-
     const { content } = req.body;
     console.log('req.body: ', req.body);
     if (!content) res.status(400).send("Invalid_input");

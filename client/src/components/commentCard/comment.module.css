@@ -23,7 +23,7 @@
     width: 40px;
     height: 40px;
     /* border-radius: 50%; */
-    margin-right: 10px;
+    margin-right: 4px;
 
 }
 .postCommentInput{
@@ -56,4 +56,96 @@
     padding:2px 12px    !important;
     font-size: 14px !important;
     line-height: 20px   !important;
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+.commentRoot{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px!important;
+    box-shadow: none!important;
+    /* padding: 4px 16px 8px; */
+
+}
+.comment{
+    display: flex   !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    box-sizing: border-box  !important;
+    margin: 0px 0px 12px !important;
+    padding: 0px !important;
+}
+.commentAvatar{
+    width: 40px;
+    height: 40px;
+    /* border-radius: 50%; */
+    margin-right: 4px;
+}
+.commentBody{
+    background-color: #f2f2f2 !important;
+    width: 100% !important;
+    box-sizing: border-box  !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 0 !important;
+    border-radius: 5px;
+}
+.commentHeader{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    box-sizing: border-box  !important;
+    margin: 0px  !important;
+    box-sizing: border-box  !important;
+    padding: 8px 64px 8px 12px  !important;
+}
+.commentUserUsername{
+    text-align: left !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color:#000000E6;
+    margin: 0px  !important;
+    padding: 0px  !important;
+}
+.commentUserHeading{
+    text-align: left !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    margin: 0px  !important;
+    padding: 0px  !important;
+    color:#00000099;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.commentContent{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    box-sizing: border-box  !important;
+    margin: 0px  !important;
+    padding: 0px 16px 12px 12px  !important;
+}
+.commentText{
+    text-align: left !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    margin: 0px  !important;
+    padding: 0px  !important;
+    color:#000000E6;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
