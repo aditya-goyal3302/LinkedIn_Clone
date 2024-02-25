@@ -32,7 +32,7 @@ const commentSlice = createSlice({
         builder.addCase(createComment.fulfilled, (state, action) => {
             state.isLoading = false
             state.content[action.payload.postId].unshift(action.payload.data)
-            console.log("post",state.content)
+            // console.log("post",state.content)
         })
         builder.addCase(createComment.rejected, (state, action) => {
             state.isLoading = false

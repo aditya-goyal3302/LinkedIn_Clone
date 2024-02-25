@@ -751,7 +751,7 @@ paths:
                 properties:
                   error:
                     type: string
-  /reactions/${post_id}:
+  /reactions/posts/${post_id}:
     get:
       tags:
         - reactions

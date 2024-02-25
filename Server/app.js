@@ -1,42 +1,15 @@
 const express = require("express");
 const app = express();
-const path = require("path");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const multer = require("multer");
+const { multer: { upload } } = require("./middlewares");
 
 //config
 dotenv.config();
 
-//multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null,"uploads/images/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  if (
-    file.mimetype === "image/jpeg" ||
-    file.mimetype === "image/png" ||
-    file.mimetype === "image/jpg" ||
-    file.mimetype === "image/webp"
-  ) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
-
-const upload = multer({ storage, fileFilter }).fields([
-  { name: "link", maxCount: 4 },
-]);
-app.use(upload);
-app.use(express.static('public'));
-app.use('/uploads/images', express.static('uploads/images'));
+app.use(upload.fields([{ name: "link", maxCount: 4 }]));
+app.use(express.static("public"));
+app.use("/uploads/images", express.static("uploads/images"));
 
 // Connect to DB
 require("./config/mongo_db").connectDB();

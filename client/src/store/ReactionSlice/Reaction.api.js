@@ -38,16 +38,33 @@ export const fetchCommentsReactions = createAsyncThunk(
 export const addPostReaction = createAsyncThunk(
     "reaction/addPostReaction",
     async (data, { getState, rejectWithValue }) => {
-        console.log('data: ', data);
         try {
             let token = getState().persistedReducer.token;
-            let response = await axios.post(`http://localhost:8080/reactions/posts/${data.postId}`, { reaction: data.reaction }, {
+            let response = await axios.post(`http://localhost:8080/reactions/posts/${data.postId}`, { reaction: data.newReaction }, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: token,
                 },
             });
             return { postId: data.postId, response };
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    });
+
+export const addCommentReaction = createAsyncThunk(
+    "reaction/addCommentReaction",
+    async (data, { getState, rejectWithValue }) => {
+        console.log('data: ', data);
+        try {
+            let token = getState().persistedReducer.token;
+            let response = await axios.post(`http://localhost:8080/reactions/comments/${data.commentId}`, { reaction: data.newReaction }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                },
+            });
+            return { commentId: data.commentId, response };
         } catch (error) {
             return rejectWithValue(error);
         }

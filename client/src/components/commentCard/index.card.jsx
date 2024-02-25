@@ -2,7 +2,6 @@ import { Box } from '@mui/system'
 import React, { useEffect } from 'react'
 import styles from './comment.module.css'
 import { Avatar, Button, InputBase } from '@mui/material'
-import { Fab } from '@mui/material'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createComment, fetchComments } from '../../store/CommentSlice/Comment.api'
@@ -11,7 +10,7 @@ import Comment from './Comment'
 function Comments({ postId }) {
   const [newComment, setNewComment] = useState("")
   const dispatch = useDispatch()
-  const comments = useSelector((state) => state.commentReducer.content) || []
+  const comments = useSelector((state) => state.commentReducer.content[postId]) || []
   console.log("comments: ", comments)
   useEffect(() => {
     dispatch(fetchComments(postId))
@@ -34,6 +33,10 @@ function Comments({ postId }) {
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             className={styles.postCommentInputField}
+            endAdornment={<Box>
+              <Button></Button>
+              <Button></Button>
+            </Box>}
           />
           {
             newComment
@@ -49,8 +52,8 @@ function Comments({ postId }) {
         </Box>
       </Box>
       <Box className={styles.comments}>
-        {comments[postId]  &&
-          comments[postId]?.map((comment, index) => (
+        {comments  &&
+          comments?.map((comment, index) => (
             <Comment key={index} comment={comment} />
           ))}
       </Box>

@@ -159,3 +159,6 @@
 .cardActions{
     padding: 0px 16px !important;
 }
+.reactionSelector{
+    position: absolute !important;
+}

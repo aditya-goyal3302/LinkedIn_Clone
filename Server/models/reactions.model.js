@@ -27,4 +27,13 @@ const reaction_schema = new Schema({
   },
 });
 
+reaction_schema.pre('find', function(next) {
+  this.where({ is_deleted: false });
+  next();
+});
+
+reaction_schema.pre('findOne', function(next) {
+  this.where({ is_deleted: false });
+});
+
 module.exports = mongoose.model("reactions", reaction_schema);
