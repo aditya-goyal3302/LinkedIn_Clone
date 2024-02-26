@@ -7,7 +7,7 @@ export const fetchFeed = createAsyncThunk(
     async (payload,{getState}) => {
         const state = getState()
         console.log("state: ", state.persistedReducer.token)
-        const response = await axios.get('http://localhost:8080/posts',
+        const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/posts`,
         {
             headers: {
                 "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const createPost = createAsyncThunk(
         const state = getState()
         // let data = JSON.stringify(payload)
         console.log("state: ", state.persistedReducer.token)
-        const response = await axios.post('http://localhost:8080/posts', payload,
+        const response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/posts`, payload,
         {
             headers: {
                 "Content-Type": "multipart/form-data",

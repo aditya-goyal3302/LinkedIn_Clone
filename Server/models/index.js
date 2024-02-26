@@ -3,6 +3,6 @@ module.exports = {
     post_model:require('./post.model'),
     comments_model: require('./comments.model'),
     reactions_model: require('./reactions.model'),
-    connection_model: require('./connections.model'),
+    connections_model: require('./connections.model'),
     
 }

@@ -48,7 +48,7 @@ const reactionSlice = createSlice({
             .addCase(fetchCommentsReactions.fulfilled, (state, action) => {
                 state.loading = false;
                 let data ={}
-                action.payload.data.forEach((item)=>{
+                action.payload.data.data.forEach((item)=>{
                     data[item.user_id._id] = item
                 })
                 state.reactions={

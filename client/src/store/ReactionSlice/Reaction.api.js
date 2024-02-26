@@ -6,7 +6,7 @@ export const fetchPostReactions = createAsyncThunk(
     async (postId, { getState, rejectWithValue }) => {
         try {
             let token = getState().persistedReducer.token;
-            let data = await axios.get(`http://localhost:8080/reactions/posts/${postId}`, {
+            let data = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/reactions/posts/${postId}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: token,
@@ -23,7 +23,7 @@ export const fetchCommentsReactions = createAsyncThunk(
     async (commentId, { getState, rejectWithValue }) => {
         try {
             let token = getState().persistedReducer.token;
-            let data = await axios.get(`http://localhost:8080/reactions/comments/${commentId}`, {
+            let data = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/reactions/comments/${commentId}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: token,
@@ -40,7 +40,7 @@ export const addPostReaction = createAsyncThunk(
     async (data, { getState, rejectWithValue }) => {
         try {
             let token = getState().persistedReducer.token;
-            let response = await axios.post(`http://localhost:8080/reactions/posts/${data.postId}`, { reaction: data.newReaction }, {
+            let response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/reactions/posts/${data.postId}`, { reaction: data.newReaction }, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: token,
@@ -58,7 +58,7 @@ export const addCommentReaction = createAsyncThunk(
         console.log('data: ', data);
         try {
             let token = getState().persistedReducer.token;
-            let response = await axios.post(`http://localhost:8080/reactions/comments/${data.commentId}`, { reaction: data.newReaction }, {
+            let response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/reactions/comments/${data.commentId}`, { reaction: data.newReaction }, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: token,

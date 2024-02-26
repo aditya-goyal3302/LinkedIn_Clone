@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, Collapse, Divider, Typography} from "@mui/material";
+import { Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, Collapse, Divider, Typography } from "@mui/material";
 import styles from "./Post.module.css";
 import { Avatar } from "@mui/material";
 import { Globe } from "../../assets/svg/PostSvg";
-import Comments from "../CommentCard/index.card";
+import Comments from "../commentCard/index.card";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPostReactions,addPostReaction } from "../../store/ReactionSlice/Reaction.api";
+import { fetchPostReactions, addPostReaction } from "../../store/ReactionSlice/Reaction.api";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import RepeatOutlinedIcon from '@mui/icons-material/RepeatOutlined';
@@ -17,21 +17,26 @@ import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 function Post({ post }) {
   const [showComments, setShowComments] = useState(false);
   const [anchor, setAnchor] = useState(null);
-  const user_id = useSelector((state) => state.persistedReducer.user._id);
+  const userId = useSelector((state) => state.persistedReducer.user._id);
   const reaction = useSelector((state) => state.reactionReducer.reactions.post[post._id]) || {};
   const dispatch = useDispatch();
   const [reactionBar, setReactionBar] = useState(false);
+  const reactionLogo = {
+    Like: "👍",
+    Celebrate: "👏",
+    Support: "🫰",
+    Love: "❤️",
+    Insightful: "💡",
+    Funny: "😄",
+  }
   useEffect(() => {
     dispatch(fetchPostReactions(post._id));
   }, [dispatch, post._id]);
   const handlereaction = (newReaction) => {
-    if (newReaction !== reaction[user_id]?.reaction || reaction[user_id] === undefined) {
+    if (newReaction !== reaction[userId]?.reaction || reaction[userId] === undefined) {
       dispatch(addPostReaction({ postId: post._id, newReaction }));
     }
     else dispatch(addPostReaction({ postId: post._id, newReaction: '' }));
-  };
-  const handleClick = (event) => {
-    setAnchor(anchor ? null : event.currentTarget);
   };
   const id = Boolean(anchor) ? 'simple-popper' : undefined;
 
@@ -45,7 +50,7 @@ function Post({ post }) {
               <Avatar
                 className={styles.postHeaderAvatar}
                 src={
-                  post?.user_id?.image ||
+                  post?.userId?.image ||
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
                 }
                 alt="avatar"
@@ -57,7 +62,7 @@ function Post({ post }) {
                 </Typography>
                 <Typography>1,000,000 followers </Typography>
                 <Typography>
-                  {Date(Date.now()-post.time_stamp)} • <Globe />
+                  {Date(post.time_stamp)} • <Globe />
                 </Typography>
               </Box>
             </Box>
@@ -70,7 +75,7 @@ function Post({ post }) {
           <pre>{post?.content}</pre>
           {post?.link && (
             <img
-              src={`${process.env.REACT_APP_IMG_BASE_URL}${post.link[0]}`}
+              src={`${process.env.REACT_APP_IMG_BASE_URL}/${post.link[0]}`}
               alt="postImg"
               className={styles.postImage}
             />
@@ -89,7 +94,7 @@ function Post({ post }) {
         <Divider />
       </CardContent>
 
-      <BasePopup 
+      <BasePopup
         className={styles.reactionSelector}
         open={reactionBar}
         anchor={anchor}
@@ -97,11 +102,12 @@ function Post({ post }) {
         offset={-6}
         id={id}
         onMouseOver={() => setReactionBar(true)}
-        onMouseOut={() =>{setReactionBar(false)}}
+        onMouseOut={() => { setReactionBar(false) }}
       >
-        <ReactionBarSelector 
-          className={styles.reactionSelector} 
+        <ReactionBarSelector
+          className={styles.reactionSelector}
           onSelect={(reaction) => handlereaction(reaction)}
+          reactions={[{ label: "like", node: <div>👍</div>, key: "Like" }, { label: "Celebrate", node: <div>👏</div>, key: "Celebrate" }, { label: "support", node: <div>🫰</div>, key: "Support" }, { label: "love", node: <div>❤️</div>, key: "Love" }, { label: "Insightful", node: <div>💡</div>, key: "Insightful" }, { label: "Funny", node: <div>😄</div>, key: "Funny" }]}
         />
       </BasePopup>
 
@@ -113,29 +119,29 @@ function Post({ post }) {
         >
           <Button
             className={styles.postButton}
-            onClick={() => handlereaction("like")}
+            onClick={() => handlereaction(reaction[userId]?.reaction||"Like")}
             onMouseOver={() => setReactionBar(true)}
             onMouseOut={() => setReactionBar(false)}
             ref={setAnchor}
-            style = {{color: reaction[user_id]?.reaction === "like" ? "blue !important" : "black"}}
+            style={{ color: reaction[userId]?.reaction === "like" ? "blue !important" : "black" }}
           >
-            <ThumbUpOutlinedIcon />&nbsp; Like
+            {reactionLogo[reaction[userId]?.reaction] ||<ThumbUpOutlinedIcon />}&nbsp; {reaction[userId]?.reaction || "like"}
           </Button>
           <Button
             className={styles.postButton}
             onClick={() => setShowComments(!showComments)}
           >
-            <CommentOutlinedIcon/>&nbsp; Comment
+            <CommentOutlinedIcon />&nbsp; Comment
           </Button>
-          <Button 
+          <Button
             className={styles.postButton}
           >
-            <RepeatOutlinedIcon/>&nbsp; Repost
+            <RepeatOutlinedIcon />&nbsp; Repost
           </Button>
-          <Button 
+          <Button
             className={styles.postButton}
           >
-            <SendIcon/>&nbsp;Share
+            <SendIcon />&nbsp;Share
           </Button>
         </ButtonGroup>
       </CardActions>

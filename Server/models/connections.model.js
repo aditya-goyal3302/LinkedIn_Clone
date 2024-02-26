@@ -11,6 +11,22 @@ const connection_schema = new mongoose.Schema(
       ],
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["pending", "accepted", "rejected"],
+      default: "pending",
+      required: true,
+    },
+    requested_by: {
+      type: String,
+      ref: "user",
+      required: true,
+    },
+    uuid: {
+      type: String,
+      required: true,
+      unique: true,
+    },
   },
   { timestamps: true }
 );

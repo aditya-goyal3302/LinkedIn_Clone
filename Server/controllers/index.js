@@ -4,6 +4,7 @@ module.exports = {
   posts_controller: require("./posts.controller"),
   comments_controller: require("./comments.controller"),
   reactions_controller: require("./reactions.controller"),
+  connections_controller: require("./connections.controller"),
   // like: require('./like'),
   // friend: require('./friend'),
   // message: require('./message'),
