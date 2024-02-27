@@ -1,4 +1,4 @@
-.MuiDialog-root.MuiPaper-root{
+.MuiDialog-root .MuiDialog-container .MuiPaper-root{
     max-width:unset !important;
 }
 .MuiDialogContent-root{
@@ -6,4 +6,7 @@
 }
 .MuiInputBase-input{
     width: unset !important;
+}
+.dialogbox>.MuiDialog-container{
+    align-items: flex-start !important;
 }

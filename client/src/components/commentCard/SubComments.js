@@ -18,7 +18,7 @@ function SubComment({ comment }) {
   return (
     <Card className={styles.commentRoot}>
       <CardContent className={styles.comment}>
-        <Avatar className={styles.subCommentAvatar} />
+        <Avatar className={styles.subCommentAvatar} src={comment.user_id.image ||"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
         <Box className={styles.commentBody}>
           <Box className={styles.commentWraper}>
             <Box className={styles.commentHeader}>

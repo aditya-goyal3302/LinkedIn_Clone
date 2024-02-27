@@ -173,6 +173,7 @@
     align-items: flex-start !important;
     width: 100% !important;
     box-sizing: border-box  !important;
+    position: relative  !important;
 }
 .commentWraper{
     background-color: #f2f2f2 !important;
@@ -202,4 +203,33 @@
 
 .commentFooter{
     margin:0px 0px  8px 0px !important
+}
+.commentAction{
+    position:absolute;
+    right: 0px;
+    margin-left: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+.commentActionText{
+    font-size: 12px !important;
+    color: #00000099 !important;
+    font-weight: 400 !important;    
+    margin: 0px  !important;    
+    padding: 0px  !important;
+    margin-right: 2px !important;
+
+}
+.commentActionBtn{
+    font-size: 12px !important;
+    color: #00000099 !important;    
+    margin: 0px  !important;    
+    padding: 0px  !important;
+    margin-right: 10px !important;
+    cursor: pointer;
+}
+.commentActionBtn:hover{
+    color: #0A66C2 !important;
+    background-color: unset !important;
 }

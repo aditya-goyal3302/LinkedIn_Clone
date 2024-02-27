@@ -9,7 +9,7 @@ exports.create_connection = async (req) => {
     const uuid = requested_user_id < user.user_id ? `${requested_user_id}-${user.user_id}` : `${user.user_id}-${requested_user_id}`;
     console.log('requested_user_id, user: ', requested_user_id, user.user_id);
     if (!requested_user_id || !user) throw Object.assign(new Error('Invalid/Bad Request'), { status: 400 });
-    const connection = await connections_model.findOneAndUpdate({ uuid, status:{$in:["rejected","deleted"] , $nin:['pending','accepted']} }, {
+    const connection = await connections_model.findOneAndUpdate({ uuid, status: { $in: ["rejected", "deleted"], $nin: ['pending', 'accepted'] },updatedAt:{$lte: new Date()} }, {
         users: [requested_user_id, user.user_id],
         requested_by: user.user_id,
         status: "pending",
@@ -34,4 +34,7 @@ exports.set_connections = async (req) => {
         { status },
         { new: true, upsert: false }
     );
+}
+exports.get_pending_connections = async (user_id) => {
+    return await connections_model.find({ users: { $in: [user_id] }, status: "pending" }, null, { populate: { path: 'users', select: 'username image heading' } });
 }

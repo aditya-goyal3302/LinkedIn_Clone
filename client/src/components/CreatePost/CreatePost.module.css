@@ -1,4 +1,6 @@
-
+.dialog>:nth-child(2){
+    width: 100% !important;
+}
 .dialogTitle{
     
     background-color: #fff !important;
@@ -35,18 +37,20 @@
 .dialogHeaderText h6{
     font-size: 20px !important;
     font-weight: 600 !important;
+    line-height: 25px;
     margin: 0 !important;
 }
 .dialogHeaderText p{
     font-size: 14px !important;
     font-weight: 400 !important;
+    line-height: 20px;
     margin: 0 !important;
     color: #00000099 !important;
 }
 .dialogContent{
     width: 100% !important;
     max-width: 745px !important;
-    min-width: 600px !important;
+    min-width: 700px !important;
     display: flex !important;
     flex-direction: column !important;
     /* border: unset !important;  */
@@ -62,13 +66,23 @@
     box-sizing: border-box !important;
     padding: 0 24px !important;
 }
+.content{
+    /* padding: 0 24px !important; */
+    min-height: 300px !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+.content>textarea,.title>input{
+    width: 100% !important;
+}
 .title input{
     font-size: 20px !important;
     font-weight: 600 !important;
 }
 .content textarea{
     padding-top: 20px;
-    min-height:150px;
+    min-height:100px;
     max-height: 300px;
     font-size: 16px !important;
     font-weight: 400 !important;
@@ -82,6 +96,7 @@
     border: unset !important;
     font-size: 16px !important;
     font-weight: 600 !important;
+    line-height: 20px !important;
     margin: 0 !important;
     padding: 6px 16px !important;
     cursor: pointer !important;
@@ -100,4 +115,48 @@
 .contentImgBtn{
     /* float: right !important; */
     width:50px !important;
+}
+.createPostBtns{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    margin: 0 24px !important;
+    padding: 12px 0 !important;
+    box-sizing: border-box !important;
+}
+.createPostBtns>button:hover{
+    background-color: unset !important;
+}
+.loaderWrapper{
+    position :absolute !important;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    /* padding: ; */
+    background-color: #00000050 !important;
+}
+.contentImgBtn svg{
+    height: 21px !important;
+    width: 21px !important;
+    padding:12px !important;
+}
+.contentImgBtn{
+    height: 48px !important;
+    margin: 0 !important;
+    width: 48px !important;
+    min-width: unset !important;
+}
+.aibtn{
+    width: auto !important;
+    border:1px solid #00000099 !important;
+    box-sizing: border-box !important;
+    padding: 6px 12px 6px 0px !important;
+    border-radius: 50px !important;
+    height: 32px !important;
+    text-transform: none !important;
+    color:#00000099 !important;
+    font-size: 16px !important;
+    margin-right:20px !important;
 }

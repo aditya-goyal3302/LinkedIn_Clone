@@ -11,7 +11,7 @@ function Comments({ postId }) {
   const [newComment, setNewComment] = useState("")
   const dispatch = useDispatch()
   const comments = useSelector((state) => state.commentReducer.content[postId]) || []
-  console.log("comments: ", comments)
+  // console.log("comments: ", comments)
   useEffect(() => {
     dispatch(fetchComments(postId))
   }, [dispatch, postId])

@@ -4,9 +4,10 @@ exports.get_connections_for_user = async (req, res) => {
     try {
         const user_id = req.query.user_id || req.body.user._id;
         const response = await connections_service.get_connections_for_user(user_id);
+        if (response.length === 0) return res.status(404).send({ error: "No connections found" });
         res.status(200).send(response);
     } catch (error) {
-        res.status(500).send({ error: error.message });
+        res.status(500).send({ error: error });
     }
 }
 exports.create_connection = async (req, res) => {
@@ -16,7 +17,7 @@ exports.create_connection = async (req, res) => {
         res.status(201).send(response);
     } catch (error) {
         if (error.code === 11000) return res.status(409).send({ error: "Connection request already exists" });
-        res.status(500).send({ error: error.message });
+        res.status(500).send({ error: error });
     }
 }
 
@@ -29,10 +30,18 @@ exports.set_connections = async (req, res) => {
     } catch (error) {
         console.log('error: ', error.code, error.message);
         
-        res.status(500).send({ error: error.message });
+        res.status(500).send({ error: error });
     }
 }
 
 exports.get_pending_connections = async (req, res) => {
+    try {
+        const response = await connections_service.get_pending_connections(req.user.user_id);
+        if (response.length === 0) return res.status(404).send({ error: "No pending Connection Request found" });
+        res.status(200).send(response);
+    } catch (error) {
+        console.log('error: ', error);
+        res.status(500).send({ error: error });
+    }
 
 }

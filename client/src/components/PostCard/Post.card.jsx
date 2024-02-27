@@ -3,7 +3,7 @@ import { Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, C
 import styles from "./Post.module.css";
 import { Avatar } from "@mui/material";
 import { Globe } from "../../assets/svg/PostSvg";
-import Comments from "../commentCard/index.card";
+import Comments from "../CommentCard/index.card";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostReactions, addPostReaction } from "../../store/ReactionSlice/Reaction.api";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
@@ -29,6 +29,18 @@ function Post({ post }) {
     Insightful: "💡",
     Funny: "😄",
   }
+  const cal_days = (date) => {
+    const date1 = new Date(date);
+    const date2 =  Date.now();
+    const diffTime = Math.abs(date2 - date1);
+    const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    if(diffTime<(1000 * 60 * 60 * 24)) return "Today";
+    else if(days<2) return "Yesterday";
+    else if(days<7) return `${days}d`;
+    else if(days<30) return `${Math.floor(days/7)}w`;
+    else if(days<365) return `${Math.floor(days/30)}m`;
+    else return `${Math.floor(days/365)}y`;
+  }
   useEffect(() => {
     dispatch(fetchPostReactions(post._id));
   }, [dispatch, post._id]);
@@ -50,7 +62,7 @@ function Post({ post }) {
               <Avatar
                 className={styles.postHeaderAvatar}
                 src={
-                  post?.userId?.image ||
+                  post?.user_id?.image ||
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
                 }
                 alt="avatar"
@@ -60,9 +72,9 @@ function Post({ post }) {
                 <Typography>
                   {post?.user_id?.username || "LinkedIn User"}
                 </Typography>
-                <Typography>1,000,000 followers </Typography>
+                <Typography>{post?.user_id?.heading}</Typography>
                 <Typography>
-                  {Date(post.time_stamp)} • <Globe />
+                  {cal_days(post.time_stamp)} • <Globe />
                 </Typography>
               </Box>
             </Box>
