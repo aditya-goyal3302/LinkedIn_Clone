@@ -1,22 +1,31 @@
-import { Card, CardContent, CardHeader, IconButton } from '@mui/material'
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, IconButton, Link, Typography } from '@mui/material'
 import React from 'react'
 import styles from './UserCard.module.css'
-import { Box } from '@mui/system'
+import { Box, style } from '@mui/system'
 import coverImg from '../../assets/images/cover_img.webp'
 import CloseIcon from '@mui/icons-material/Close';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
-function UserCard() {
+function UserCard({user}) {
+  
   return (
     <Card className={styles.root}>
-        <CardContent>
-            <Box>
-                <img src={coverImg} alt="Cover_Photo" className={styles.coverImg} />
-                <IconButton className={styles.clearBtn}>
-                    <CloseIcon/>
-                </IconButton>
-            </Box>
+        <CardContent className={styles.content} onclick={""}>
+          <Box>
+              <img src={user?.cover_image ||coverImg} alt="Cover_Photo" className={styles.coverImg} />
+              <IconButton className={styles.clearBtn}>
+                  <CloseIcon/>
+              </IconButton>
+          </Box>
+          <Avatar src={user?.image||"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} alt="Profile_Photo" className={styles.Avatar} />
+          {/* <CardHeader title={user?.name||"LinkedIn User"} subheader={user?.heading||"Full Stack Developer"} /> */}
+          <Link className={styles.UserName}>{user?.first_name ? `${user?.first_name} ${user?.last_name}`:"LinkedIn User"}</Link>
+          <Typography className={styles.UserRole}>{user?.heading||"Full Stack Developer"}</Typography>
         </CardContent>
-        
+        <CardActions className={styles.CardAction}>
+          <Box className={styles.Reference}> </Box>
+          <Button className={styles.connectBtn}><PersonAddIcon/> Connect</Button>
+        </CardActions>
     </Card>
   )
 }
