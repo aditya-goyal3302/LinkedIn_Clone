@@ -1,16 +1,18 @@
 const { connections_model } = require('../models');
 
 exports.get_connections_for_user = async (user_id) => {
-    return await connections_model.find({ users: { $in: [user_id] }, status: "accepted" }, null, { populate: { path: 'requested_by', select: 'username image heading' } });
+
+    return await connections_model.find({ $or:[{sent_to:user_id},{requested_by:user_id}], status: "accepted" }, null, { populate: { path: 'requested_by sent_to', select: 'username image heading' } });
 }
 
 exports.create_connection = async (req) => {
     const { requested_user_id, user } = req.body;
     const uuid = requested_user_id < user.user_id ? `${requested_user_id}-${user.user_id}` : `${user.user_id}-${requested_user_id}`;
+    console.log('uuid: ', uuid);
     console.log('requested_user_id, user: ', requested_user_id, user.user_id);
     if (!requested_user_id || !user) throw Object.assign(new Error('Invalid/Bad Request'), { status: 400 });
     const connection = await connections_model.findOneAndUpdate({ uuid, status: { $in: ["rejected", "deleted"], $nin: ['pending', 'accepted'] },updatedAt:{$lte: new Date()} }, {
-        users: [requested_user_id, user.user_id],
+        sent_to: requested_user_id,
         requested_by: user.user_id,
         status: "pending",
     }, { new: true, upsert: true });
@@ -20,7 +22,7 @@ exports.create_connection = async (req) => {
 exports.set_connections = async (req) => {
     const { connection_id } = req.params;
     const { requested_by, status, user } = req.body;
-    if (requested_by === user.user_id) throw Object.assign(new Error('Forbidden'), { status: 403 })
+    if (requested_by === user.user_id) throw Object.assign(new Error('Forbidden you can not set this request status'), { status: 403 })
     if (!status || !connection_id || !requested_by) throw Object.assign(new Error('Invalid/Bad Request'), { status: 400 });
     const uuid = requested_by < user.user_id ? `${requested_by}-${user.user_id}` : `${user.user_id}-${requested_by}`;
     console.log('uuid: ', uuid);
@@ -28,7 +30,7 @@ exports.set_connections = async (req) => {
         {
             requested_by,
             status: "pending",
-            users: { $in: [user.user_id] },
+            sent_to: user.user_id,
             uuid
         },
         { status },
@@ -36,5 +38,5 @@ exports.set_connections = async (req) => {
     );
 }
 exports.get_pending_connections = async (user_id) => {
-    return await connections_model.find({ users: { $in: [user_id] }, status: "pending" }, null, { populate: { path: 'users', select: 'username image heading' } });
+    return await connections_model.find({ sent_to:user_id, status: "pending" }, null, { populate: { path: 'requested_by', select: 'username image heading' } });
 }

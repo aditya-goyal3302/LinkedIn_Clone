@@ -2,7 +2,7 @@ const { connections_service } = require("../services");
 
 exports.get_connections_for_user = async (req, res) => {
     try {
-        const user_id = req.query.user_id || req.body.user._id;
+        const user_id = req.query.user_id || req.body.user.user_id;
         const response = await connections_service.get_connections_for_user(user_id);
         if (response.length === 0) return res.status(404).send({ error: "No connections found" });
         res.status(200).send(response);
@@ -28,19 +28,20 @@ exports.set_connections = async (req, res) => {
         if (response)res.status(200).send(response);
         else res.status(404).send({ error: "No pending Connection Request found" });
     } catch (error) {
-        console.log('error: ', error.code, error.message);
-        
+        // console.log('error: ', error);
+        if(error.status === 403) return res.status(403).send({ message: "Forbidden you can not set/change this request status" });
         res.status(500).send({ error: error });
     }
 }
 
 exports.get_pending_connections = async (req, res) => {
     try {
-        const response = await connections_service.get_pending_connections(req.user.user_id);
+        const { user_id } = req.body.user;
+        const response = await connections_service.get_pending_connections(user_id);
         if (response.length === 0) return res.status(404).send({ error: "No pending Connection Request found" });
         res.status(200).send(response);
     } catch (error) {
-        console.log('error: ', error);
+        // console.log('error: ', error);
         res.status(500).send({ error: error });
     }
 

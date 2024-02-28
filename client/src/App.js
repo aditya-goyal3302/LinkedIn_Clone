@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Singup from './pages/Signup';
 import Home from './pages/Home';
-import UserCard from './components/UserCard/index.Card';
+import MyNetwork from './pages/MyNetwork';
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Singup />} />
-        <Route path={"/feed"}  element={<Home />} />
-        <Route path="/card" element={<UserCard />} />
+        <Route path="/feed"  element={<Home />} />
+        <Route path="/card" element={<MyNetwork />} />
       </Routes>
     </div>
   );

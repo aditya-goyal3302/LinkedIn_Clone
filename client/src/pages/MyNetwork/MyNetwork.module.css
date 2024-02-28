@@ -1,0 +1,12 @@
+.root{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+.LeftPanel{
+
+}
+.RightPanel{
+
+}

@@ -2,14 +2,10 @@ const mongoose = require("mongoose");
 
 const connection_schema = new mongoose.Schema(
   {
-    users: {
-      type: [
-        {
-          type: String,
-          ref: "user",
-        },
-      ],
-      required: true,
+    sent_to: {
+      type: String,
+      ref: "user",
+      required: true
     },
     status: {
       type: String,
