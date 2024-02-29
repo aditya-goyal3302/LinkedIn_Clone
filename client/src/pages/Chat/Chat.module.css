@@ -1,0 +1,88 @@
+.root{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
+    background-color: #f4f2ee;
+}
+.panelWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    width: 100% !important;
+    max-width: 1130px;
+    min-width: 960px;
+    padding-top: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+.leftPanel{
+    display :flex;
+    flex-direction:column ;
+    width: 100%;
+    max-width: 782px;
+    min-width: 636px;
+    height: 95vh;
+    margin-right: 20px;
+    box-sizing: content-box;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.rightPanel{
+    display :flex;
+    flex-direction:column ;
+    width: 100%;
+    min-width: 322px;
+    max-width: 330px;
+    margin-left: 20px;
+    height: auto;
+}
+.chatSearchBar , .chatBtnsBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 45px;
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+}
+.chatBoxWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+}
+.contactBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    width: 50%;
+    border-bottom: 1px solid #e0e0e0;
+}
+.chatBox{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; */
+    height: 100%;
+    width: 75%;
+    /* padding: 10px; */
+    box-sizing: border-box  !important;
+}
+@media (max-width: 1000px) {
+    .panelWrapper{
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

@@ -2,7 +2,7 @@ const { connections_model } = require('../models');
 
 exports.get_connections_for_user = async (user_id) => {
 
-    return await connections_model.find({ $or:[{sent_to:user_id},{requested_by:user_id}], status: "accepted" }, null, { populate: { path: 'requested_by sent_to', select: 'username image heading' } });
+    return await connections_model.find({ $or:[{sent_to:user_id},{requested_by:user_id}], status: "accepted" }, null, { populate: { path: 'requested_by sent_to', select: 'username first_name last_name image heading' } });
 }
 
 exports.create_connection = async (req) => {
@@ -39,5 +39,5 @@ exports.set_connections = async (req) => {
     );
 }
 exports.get_pending_connections = async (user_id) => {
-    return await connections_model.find({ sent_to:user_id, status: "pending" }, null, { populate: { path: 'requested_by', select: 'username image heading' } });
+    return await connections_model.find({ sent_to:user_id, status: "pending" }, null, { populate: {  path: 'requested_by', select: 'firstname lastname image heading'} });
 }

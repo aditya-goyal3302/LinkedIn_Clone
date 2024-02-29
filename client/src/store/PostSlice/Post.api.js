@@ -6,7 +6,7 @@ export const fetchFeed = createAsyncThunk(
     'feed/fetchFeed',
     async (payload,{getState}) => {
         const state = getState()
-        console.log("state: ", state.persistedReducer.token)
+        // console.log("state: ", state.persistedReducer.token)
         const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/posts`,
         {
             headers: {
@@ -14,6 +14,7 @@ export const fetchFeed = createAsyncThunk(
                 Authorization: state.persistedReducer.token
             }
         });
+        // console.log('response.data: ', response.data);
         return response.data;
     }
 );

@@ -1,0 +1,81 @@
+.root{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 92px!important;
+    width: 100% !important;
+    padding-left: 8px;
+    box-sizing: content-box !important;
+    border:unset !important;
+    box-shadow: unset !important;
+    border-left: 4px solid transparent !important;
+    cursor: pointer !important;
+}
+.root:hover{
+    background-color: #f3f3f3 !important;
+    /* border-left: 4px solid #3f51b5 !important; */
+}
+.Avatar{
+    width: 52px !important;
+    height: 52px !important;
+}
+.contactBoxName{
+    width: 100% !important;
+    height: 100% !important;
+    padding: 12px 8px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    border-bottom: 1px solid rgba(140, 140, 140,0.2) !important;
+} 
+.contactNameWraper{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+.contactName{
+    font-size: 16px !important;
+    width: 80%!important;
+    height : 25px !important;
+    color: #000000e6 !important;
+    margin: 0 !important;
+    text-align: left !important;
+    padding-right: 5px !important;
+    text-align: left !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 24px !important;
+}
+.contactTime{
+    font-size: 14px !important;
+    color: #000000e8 !important;
+    text-wrap: nowrap !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+}
+.contactLastConvo{
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    
+}
+.contactLastConvoText{
+    font-size: 14px !important;
+    color: #00000099 !important;
+    margin: 0 !important;
+    width: 80% !important;
+    height: 40px!important;
+    padding-right: 5px !important;
+    text-align: left !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 20px !important;
+}

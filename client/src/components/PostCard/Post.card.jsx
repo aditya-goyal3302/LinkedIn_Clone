@@ -17,7 +17,7 @@ import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 function Post({ post }) {
   const [showComments, setShowComments] = useState(false);
   const [anchor, setAnchor] = useState(null);
-  const userId = useSelector((state) => state.persistedReducer.user._id);
+  const user = useSelector((state) => state.persistedReducer.user);
   const reaction = useSelector((state) => state.reactionReducer.reactions.post[post._id]) || {};
   const dispatch = useDispatch();
   const [reactionBar, setReactionBar] = useState(false);
@@ -45,7 +45,7 @@ function Post({ post }) {
     dispatch(fetchPostReactions(post._id));
   }, [dispatch, post._id]);
   const handlereaction = (newReaction) => {
-    if (newReaction !== reaction[userId]?.reaction || reaction[userId] === undefined) {
+    if (newReaction !== reaction[user.Id]?.reaction || reaction[user._id] === undefined) {
       dispatch(addPostReaction({ postId: post._id, newReaction }));
     }
     else dispatch(addPostReaction({ postId: post._id, newReaction: '' }));
@@ -61,18 +61,18 @@ function Post({ post }) {
             <Box className={styles.subpostHeader}>
               <Avatar
                 className={styles.postHeaderAvatar}
-                src={
-                  post?.user_id?.image ||
+                src={post?.user_id?.image ?
+                  `${process.env.REACT_APP_IMG_BASE_URL}/${post?.user_id?.image}` :
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
                 }
-                alt="avatar"
-                variant="square"
+                alt={post?.user_id?.first_name ||"avatar"}
+                // variant="square"
               />
               <Box className={styles.postHeaderUser}>
                 <Typography>
-                  {post?.user_id?.username || "LinkedIn User"}
+                  {post?.user_id?.first_name ? `${post?.user_id?.first_name} ${post?.user_id?.last_name}` : "LinkedIn User"}
                 </Typography>
-                <Typography>{post?.user_id?.heading}</Typography>
+                <Typography>{post?.user_id?.heading||"Linkedin User Heading"}</Typography>
                 <Typography>
                   {cal_days(post.time_stamp)} • <Globe />
                 </Typography>
@@ -131,13 +131,13 @@ function Post({ post }) {
         >
           <Button
             className={styles.postButton}
-            onClick={() => handlereaction(reaction[userId]?.reaction||"Like")}
+            onClick={() => handlereaction(reaction[user._id]?.reaction||"Like")}
             onMouseOver={() => setReactionBar(true)}
             onMouseOut={() => setReactionBar(false)}
             ref={setAnchor}
-            style={{ color: reaction[userId]?.reaction === "like" ? "blue !important" : "black" }}
+            style={{ color: reaction[user._id]?.reaction === "Like" ? "blue !important" : "black" }}
           >
-            {reactionLogo[reaction[userId]?.reaction] ||<ThumbUpOutlinedIcon />}&nbsp; {reaction[userId]?.reaction || "like"}
+            {reactionLogo[reaction[user._id]?.reaction] ||<ThumbUpOutlinedIcon />}&nbsp; {reaction[user._id]?.reaction || "like"}
           </Button>
           <Button
             className={styles.postButton}
@@ -158,7 +158,7 @@ function Post({ post }) {
         </ButtonGroup>
       </CardActions>
       <Collapse in={showComments} timeout="auto" unmountOnExit>
-        <Comments postId={post._id} />
+        <Comments postId={post._id} image={user.image}/>
       </Collapse>
     </Card>
   );

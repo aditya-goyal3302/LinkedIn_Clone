@@ -50,7 +50,10 @@ function Comment({ comment }) {
   return (
     <Card className={styles.commentRoot}>
       <CardContent className={styles.comment} >
-        <Avatar className={styles.commentAvatar} src={comment.user_id.image ||"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
+        <Avatar className={styles.commentAvatar} src={comment?.user_id?.image ?
+                  `${process.env.REACT_APP_IMG_BASE_URL}/${comment?.user_id?.image}` :
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
+                } />
         <Box className={styles.commentsBox}>
           <Box className={styles.commentAction}>
             <Typography className={styles.commentActionText}>{cal_days(comment.time_stamp)}</Typography>

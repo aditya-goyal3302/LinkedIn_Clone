@@ -4,7 +4,7 @@ const { post } = require("../routes/posts.routes");
 exports.show_posts = () => {
   return post_model.find(null, null, {
     sort: { time_stamp: -1 },
-    populate: { path: "user_id", select: "username image" },
+    populate: { path: "user_id", select: "username image first_name last_name" },
   });
 };
 

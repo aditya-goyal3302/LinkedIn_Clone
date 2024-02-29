@@ -3,13 +3,14 @@ import styles from './MyNetwork.module.css'
 import { Box } from '@mui/system'
 import { useDispatch, useSelector } from 'react-redux'  
 import { fetchMyConnections,fetchRequests,fetchSuggessions} from '../../store/MyConnections/MyConnectionThunk'
-import UserCard from '../../components/UserCard/index.Card'
+import UserCard from '../../components/SugessionUserCard/index.Card'
 import { Typography } from '@mui/material'
+import RequestUser from '../../components/RequestUserCard/RequestUser.Card'
 
 function MyNetwork() {
     const dispatch = useDispatch()
     const myConnections = useSelector((state) => state.myConnectionReducer)
-    console.log('myConnections: ', myConnections.Suggessions);
+    console.log('myConnections: ', myConnections);
     useEffect(() => {
         // dispatch(fetchMyConnections())
         dispatch(fetchRequests())
@@ -25,8 +26,13 @@ function MyNetwork() {
             <Box className={styles.RightPanel}>
                 <Box className={styles.requestPanel}>
                     <Box className={styles.requestPanelHead}>
-                        <Typography className={styles.requestTitle}>No pending invitations</Typography>
+                        <Typography className={styles.requestTitle}>{myConnections?.requests ? "Pending Requests": "No pending invitations"}</Typography>
                     </Box>
+                    {/* <Box className={styles.requestPanelBody}> */}
+                        {myConnections.requests?.map((request,key) => {
+                            return <RequestUser request={request} key={key}/>
+                        })}
+                    {/* </Box> */}
                 </Box>
                 <Box className={styles.suggessionPanel}>
                     <Box className={styles.suggessionPanelHead}>

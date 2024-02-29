@@ -22,7 +22,7 @@ import { useState } from 'react';
 function CreatePost({ open, setOpen, user}) {
     const dispatch = useDispatch()
     const [data, setData] = React.useState({})
-    console.log('data: ', data);
+    // console.log('data: ', data);
     const [file, setFile] = React.useState(null)
     
     const handleClose = () => {

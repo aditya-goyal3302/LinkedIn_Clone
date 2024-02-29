@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createComment, fetchComments } from '../../store/CommentSlice/Comment.api'
 import Comment from './Comment'
 
-function Comments({ postId }) {
+function Comments({ postId, image }) {
   const [newComment, setNewComment] = useState("")
   const dispatch = useDispatch()
   const comments = useSelector((state) => state.commentReducer.content[postId]) || []
@@ -24,7 +24,10 @@ function Comments({ postId }) {
   return (
     <Box className={styles.root} >
       <Box className={styles.postComment}>
-        <Avatar className={styles.postCommentAvatar} src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} alt="avatar" />
+        <Avatar className={styles.postCommentAvatar} src={image ?
+                  `${process.env.REACT_APP_IMG_BASE_URL}/${image}` :
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
+                } alt="avatar" />
         <Box className={styles.postCommentInput}>
           <InputBase
             sx={{ width: "unset" }}

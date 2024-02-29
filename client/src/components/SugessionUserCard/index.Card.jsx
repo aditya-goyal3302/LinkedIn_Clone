@@ -25,7 +25,7 @@ function UserCard({user}) {
                   <CloseIcon/>
               </IconButton>
           </Box>
-          <Avatar src={user?.image||"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} alt="Profile_Photo" className={styles.Avatar} />
+          <Avatar src={user?.image?`${process.env.REACT_APP_IMG_BASE_URL}/${user.image}`:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} alt={user.first_name||"A"} className={styles.Avatar} />
           {/* <CardHeader title={user?.name||"LinkedIn User"} subheader={user?.heading||"Full Stack Developer"} /> */}
           <Link className={styles.UserName}>{user?.first_name ? `${user?.first_name} ${user?.last_name}`:"LinkedIn User"}</Link>
           <Typography className={styles.UserRole}>{user?.heading||"Full Stack Developer"}</Typography>
