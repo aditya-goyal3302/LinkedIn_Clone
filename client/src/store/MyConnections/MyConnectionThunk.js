@@ -46,7 +46,7 @@ export const fetchSuggessions = createAsyncThunk(
     async (payload, {rejectWithValue,getState}) => {
         try {
             const state = getState();
-            const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/connections/suggessions`,
+            const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/users`,
                 {
                     headers: {
                     "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export const sendConnectionRequest = createAsyncThunk(
     async (payload, {rejectWithValue,getState}) => {
         try {
             const state = getState();
-            const response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/connections`, payload,
+            const response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/connections`, {requested_user_id:payload},
                 {
                     headers: {
                     "Content-Type": "application/json",

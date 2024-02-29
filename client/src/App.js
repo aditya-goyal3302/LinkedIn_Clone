@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Singup from './pages/Signup';
 import Home from './pages/Home';
 import MyNetwork from './pages/MyNetwork';
+import Chat from './pages/Chat/index.Chat';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Singup />} />
         <Route path="/feed"  element={<Home />} />
-        <Route path="/card" element={<MyNetwork />} />
+        <Route path="/mynetwork" element={<MyNetwork />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </div>
   );

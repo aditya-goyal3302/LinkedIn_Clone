@@ -1,5 +1,5 @@
 module.exports = {
-  // user: require('./userCont'),
+  user_controller: require('./user.controller'),
   auth_controller: require("./auth.controller"),
   posts_controller: require("./posts.controller"),
   comments_controller: require("./comments.controller"),

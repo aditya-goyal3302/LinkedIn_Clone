@@ -5,8 +5,16 @@ import { Box, style } from '@mui/system'
 import coverImg from '../../assets/images/cover_img.webp'
 import CloseIcon from '@mui/icons-material/Close';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import { useDispatch } from 'react-redux';
+import { sendConnectionRequest} from '../../store/MyConnections/MyConnectionThunk'
 
 function UserCard({user}) {
+  const dispatch = useDispatch()
+  
+  const handleConnect = () => {
+    dispatch(sendConnectionRequest(user._id))
+    // console.log('user._id: ', user._id);
+  }
   
   return (
     <Card className={styles.root}>
@@ -24,7 +32,7 @@ function UserCard({user}) {
         </CardContent>
         <CardActions className={styles.CardAction}>
           <Box className={styles.Reference}> </Box>
-          <Button className={styles.connectBtn}><PersonAddIcon/> Connect</Button>
+          <Button onClick={handleConnect} className={styles.connectBtn}><PersonAddIcon/> Connect</Button>
         </CardActions>
     </Card>
   )

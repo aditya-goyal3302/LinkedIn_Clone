@@ -11,7 +11,8 @@ exports.create_connection = async (req) => {
     console.log('uuid: ', uuid);
     console.log('requested_user_id, user: ', requested_user_id, user.user_id);
     if (!requested_user_id || !user) throw Object.assign(new Error('Invalid/Bad Request'), { status: 400 });
-    const connection = await connections_model.findOneAndUpdate({ uuid, status: { $in: ["rejected", "deleted"], $nin: ['pending', 'accepted'] },updatedAt:{$lte: new Date()} }, {
+    if(requested_user_id === user.user_id) throw Object.assign(new Error('Forbidden you can not send request to yourself'), { status: 403 });
+    const connection = await connections_model.findOneAndUpdate({ uuid, status: { $in: ["rejected", "deleted", "withdraw"], $nin: ['pending', 'accepted'] },updatedAt:{$lte: new Date()} }, {
         sent_to: requested_user_id,
         requested_by: user.user_id,
         status: "pending",
