@@ -16,7 +16,7 @@ function App() {
         <Route path="/feed"  element={<Home />} />
         <Route path="/mynetwork" element={<MyNetwork />} />
         <Route path="/" element={<Login />} />
-        <Route path="/chat" element={<Chat />} />
+        <Route path="/chat" element={<Chat/>} />
       </Routes>
     </div>
   );

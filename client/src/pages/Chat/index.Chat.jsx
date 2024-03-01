@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/system'
 import styles from './Chat.module.css'
-import { Avatar, Card } from '@mui/material'
 import ChatContact from '../../components/ChatContact/ChatContact.card'
 import ChatWindow from '../../components/ChatWindow/ChatWindow'
 

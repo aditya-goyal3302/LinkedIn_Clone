@@ -5,9 +5,11 @@
     align-items: flex-start;
     background-color: #f4f2ee;
     width: 100% !important;
-    height: 100vh !important;
+    height: 100% !important;
+    /* margin: auto !important; */
     padding:0px 20px 0px 20px !important;
     box-sizing: border-box !important;
+    padding-top: 24px !important;
     
 }
 .LeftPanel{
@@ -18,8 +20,8 @@
     margin-right: 15px;
 }
 .RightPanel{
-    width: 50% !important;
-    /* min-width:200px  !important; */
+    width: auto !important;
+    min-width:650px  !important;
     height: 100% !important;
     /* background-color: #fff !important; */
     display: flex;
@@ -39,11 +41,11 @@
     justify-content: space-evenly;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding: 10px 0px 10px 0px !important;
+    /* padding: 10px 0px 10px 0px !important; */
     border: 1px solid rgba(140, 140, 140, 0.2);
-    border-radius: 8px;
-    margin: 15px !important;
-    padding: 16px 10px !important;
+    border-radius: 8px !important;
+    margin: 7.5px !important;
+    /* padding: 16px 10px !important; */
     box-sizing: border-box !important;
 }
 
@@ -58,8 +60,8 @@
     flex-wrap: wrap;
     padding: 10px 0px 10px 0px !important;
     border: 1px solid rgba(140, 140, 140, 0.2);
-    border-radius: 8px;
-    margin: 15px !important;
+    border-radius: 8px !important;
+    margin: 7.5px !important;
     padding: 16px 10px 8px 10px !important;
     box-sizing: border-box !important;
 }
@@ -76,7 +78,7 @@
     grid-template-columns: repeat(auto-fill, minmax(min(190px, 100%), 1fr));
     padding: 10px 0px 10px 0px !important;
 }
-.suggessionPanelHead,.requestPanelHead{
+.suggessionPanelHead{
     width: auto !important;
     height: auto !important;
     display: flex;
@@ -86,7 +88,17 @@
     flex-wrap: wrap;
     padding: 10px 0px 10px 0px !important;
 }
-.suggessionTitle,.requestTitle{
+.requestPanelHead{
+    width: auto !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0px 10px 0px !important;
+}
+.suggessionTitle{
     font-size: 16px !important;
     font-weight: 400 !important;
     color: rgba(0, 0, 0, 0.9) !important;
@@ -94,4 +106,14 @@
     margin: 0px !important;
     padding: 0px !important;
     padding-left: 10px !important;
+}
+.requestTitle{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: rgba(0, 0, 0, 0.9) !important;
+    line-height: 24px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    padding-left: 10px !important;
+    line-height: 24px !important;
 }
