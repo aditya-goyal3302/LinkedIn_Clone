@@ -18,6 +18,13 @@ const theme = createTheme({
                 disableRipple: true,
             },
         },
+        MuiTabs:{
+            styleOverrides: {
+                indicator: {
+                    backgroundColor: "#01754f",
+                },
+            },
+        }
     },
 });
 

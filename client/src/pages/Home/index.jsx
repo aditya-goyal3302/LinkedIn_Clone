@@ -19,7 +19,7 @@ const Home = () => {
         dispatch(fetchFeed("hlo"))
     }, [dispatch])
     const user = useSelector((state) => state.persistedReducer.user)
-    
+
     return (
         <div>
             <Navbar className={styles.navbar} />
@@ -31,16 +31,16 @@ const Home = () => {
                         <Box className={styles.createPost} >
                             <Box className={styles.createPostWrapHead} >
                                 <Avatar className={styles.createPostAvatar} src={user?.image ?
-                  `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}` :
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
-                } />
+                                    `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}` :
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
+                                } />
                                 <Box onClick={() => setOpen(true)} className={styles.createPostWrapHeadInput} >Start a post, try writing with AI</Box>
                             </Box>
                             <Box className={styles.createPostWrapBody} >
                                 <ButtonGroup className={styles.createPostWrapBodyBtns} variant="text" >
-                                    <Button className={styles.createPostWrapBodyBtn} ><PhotoSizeSelectActualRoundedIcon sx={{color:'#378fe9', height:"20px"}}/>&nbsp; Media</Button>
-                                    <Button className={styles.createPostWrapBodyBtn} ><CalendarMonthRoundedIcon sx={{color:'#c37d16', height:"20px"}}/>&nbsp; Event</Button>
-                                    <Button className={styles.createPostWrapBodyBtn} ><NewspaperRoundedIcon sx={{color:'#e06847', height:"20px"}}/>&nbsp; Write article</Button>
+                                    <Button className={styles.createPostWrapBodyBtn} ><PhotoSizeSelectActualRoundedIcon sx={{ color: '#378fe9', height: "20px" }} />&nbsp; Media</Button>
+                                    <Button className={styles.createPostWrapBodyBtn} ><CalendarMonthRoundedIcon sx={{ color: '#c37d16', height: "20px" }} />&nbsp; Event</Button>
+                                    <Button className={styles.createPostWrapBodyBtn} ><NewspaperRoundedIcon sx={{ color: '#e06847', height: "20px" }} />&nbsp; Write article</Button>
                                 </ButtonGroup>
                             </Box>
                         </Box>

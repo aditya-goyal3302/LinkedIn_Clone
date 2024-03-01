@@ -81,10 +81,11 @@
 .acceptBtn{
     height: 28px !important;
     width: 40px !important;
-    border-radius: 45px !important;
+    border-radius: 50px !important;
     padding: 6px 16px !important;
     margin-right: 8px !important;
     border:1px solid #0A66C2 !important;
+    /* border-spacing: 2px; */
     box-sizing: content-box !important;
     font-size: 16px !important;
     font-weight: 600 !important;
@@ -94,7 +95,7 @@
 .acceptBtn:hover{
     background-color: #0a66c230 !important;
     border-width: 2px !important;
-    padding: 5px 15px !important;
+    padding: 5px 15px !important;    
     /* color: #fff !important; */
 }
 .rejectBtn{

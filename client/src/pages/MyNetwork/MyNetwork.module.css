@@ -13,24 +13,23 @@
     
 }
 .LeftPanel{
+    position:sticky !important;
     width: 300px !important;
-    height: 100% !important;
+    height: 500px!important;
     /* border: 1px solid black; */
-    background-color: #fff !important;
+    /* background-color: #f5f5f5 !important; */
     margin-right: 15px;
 }
 .RightPanel{
-    width: auto !important;
-    min-width:650px  !important;
+    width: 100% !important;
+    max-width:800px !important;
     height: 100% !important;
     /* background-color: #fff !important; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    /* flex-wrap: wrap; */
-
-    /* border: 1px solid black; */
+    box-sizing: border-box !important;
 }
 .requestPanel{
     width: 100% !important;
@@ -65,20 +64,37 @@
     padding: 16px 10px 8px 10px !important;
     box-sizing: border-box !important;
 }
-.suggessionPanelBody{
-    width: 100%  !important;
+.catchUpPanel{
+    width: 100% !important;
     height: auto !important;
-    /* display: flex;
+    background-color: #fff !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 10px 0px 10px 0px !important;
+    border: 1px solid rgba(140, 140, 140, 0.2);
+    border-radius: 8px !important;
+    margin: 7.5px !important;
+    padding: 0 !important;
+    padding-bottom: 12px !important;
+    box-sizing: border-box !important;
+}
+.suggessionPanelBody{
+    width: unset  !important;
+    height: auto !important;
+    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    flex-wrap: wrap; */
-    display: grid;
+    flex-wrap: wrap;
+    /* display: grid;
     gap: 5px;
-    grid-template-columns: repeat(auto-fill, minmax(min(190px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(190px, 100%), 1fr)); */
     padding: 10px 0px 10px 0px !important;
 }
-.suggessionPanelHead{
+.suggessionPanelHead,.catchUpPanelHead{
     width: auto !important;
     height: auto !important;
     display: flex;
@@ -86,7 +102,7 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 10px 0px 10px 0px !important;
+    padding: 0px!important;
 }
 .requestPanelHead{
     width: auto !important;
@@ -98,14 +114,14 @@
     flex-wrap: wrap;
     padding: 10px 0px 10px 0px !important;
 }
-.suggessionTitle{
+.suggessionTitle,.catchUpTitle{
     font-size: 16px !important;
     font-weight: 400 !important;
     color: rgba(0, 0, 0, 0.9) !important;
     line-height: 24px !important;
     margin: 0px !important;
     padding: 0px !important;
-    padding-left: 10px !important;
+    padding-left: 6px !important;
 }
 .requestTitle{
     font-size: 16px !important;
@@ -114,6 +130,163 @@
     line-height: 24px !important;
     margin: 0px !important;
     padding: 0px !important;
-    padding-left: 10px !important;
+    padding-left: 16px !important;
     line-height: 24px !important;
+}
+.tabPanel{
+    width: 100% !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 7.5px 0 7.5px !important;
+    margin-bottom: 7.5px !important;
+}
+.tabsBar{
+    border: 1px solid rgba(140, 140, 140, 0.2);
+    width: 100% !important;
+    background-color: #fff !important;
+    padding: 0px 24px !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+    height: 52px !important;
+}
+
+.tabBtn{
+    /* color:#01754f !important;    */
+    text-transform: none !important;
+}
+@media (max-width: 1250px) {
+    .RightPanel{
+        width: 100% !important;
+        max-width:604px !important;
+    }
+}
+@media (max-width: 1030px){
+    .RightPanel{
+        width: 100% !important;
+        max-width:410px !important;
+    }
+}
+@media (max-width: 790px){
+    /* .RightPanel{
+        width: 100% !important;
+        max-width:300px !important;
+    } */
+    .root{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .LeftPanel{
+        width: 100% !important;
+        max-width:576px !important;
+        margin-right: 0px;
+    }
+    .RightPanel{
+        width: 100% !important;
+        max-width:576px !important;
+        margin-top: 15px !important;
+       & div{ margin-left: 0px !important;}
+    }
+    .suggessionPanelBody>div{
+        width: 44% !important;
+        min-width: 190px !important;
+    }
+}
+.myNetworkAccordion{
+    padding: 0px  !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(140, 140, 140, 0.2) !important;
+    border-radius: 8px !important;
+    & div:nth-child(1){
+        border-bottom: 1px solid rgba(140, 140, 140, 0.2) !important;
+        & div{
+            border: 0px !important;
+        }
+    }
+}
+.accordionHead{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: rgba(0, 0, 0, 0.9) !important;
+    line-height: 20px !important;
+    margin: 2px 0 !important;
+    padding-left: 8px !important;
+    height: 21  px !important;
+}
+.MyNetworkMenu{
+    padding:0 0 16px 0 !important;
+}
+.menuBtn{
+    padding:12px 24px  !important;
+    margin: 0px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 48px !important;    
+    & p:nth-child(1){
+        font-size:16px !important;
+        color: #0009 !important;
+        font-weight: 600 !important;    
+        line-height: 20px !important;
+    }
+    & p:nth-child(2){
+        font-size:16px !important;
+        color: #0009 !important;
+        font-weight: 400 !important;    
+        line-height: 20px !important;
+    }
+}
+.catchUpPanelBtns{
+    width: 100% !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 16px 24px !important;
+    margin: 0px 0px 0px 0px !important;
+    border-bottom: 1px solid rgba(140, 140, 140, 0.2) !important;
+    box-sizing: border-box !important;
+}
+
+.optionBtn{
+    padding: 8px 12px !important;
+    margin-left: 6px !important;
+    border: 1px solid rgba(140, 140, 140, 0.5) !important;
+    border-radius: 50px !important;
+    height: 32px !important;
+    text-transform: none !important;
+    & p{
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        color: #000000bf !important;
+        line-height: 20px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        line-height: 16px !important;
+    }
+}
+.optionBtn:nth-child(1){
+    margin: 0px !important;
+}
+.optionBtnActive{
+    background-color: #01754f !important;
+    & p{
+        color:#fff !important;
+    }
+}
+.catchupBoxHead{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: rgba(0, 0, 0, 0.9) !important;
+    line-height: 20px !important;
+    margin: 0px !important;
+    padding: 24px 24px 0px 24px !important;
+    height: 21px !important;
 }

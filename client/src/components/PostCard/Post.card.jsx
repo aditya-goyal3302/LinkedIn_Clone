@@ -45,7 +45,7 @@ function Post({ post }) {
     dispatch(fetchPostReactions(post._id));
   }, [dispatch, post._id]);
   const handlereaction = (newReaction) => {
-    if (newReaction !== reaction[user.Id]?.reaction || reaction[user._id] === undefined) {
+    if (newReaction !== reaction[user._id]?.reaction || reaction[user._id] === undefined) {
       dispatch(addPostReaction({ postId: post._id, newReaction }));
     }
     else dispatch(addPostReaction({ postId: post._id, newReaction: '' }));

@@ -10,3 +10,13 @@
 .dialogbox>.MuiDialog-container{
     align-items: flex-start !important;
 }
+.myNetworkAccordion .MuiButtonBase-root{
+    min-height: unset !important;
+}
+.myNetworkAccordion 
+.MuiAccordionSummary-content.Mui-expanded{
+    margin: 12px 0px !important;
+}
+.Mui-selected{
+    color:#01754f !important; 
+}
