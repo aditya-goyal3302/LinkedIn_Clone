@@ -1,162 +1,161 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import {
+  Avatar,
+  Box,
+  Divider,
+  InputBase,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
+import React, { useState } from "react";
+import styles from "./Navbar.module.css";
+import {
+  HomeSvg,
+  MyNetworkSvg,
+  JobsSvg,
+  MessageSvg,
+  NotificationSvg,
+  BusinessSvg,
+  CaretDown,
+  LogoSvg,
+  SearchSvg,
+} from "../../assets/svg/NavbarSvg";
+// import caretDown from "../../assets/svg/caretDown.svg";
+import { useSelector } from "react-redux";
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+const Navbar = () => {
+  const user = useSelector((state) => state.persistedReducer.user) || {};
+  const [navbarSelector, setNavbarSelector] = useState("1");
+  // console.log('navbarSelector: ', navbarSelector ==="1");
+  const handleChange = (event, newValue) => {
+    setNavbarSelector(newValue);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   return (
-    <AppBar position="sticky">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+    <Box className={styles.root}>
+      <Box className={styles.navbar}>
+        <Box className={styles.navLogoWrap}>
+          <LogoSvg />
+        </Box>
+        <Box className={styles.navSearchWrap}>
+          <InputBase className={styles.navSearchBar} placeholder="Search"
+            startAdornment={<i className={styles.searchIcon}> <SearchSvg/>  </i>}
+          />
+        </Box>
+        <Box className={styles.navBtnsWrap}>
+          <Tabs
+            className={styles.navBtns}
+            value={navbarSelector}
+            onChange={handleChange}
+            indicatorColor="secondary"
+            // textColor="blackTheme"
           >
-            LOGO
+            <Tab
+              className={styles.navBtn}
+              value="1"
+              label={
+                <>
+                  <HomeSvg />
+                  <Typography
+                    className={`${styles.navBtnText} ${
+                      navbarSelector === "1" ? styles.navBtnTextActive : ""
+                    }`}
+                  >
+                    Home
+                  </Typography>
+                </>
+              }
+            ></Tab>
+            <Tab
+              value="2"
+              className={styles.navBtn}
+              label={
+                <>
+                  <MyNetworkSvg />
+                  <Typography
+                    className={`${styles.navBtnText} ${
+                      navbarSelector === "2" ? styles.navBtnTextActive : ""
+                    }`}
+                  >
+                    My Network
+                  </Typography>
+                </>
+              }
+            ></Tab>
+            <Tab
+              value="3"
+              className={styles.navBtn}
+              label={
+                <>
+                  <JobsSvg />
+                  <Typography
+                    className={`${styles.navBtnText} ${
+                      navbarSelector === "3" ? styles.navBtnTextActive : ""
+                    }`}
+                  >
+                    Jobs
+                  </Typography>
+                </>
+              }
+            ></Tab>
+            <Tab
+              value="4"
+              className={styles.navBtn}
+              label={
+                <>
+                  <MessageSvg />
+                  <Typography
+                    className={`${styles.navBtnText} ${
+                      navbarSelector === "4" ? styles.navBtnTextActive : ""
+                    }`}
+                  >
+                    Messages
+                  </Typography>
+                </>
+              }
+            ></Tab>
+            <Tab
+              value="5"
+              className={styles.navBtn}
+              label={
+                <>
+                  <NotificationSvg />
+                  <Typography
+                    className={`${styles.navBtnText} ${
+                      navbarSelector === "5" ? styles.navBtnTextActive : ""
+                    }`}
+                  >
+                    Notifications
+                  </Typography>
+                </>
+              }
+            ></Tab>
+          </Tabs>
+        </Box>
+        <Box className={styles.profileBtnWrap}>
+          <Avatar
+            className={styles.profileBtn}
+            src={
+              user?.image
+                ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}`
+                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
+            }
+          />
+          <Typography className={styles.profileBtnText}>
+            Me&nbsp;
+            <CaretDown />
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
+        </Box>
+        <Divider orientation="vertical" flexItem />
+        <Box className={styles.businessBtnWrap}>
+          <BusinessSvg />
+          <Typography className={styles.businessBtnText}>
+            For Business&nbsp;
+            <CaretDown />
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+        </Box>
+      </Box>
+    </Box>
   );
-}
-export default ResponsiveAppBar;
+};
+
+export default Navbar;

@@ -16,10 +16,10 @@ import PhotoSizeSelectActualRoundedIcon from '@mui/icons-material/PhotoSizeSelec
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import {ThreeCircles} from 'react-loader-spinner';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-function CreatePost({ open, setOpen, user}) {
+function CreatePost({ open, setOpen}) {
     const dispatch = useDispatch()
     const [data, setData] = React.useState({})
     // console.log('data: ', data);
@@ -29,6 +29,8 @@ function CreatePost({ open, setOpen, user}) {
         setOpen(false);
     };
     const [isLoading, setIsLoading] = useState(false)
+    const user = useSelector((state) => state.persistedReducer.user)
+    // console.log('user: ', user);
     const handleSubmit = async () => {
         console.log(file)
         try {
@@ -77,7 +79,10 @@ function CreatePost({ open, setOpen, user}) {
                 </Box>}
                 <DialogTitle className={styles.dialogTitle} >
                     <Box className={styles.dialogHeader}>
-                        <Avatar className={styles.avatar} src={user.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
+                        <Avatar className={styles.avatar} src={user?.image ?
+                                    `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}` :
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
+                                } />
                         <Box className={styles.dialogHeaderText}>
                             <Typography variant="h6">{`${user.first_name} ${user.last_name}`}</Typography>
                             <Typography>Post to Anyone</Typography>

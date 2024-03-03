@@ -1,0 +1,108 @@
+.adBox{
+    position: relative !important;
+    padding: 8px 0px 0px 0px !important;
+    height: 258px !important;
+    width: 100% !important;
+    background-color: #fff !important;
+    border: 1px solid rgba(140, 140, 140, 0.2) !important;
+    border-radius: 8px !important;
+    min-width: 300px !important;
+    margin: 7.5px 0px 7.5px 0px !important;
+}
+.footerBtns{
+    /* background-color: #fff !important; */
+    /* border: 1px solid rgba(140, 140, 140, 0.2) !important; */
+    border-radius: 8px !important;
+    margin: 16px 0px !important;
+    padding: 0 26px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 250px;
+    height: auto !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+}
+.footerBtn{
+    background-color: unset !important;
+    color: #00000099 !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 16px !important;
+    margin: 4px 8px !important;
+    height: 17px !important;
+    padding: 0px !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+    line-height: 16px !important;
+    min-width: unset !important;
+}
+.footerBox{
+    border-radius: 8px !important;
+    margin: 0px 0px 16px 0px !important;
+    padding: 0 26px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 250px;
+    height: auto !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+}
+.footerText{
+    background-color: unset !important;
+    color: #000000E9 !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 16px !important;
+    padding: 0px !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+    line-height: 16px !important;
+    min-width: unset !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+}
+.adTextBox{
+    position: absolute !important;
+    top: 10px !important;
+    right:6px !important;
+    display:flex !important;
+    flex-direction: row !important;
+}
+.adText{
+    color:#000000E6 !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 16px !important;
+    padding: 0px !important;
+    margin-right: 5px !important;
+}
+.adBtn{
+    background-color: unset !important;
+    color: #000000E6 !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 16px !important;
+    padding: 0px !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+    height: 16px !important;
+    width: 16px !important;
+    min-width: unset !important;
+
+    & svg{
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+}

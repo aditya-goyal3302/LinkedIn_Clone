@@ -66,17 +66,19 @@ function Post({ post }) {
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
                 }
                 alt={post?.user_id?.first_name ||"avatar"}
-                // variant="square"
               />
               <Box className={styles.postHeaderUser}>
                 <Typography>
                   {post?.user_id?.first_name ? `${post?.user_id?.first_name} ${post?.user_id?.last_name}` : "LinkedIn User"}
                 </Typography>
-                <Typography>{post?.user_id?.heading||"Linkedin User Heading"}</Typography>
-                <Typography>
-                  {cal_days(post.time_stamp)} • <Globe />
+                <Typography>{post?.user_id?.heading||"Linkedin User Heading "}</Typography>
+                <Typography className={styles.timeText}>
+                  {cal_days(post.time_stamp)} •&nbsp;<Globe />
                 </Typography>
               </Box>
+              <Button className={styles.followBtn}>
+                + Follow
+              </Button>
             </Box>
           </Box>
         }

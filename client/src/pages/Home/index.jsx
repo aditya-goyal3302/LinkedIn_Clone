@@ -6,26 +6,47 @@ import Navbar from '../../components/Navbar'
 import CreatePost from '../../components/CreatePost'
 import { Box } from '@mui/system'
 import styles from './home.module.css'
-import { Avatar, Button, ButtonGroup } from '@mui/material'
+import { Avatar, Button, ButtonGroup, Typography } from '@mui/material'
 import PhotoSizeSelectActualRoundedIcon from '@mui/icons-material/PhotoSizeSelectActualRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
+import { useNavigate } from 'react-router-dom'
+import coverImg from '../../assets/images/cover_img.webp'
 
 const Home = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const posts = useSelector((state) => state.Post_reducer.feed)
+    const user = useSelector((state) => state.persistedReducer.user) || {}
     const [open, setOpen] = useState(false)
     useEffect(() => {
-        dispatch(fetchFeed("hlo"))
+        if (user._id === undefined) {
+            navigate('/login')
+        }
+    }, [])
+    useEffect(() => {
+        dispatch(fetchFeed(" "))
     }, [dispatch])
-    const user = useSelector((state) => state.persistedReducer.user)
+    console.log('user: ', user);
 
     return (
         <div>
             <Navbar className={styles.navbar} />
             <CreatePost open={open} setOpen={setOpen} user={user} />
             <Box className={styles.mainBody}>
-                <Box></Box>{/* for profile */}
+                <Box className={styles.leftPanel}>
+                    <Box className={styles.profile}>
+                        <Box className={styles.profileCover} >
+                            <img src={coverImg} className={styles.coverPhoto} alt="profile cover" />
+                            <Avatar className={styles.profileAvatar} src={user?.image ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
+                            <Typography className={styles.profileName} >{user?.name || "LinkedIn User"}</Typography>
+                            <Typography className={styles.profileHeading} >{user?.heading || "LinkedIn User Heading"}</Typography>
+                        </Box>
+                        <Box className={styles.profileCover} >
+                            
+                        </Box>
+                    </Box>
+                </Box>
                 <Box className={styles.posts}>{/* for post */}
                     <Box className={styles.createPostWrap}>
                         <Box className={styles.createPost} >
@@ -51,7 +72,9 @@ const Home = () => {
                         })}
                     </Box>{/* for feed */}
                 </Box>
-                <Box></Box>{/* for suggestion */}
+                <Box className={styles.rightPanel}>
+                    
+                </Box>{/* for suggestion */}
             </Box>
 
         </div>

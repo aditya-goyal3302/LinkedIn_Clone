@@ -11,12 +11,9 @@
     align-items: flex-start !important;
 }
 .myNetworkAccordion .MuiButtonBase-root{
-    min-height: unset !important;
+    min-height: 52px !important;
 }
 .myNetworkAccordion 
 .MuiAccordionSummary-content.Mui-expanded{
     margin: 12px 0px !important;
-}
-.Mui-selected{
-    color:#01754f !important; 
 }
