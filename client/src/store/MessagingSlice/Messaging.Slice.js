@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getMessages } from './Messaging.Api';
+import { getMessages, createChatRoom, getChats } from './Messaging.Api';
 const initialState = {
     messages: {},
     chats: [],
@@ -23,6 +23,29 @@ const MessagingSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         })
+        builder.addCase(createChatRoom.pending, (state, action) => {
+            state.loading = true;
+        })
+        builder.addCase(createChatRoom.fulfilled, (state, action) => {
+            state.loading = false;
+            state.chats.unshift(action.payload);
+        })
+        builder.addCase(createChatRoom.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+        builder.addCase(getChats.pending, (state, action) => {
+            state.loading = true;
+        })
+        builder.addCase(getChats.fulfilled, (state, action) => {
+            state.loading = false;
+            state.chats = action.payload;
+        })
+        builder.addCase(getChats.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+
     }
 })
 
