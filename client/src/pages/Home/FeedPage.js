@@ -28,9 +28,7 @@ function FeedPage({setOpen}) {
         await dispatch(fetchFeed({time:posts[posts.length - 1]?.createdAt}))
     }
     const handleScroll = async (e) => {
-        if (window.innerHeight + (Math.ceil(document.documentElement.scrollTop)) <=
-        document.documentElement.scrollHeight -100 || isLoadingPosts) {
-            
+        if (window.innerHeight + (Math.ceil(document.documentElement.scrollTop)) <= document.documentElement.scrollHeight -100 || isLoadingPosts) {
             return;
           }
         await fetchMorePoste();

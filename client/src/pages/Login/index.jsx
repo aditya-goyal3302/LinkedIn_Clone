@@ -13,8 +13,8 @@ import { Box } from "@mui/system";
 import { Link } from "@mui/material";
 import footer_logo from "../../assets/images/footer_logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { login_reducer } from "../../store/";
-import { login } from "../../store/LoginSlice/LoginThunk";
+import { login_reducer } from "../../store";
+import { login } from "../../store/LoginSlice/Login.Api";
 import { useNavigate } from "react-router-dom";
 
 function Login() {

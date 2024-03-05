@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import login_reducer from './LoginSlice/LoginSlice';
-import signup_reducer from './SignupSlice/SignupSlice';
+import login_reducer from './LoginSlice/Login.Slice';
+import signup_reducer from './SignupSlice/Signup.Slice';
 import Post_reducer from './PostSlice/Post.Slice';
 import commentReducer from './CommentSlice/Comment.Slice';
 import reactionReducer from './ReactionSlice/Reaction.Slice';
-import myConnectionReducer from './MyConnections/MyConnectionSlice';
+import myConnectionReducer from './MyConnections/MyConnection.Slice';
+import MessagingReducer from './MessagingSlice/Messaging.Slice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
-import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
 
 
@@ -25,7 +25,8 @@ export const store = configureStore({
         Post_reducer,
         commentReducer,
         reactionReducer,
-        myConnectionReducer
+        myConnectionReducer,
+        MessagingReducer
     },
     middleware: getDefaultMiddleware=> getDefaultMiddleware({
       serializableCheck: false

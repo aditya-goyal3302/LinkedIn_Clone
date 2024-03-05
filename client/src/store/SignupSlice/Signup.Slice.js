@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signup } from "./SignupThunk";
+import { signup } from "./Signup.Api";
 
 
 const initialState = {

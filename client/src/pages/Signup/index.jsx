@@ -16,9 +16,9 @@ import { Box } from "@mui/system";
 import { Link } from "@mui/material";
 import footer_logo from "../../assets/images/footer_logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../store/SignupSlice/SignupThunk";
+import { signup } from "../../store/SignupSlice/Signup.Api";
 import { useNavigate } from "react-router-dom";
-import { reset } from "../../store/LoginSlice/LoginSlice";
+import { reset } from "../../store/LoginSlice/Login.Slice";
 
 function Signup() {
   const dispatch = useDispatch();

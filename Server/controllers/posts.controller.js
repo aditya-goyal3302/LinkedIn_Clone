@@ -43,10 +43,10 @@ exports.update_posts = async (req, res) => {
 exports.show_posts_on_scroll = async (req, res) => {
   try {
     const { time } = req.params;
-    console.log('time: ', time);
+    // console.log('time: ', time);
     if (!time) return res.status(400).send("Invalid_input");
     const response = await post_service.show_posts_on_scroll(req);
-    console.log('response: ', response);
+    // console.log('response: ', response);
     if (response.length === 0) return  res.status(404).send("No_more_posts");
     else res.status(200).send(response);
   } catch (err) {

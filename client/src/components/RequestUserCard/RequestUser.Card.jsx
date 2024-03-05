@@ -3,7 +3,7 @@ import { Box } from '@mui/system'
 import React from 'react'
 import styles from './RequestUser.module.css'
 import { useDispatch } from 'react-redux'
-import { responseConnectionRequest } from '../../store/MyConnections/MyConnectionThunk'
+import { responseConnectionRequest } from '../../store/MyConnections/MyConnection.Api'
 
 function RequestUser({ request }) {
     const dispatch = useDispatch()

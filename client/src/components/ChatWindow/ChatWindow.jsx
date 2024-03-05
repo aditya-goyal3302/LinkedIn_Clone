@@ -1,7 +1,7 @@
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import styles from './ChatWindow.module.css'
-import { Button, IconButton, Input, InputBase, Typography } from '@mui/material'
+import { Button, IconButton, InputBase, Typography } from '@mui/material'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import MoreIcon from '@mui/icons-material/MoreHoriz';
@@ -30,13 +30,19 @@ function ChatWindow() {
                 </Box>
             </Box>
            {expandedInput===false && 
-            <Box className={styles}>
-
+            <Box className={styles.chats}>
+                <Box className={styles.chatWraper}>
+                    <Box className={styles.chatSend}>
+                        <Typography  className={styles.chatTitle}>Aditya Goyal</Typography>
+                        <Typography  className={styles.chatText}>Ignore messages</Typography>
+                    </Box>
+                </Box>
+                
             </Box>}{/*to be replaced it by compmonent*/}
             <Box className={styles.chatAction}>
                 <Box className={styles.actionInputWrap}>
                     <InputBase className={styles.chatInput} multiline/>
-                    <IconButton className={styles.chatBoxExpand} onClick={()=>{setExpandedInput((pre)=>!pre)}}>{expandedInput === true ? <KeyboardArrowDownIcon/>:<KeyboardArrowUpIcon/>}</IconButton>
+                    <IconButton className={styles.chatBoxExpandBtn} onClick={()=>{setExpandedInput((pre)=>!pre)}}>{expandedInput === true ? <KeyboardArrowDownIcon/>:<KeyboardArrowUpIcon/>}</IconButton>
 
                 </Box>
                 <Box className={styles.actionBtnsWrap}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import styles from "./Chat.module.css";
 import ChatContact from "../../components/ChatContact/ChatContact.card";
@@ -15,8 +15,14 @@ import { SearchSvg } from "../../assets/svg/NavbarSvg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MoreHoriz from "@mui/icons-material/MoreHoriz";
 import { Edit } from "../../assets/svg/Extras";
+import io from "../../config/Socket";
+
 
 function Chat() {
+  
+  useEffect(()=>{
+    io.emit('abc',{name:"abc"})
+  })
   const [searcAction, setSearcAction] = useState("main");
   return (
     <Box className={styles.root}>

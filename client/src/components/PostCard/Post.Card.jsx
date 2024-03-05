@@ -48,6 +48,7 @@ function Post({ post }) {
     else dispatch(addPostReaction({ postId: post._id, newReaction: '' }));
   };
   const id = Boolean(anchor) ? 'simple-popper' : undefined;
+// console.log("post: ", post);
   return (
     <Card className={styles.main}>
       <CardHeader
@@ -69,7 +70,7 @@ function Post({ post }) {
                 </Typography>
                 <Typography>{post?.user_id?.heading||"Linkedin User Heading "}</Typography>
                 <Typography className={styles.timeText}>
-                  {cal_days(post?.time_stamp|| post?.createdAt)} •&nbsp;<Globe />
+                  {cal_days(post.createdAt)} •&nbsp;<Globe />
                 </Typography>
               </Box>
               <Button className={styles.followBtn}>

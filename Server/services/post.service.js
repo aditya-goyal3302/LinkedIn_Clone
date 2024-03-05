@@ -1,5 +1,4 @@
 const { post_model } = require("../models/index");
-const { post } = require("../routes/posts.routes");
 
 exports.show_posts = () => {
   return post_model.find(null, null, {

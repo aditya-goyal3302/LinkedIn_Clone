@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchMyConnections, fetchRequests, fetchSuggessions, responseConnectionRequest, acceptConnectionRequest, sendConnectionRequest } from "./MyConnectionThunk"
+import { fetchMyConnections, fetchRequests, fetchSuggessions, responseConnectionRequest, acceptConnectionRequest, sendConnectionRequest } from "./MyConnection.Api"
 
 const initialState = {
     myConnections: [],

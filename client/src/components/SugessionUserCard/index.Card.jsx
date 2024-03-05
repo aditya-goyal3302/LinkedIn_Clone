@@ -1,13 +1,13 @@
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, IconButton, Link, Typography } from '@mui/material'
+import { Avatar, Button, Card, CardActions, CardContent,  IconButton, Link, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import styles from './UserCard.module.css'
-import { Box, style } from '@mui/system'
+import { Box } from '@mui/system'
 import coverImg from '../../assets/images/cover_img.webp'
 import CloseIcon from '@mui/icons-material/Close';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import { useDispatch } from 'react-redux';
-import { sendConnectionRequest} from '../../store/MyConnections/MyConnectionThunk'
+import { sendConnectionRequest} from '../../store/MyConnections/MyConnection.Api'
 
 function UserCard({user}) {
   const dispatch = useDispatch()

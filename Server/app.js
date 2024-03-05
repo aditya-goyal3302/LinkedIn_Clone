@@ -1,11 +1,16 @@
+//config
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv");
 const cors = require("cors");
+const http = require("http");
 const { multer: { upload } } = require("./middlewares");
+const server = http.createServer(app);
 
-//config
-dotenv.config();
+//Socket connection
+require("./config/index.socket")(server);
+
 
 app.use(upload.fields([{ name: "link", maxCount: 4 }]));
 app.use(express.static("public"));
@@ -28,6 +33,6 @@ app.use((req, res) => {
   res.status(404).send({ e: "404: Page not found" });
 });
 
-app.listen(process.env.PORT, () =>
+server.listen(process.env.PORT, () =>
   console.log(`Server Up and running on port ${process.env.PORT}`)
 );
