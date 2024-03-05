@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, Collapse, Divider, Typography } from "@mui/material";
 import styles from "./Post.module.css";
 import { Avatar } from "@mui/material";
-import { Globe } from "../../assets/svg/PostSvg";
+import  { Globe, ThumbUpOutlinedIcon, ThumbUpOutlinedIconFilled, CommentOutlinedIcon, RepeatOutlinedIcon, SendIcon} from "../../assets/svg/PostSvg";
 import Comments from "../CommentCard/index.card";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostReactions, addPostReaction } from "../../store/ReactionSlice/Reaction.api";
-import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
-import RepeatOutlinedIcon from '@mui/icons-material/RepeatOutlined';
-import SendIcon from '@mui/icons-material/Send';
 import { ReactionBarSelector, ReactionCounter } from '@charkour/react-reactions';
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+import { Plus } from "../../assets/svg/Extras";
 
 
 function Post({ post }) {
@@ -22,7 +19,7 @@ function Post({ post }) {
   const dispatch = useDispatch();
   const [reactionBar, setReactionBar] = useState(false);
   const reactionLogo = {
-    Like: "👍",
+    Like: <ThumbUpOutlinedIconFilled />,
     Celebrate: "👏",
     Support: "🫰",
     Love: "❤️",
@@ -51,7 +48,6 @@ function Post({ post }) {
     else dispatch(addPostReaction({ postId: post._id, newReaction: '' }));
   };
   const id = Boolean(anchor) ? 'simple-popper' : undefined;
-console.log("post: ", post);
   return (
     <Card className={styles.main}>
       <CardHeader
@@ -73,11 +69,11 @@ console.log("post: ", post);
                 </Typography>
                 <Typography>{post?.user_id?.heading||"Linkedin User Heading "}</Typography>
                 <Typography className={styles.timeText}>
-                  {cal_days(post.time_stamp)} •&nbsp;<Globe />
+                  {cal_days(post?.time_stamp|| post?.createdAt)} •&nbsp;<Globe />
                 </Typography>
               </Box>
               <Button className={styles.followBtn}>
-                + Follow
+                <Plus color="#0a66c2"/> Follow
               </Button>
             </Box>
           </Box>
@@ -121,7 +117,7 @@ console.log("post: ", post);
         <ReactionBarSelector
           className={styles.reactionSelector}
           onSelect={(reaction) => handlereaction(reaction)}
-          reactions={[{ label: "like", node: <div>👍</div>, key: "Like" }, { label: "Celebrate", node: <div>👏</div>, key: "Celebrate" }, { label: "support", node: <div>🫰</div>, key: "Support" }, { label: "love", node: <div>❤️</div>, key: "Love" }, { label: "Insightful", node: <div>💡</div>, key: "Insightful" }, { label: "Funny", node: <div>😄</div>, key: "Funny" }]}
+          reactions={[{ label: "like", node: <div><ThumbUpOutlinedIconFilled /></div>, key: "Like" }, { label: "Celebrate", node: <div>👏</div>, key: "Celebrate" }, { label: "support", node: <div>🫰</div>, key: "Support" }, { label: "love", node: <div>❤️</div>, key: "Love" }, { label: "Insightful", node: <div>💡</div>, key: "Insightful" }, { label: "Funny", node: <div>😄</div>, key: "Funny" }]}
         />
       </BasePopup>
 
@@ -145,12 +141,12 @@ console.log("post: ", post);
             className={styles.postButton}
             onClick={() => setShowComments(!showComments)}
           >
-            <CommentOutlinedIcon />&nbsp; Comment
+            <CommentOutlinedIcon />&nbsp;Comment
           </Button>
           <Button
             className={styles.postButton}
           >
-            <RepeatOutlinedIcon />&nbsp; Repost
+            <RepeatOutlinedIcon />&nbsp;Repost
           </Button>
           <Button
             className={styles.postButton}
