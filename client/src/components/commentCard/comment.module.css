@@ -34,6 +34,22 @@
     align-items: flex-start;
     justify-content: flex-start;
 }
+.reactionSelector{
+    position: absolute !important;
+    & div{
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 0px !important;
+        & svg{
+            height: 48px !important;
+            width: 48px !important;
+            box-sizing: border-box !important;
+            margin-top: 16px !important;
+            
+        }
+    }
+}
 .postCommentInputField{
     min-width: none;
     /* max-width: 500px !important; */
@@ -46,9 +62,20 @@
     border-radius: 50px;
     font-size: 14px !important;
     height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 .postCommentInputField:active{
     border-width: 2px !important;
+}
+.endAdornmentIcon{
+    min-width: unset !important;
+    & svg{
+        height: 20px !important;
+        width: 20px !important; 
+    }
 }
 .postBtn{
     background-color: #0A66C2   !important;

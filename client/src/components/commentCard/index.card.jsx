@@ -6,6 +6,8 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createComment, fetchComments } from '../../store/CommentSlice/Comment.api'
 import Comment from './Comment'
+import PhotoSizeSelectActualRoundedIcon from '@mui/icons-material/PhotoSizeSelectActualRounded'
+import { Image, Smiley } from '../../assets/svg/Extras'
 
 function Comments({ postId, image }) {
   const [newComment, setNewComment] = useState("")
@@ -37,8 +39,12 @@ function Comments({ postId, image }) {
             onChange={(e) => setNewComment(e.target.value)}
             className={styles.postCommentInputField}
             endAdornment={<Box>
-              <Button></Button>
-              <Button></Button>
+              <Button className={styles.endAdornmentIcon}>
+                <Smiley />
+              </Button>
+              <Button className={styles.endAdornmentIcon}>
+                <Image/>
+              </Button>
             </Box>}
           />
           {

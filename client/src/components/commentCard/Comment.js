@@ -4,7 +4,6 @@ import {
   ButtonGroup,
   Card,
   CardContent,
-  CardHeader,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -17,6 +16,7 @@ import { addCommentReaction, fetchCommentsReactions } from "../../store/Reaction
 import { ReactionBarSelector } from '@charkour/react-reactions';
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import MoreIcon from '@mui/icons-material/MoreHoriz';
+import {ThumbUpOutlinedIconFilled} from '../../assets/svg/PostSvg';
 
 function Comment({ comment }) {
   const dispatch = useDispatch();
@@ -88,7 +88,7 @@ function Comment({ comment }) {
               onMouseOut={() =>{setReactionBar(false)}}
             >
               <ReactionBarSelector 
-                reactions={[{ label: "like", node: <div>👍</div>, key: "Like" }, { label: "Celebrate", node: <div>👏</div>, key: "Celebrate" }, { label: "support", node: <div>🫰</div>, key: "Support" }, { label: "love", node: <div>❤️</div>, key: "Love" }, { label: "Insightful", node: <div>💡</div>, key: "Insightful" }, { label: "Funny", node: <div>😄</div>, key: "Funny" }]}
+                reactions={[{ label: "like", node: <ThumbUpOutlinedIconFilled/>, key: "Like" }, { label: "Celebrate", node: <div>👏</div>, key: "Celebrate" }, { label: "support", node: <div>🫰</div>, key: "Support" }, { label: "love", node: <div>❤️</div>, key: "Love" }, { label: "Insightful", node: <div>💡</div>, key: "Insightful" }, { label: "Funny", node: <div>😄</div>, key: "Funny" }]}
                 className={styles.reactionSelector} 
                 onSelect={(reaction) => handleReactionOnComment(reaction)}
               />
