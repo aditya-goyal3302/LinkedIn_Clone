@@ -8,6 +8,10 @@
     border-bottom: 1px solid rgba(140, 140, 140, 0.2);
     padding: 0px 24px !important;
     box-sizing: border-box !important;
+    position: sticky !important;
+    background-color: #fff !important;
+    top: 0 !important;
+    z-index: 100 !important;
 }
 
 .navbar {
@@ -18,7 +22,7 @@
     height: 52px !important;
     padding: 0px auto !important;
     box-sizing: border-box !important;
-    background-color: #fff !important;
+    /* background-color: #fff !important; */
 }
 
 .navLogoWrap {
@@ -55,13 +59,14 @@
     align-items: center !important;
     border : 2px solid transparent !important;
     height: 34px !important;
+    width: 280px !important;
     transition: all 0.3s ease-in-out !important;
     & input{
         /* padding: 0px 40px !important; */
         font-size: 16px !important;
         font-weight: 400 !important;
         line-height: 28px !important;
-        color: #00000099 !important;
+        color: #000000e6 !important;
     }
     & i{
         width: 34px !important;
@@ -74,6 +79,14 @@
         fill: #000000bf !important;
     
     }
+    & input[placeholder], [placeholder], *[placeholder] {
+        color: #000000bf !important;
+        font-size: 16px !important; 
+    }
+}
+.navSearchBar>input::placeholder {
+    color: #000000bf !important;
+    font-size: 16px !important; 
 }
 .navSearchBar:focus-within {
     transition: all 0.3s ease-in-out !important;

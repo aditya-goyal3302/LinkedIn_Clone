@@ -24,7 +24,7 @@ const connection_schema = new mongoose.Schema(
       unique: true,
     },
   },
-  { timestamps: true }
+  {timestamps:true,paranoid:true}
 );
 
 module.exports = mongoose.model("connections", connection_schema);

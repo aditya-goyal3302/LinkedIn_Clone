@@ -19,7 +19,7 @@ const PostSlice = createSlice({
     })
     .addCase(fetchFeed.fulfilled, (state, action) => {
       state.isLoading = false
-      state.feed = action.payload
+      state.feed.push(...action.payload)
     })
     .addCase(fetchFeed.rejected, (state, action) => {
       state.isLoading = false

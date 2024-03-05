@@ -18,10 +18,6 @@ const linked_post_schema = new mongoose.Schema({
     type: String,
     ref: "user",
   },
-  time_stamp: {
-    type: Date,
-    default: Date.now(),
-  },
-});
+},{timestamps:true,paranoid:true});
 
 module.exports = mongoose.model("posts", linked_post_schema);

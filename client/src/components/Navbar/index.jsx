@@ -23,12 +23,13 @@ import {
 // import caretDown from "../../assets/svg/caretDown.svg";
 import { useSelector } from "react-redux";
 
-const Navbar = () => {
+const Navbar = ({setPage}) => {
   const user = useSelector((state) => state.persistedReducer.user) || {};
   const [navbarSelector, setNavbarSelector] = useState("1");
   // console.log('navbarSelector: ', navbarSelector ==="1");
   const handleChange = (event, newValue) => {
     setNavbarSelector(newValue);
+    setPage(newValue)
   };
   return (
     <Box className={styles.root}>
@@ -46,7 +47,7 @@ const Navbar = () => {
             className={styles.navBtns}
             value={navbarSelector}
             onChange={handleChange}
-            indicatorColor="secondary"
+            indicatorColor="primary"
             // textColor="blackTheme"
           >
             <Tab

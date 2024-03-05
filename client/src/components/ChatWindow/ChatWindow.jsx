@@ -1,13 +1,19 @@
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './ChatWindow.module.css'
-import { IconButton, Input, InputBase, Typography } from '@mui/material'
+import { Button, IconButton, Input, InputBase, Typography } from '@mui/material'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import MoreIcon from '@mui/icons-material/MoreHoriz';
+import { Attachment, GIF, Image, Smiley } from '../../assets/svg/Extras';
+import MoreHoriz from '@mui/icons-material/MoreHoriz';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
 function ChatWindow() {
+    const [expandedInput, setExpandedInput] = useState(false)
+    console.log('expandedInput: ', expandedInput);
     return (
         <Box className={styles.chatBox}>
             <Box className={styles.chatHeader}>
@@ -21,15 +27,27 @@ function ChatWindow() {
                     <IconButton className={styles.chatHeaderActionBtn}><StarBorderIcon/></IconButton>
                 </Box>
             </Box>
-            <Box>
+           {expandedInput===false && 
+            <Box className={styles}>
 
-            </Box>{/*to be replaced it by compmonent*/}
+            </Box>}{/*to be replaced it by compmonent*/}
             <Box className={styles.chatAction}>
                 <Box className={styles.actionInputWrap}>
-                    <InputBase className={styles.chatInput}/>
+                    <InputBase className={styles.chatInput} multiline/>
+                    <IconButton className={styles.chatBoxExpand} onClick={()=>{setExpandedInput((pre)=>!pre)}}>{expandedInput === true ? <KeyboardArrowDownIcon/>:<KeyboardArrowUpIcon/>}</IconButton>
+
                 </Box>
                 <Box className={styles.actionBtnsWrap}>
-                    
+                    <Box className={styles.actionBtns}>
+                        <IconButton className={styles.chatActionBtn}><Image/></IconButton>
+                        <IconButton className={styles.chatActionBtn}><Attachment/></IconButton>
+                        <IconButton className={styles.chatActionBtn}><GIF/></IconButton>
+                        <IconButton className={styles.chatActionBtn}><Smiley/></IconButton>
+                    </Box>
+                    <Box className={styles.actionBtns}>
+                        <Button className={styles.sendBtn}>Send</Button>
+                        <IconButton className={styles.chatOptionBtn}><MoreHoriz/></IconButton>
+                    </Box>
                 </Box>
             </Box>
         </Box>

@@ -6,8 +6,12 @@ export const fetchFeed = createAsyncThunk(
     'feed/fetchFeed',
     async (payload,{getState}) => {
         const state = getState()
+        var time = Date.now()
+        if (payload?.time) {
+            time = new Date(payload.time)
+        }
         // console.log("state: ", state.persistedReducer.token)
-        const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/posts`,
+        const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/posts/next/${time}`,
         {
             headers: {
                 "Content-Type": "application/json",

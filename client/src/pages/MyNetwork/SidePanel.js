@@ -26,56 +26,56 @@ const SidePanel = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails className={styles.MyNetworkMenu}>
-          <MenuItem className={styles.menuBtn} onClick={""}>
+          <MenuItem className={styles.menuBtn} >
             <Typography>
               <img alt="" className={styles.menuBtnImg} src={connectionsImg} />
               Connections
             </Typography>
             <Typography>0</Typography>
           </MenuItem>
-          <MenuItem className={styles.menuBtn} onClick={""}>
+          <MenuItem className={styles.menuBtn} >
             <Typography>
               <img alt="" className={styles.menuBtnImg} src={contactImg} />
               Contacts
             </Typography>
             <Typography>0</Typography>
           </MenuItem>
-          <MenuItem className={styles.menuBtn} onClick={""}>
+          <MenuItem className={styles.menuBtn} >
             <Typography>
               <img alt="" className={styles.menuBtnImg} src={peopleImg} />
               Following & followers
             </Typography>
             <Typography>0</Typography>
           </MenuItem>
-          <MenuItem className={styles.menuBtn} onClick={""}>
+          <MenuItem className={styles.menuBtn} >
             <Typography>
               <img alt="" className={styles.menuBtnImg} src={groupImg} />
               Groups
             </Typography>
             <Typography>0</Typography>
           </MenuItem>
-          <MenuItem className={styles.menuBtn} onClick={""}>
+          <MenuItem className={styles.menuBtn} >
             <Typography>
               <img alt="" className={styles.menuBtnImg} src={calenderImg} />
               Events
             </Typography>
             <Typography>0</Typography>
           </MenuItem>
-          <MenuItem className={styles.menuBtn} onClick={""}>
+          <MenuItem className={styles.menuBtn} >
             <Typography>
               <img alt="" className={styles.menuBtnImg} src={pageImg} />
               Pages
             </Typography>
             <Typography>0</Typography>
           </MenuItem>
-          <MenuItem className={styles.menuBtn} onClick={""}>
+          <MenuItem className={styles.menuBtn} >
             <Typography>
               <img alt="" className={styles.menuBtnImg} src={newsLetterImg} />
               Newsletter
             </Typography>
             <Typography>0</Typography>
           </MenuItem>
-          <MenuItem className={styles.menuBtn} onClick={""}>
+          <MenuItem className={styles.menuBtn} >
             <Typography>
               <img alt="" className={styles.menuBtnImg} src={hashtagImg} />
               Hashtags

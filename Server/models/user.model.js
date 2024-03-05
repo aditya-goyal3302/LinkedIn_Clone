@@ -110,7 +110,7 @@ const user_schema = new mongoose.Schema({
     required: false,
     default: [],
   },
-});
+},{timestamps:true,paranoid:true});
 
 user_schema.pre("save", async function (next) {
   try {

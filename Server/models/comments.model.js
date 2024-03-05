@@ -17,10 +17,6 @@ const comment_schema = new mongooes.Schema({
     type: String,
     ref: "comments",
   },
-  time_stamp: {
-    type: Date,
-    default: Date.now(),
-  },
-});
+},{timestamps:true,paranoid:true});
 
 module.exports = mongooes.model("comments", comment_schema);

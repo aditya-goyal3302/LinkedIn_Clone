@@ -113,10 +113,30 @@
     background-color: #0a66c220 !important;
     border-width: 2px !important;
 }
-.connectBtn> svg{
+.connectBtn > svg,.PendingBtn > svg{
     height : 20px !important;
 }
 .Reference{
     width: 100% !important;
     height: 32px !important;
+}
+.PendingBtn{
+    width: 100% !important;
+    height: 40px !important;
+    border:  1px solid #00000099 !important;
+    color: #00000099 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 24px !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    margin: 0px !important;
+    height: 32px !important;
+    padding: 6px 16px !important;
+    text-transform: none !important;
+}
+.PendingBtn:hover{
+    background-color: rgba(140, 140, 140, 0.2) !important;
+    border-width: 2px !important;
 }

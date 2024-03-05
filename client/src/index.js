@@ -21,6 +21,6 @@ root.render(
           </PersistGate>
         </Provider>
       </ThemeProvider>
-  </React.StrictMode>
+   </React.StrictMode>
 );
 

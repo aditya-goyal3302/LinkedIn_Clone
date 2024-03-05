@@ -17,15 +17,11 @@ const reaction_schema = new Schema({
     type: String,
     enum: ["like", "love", "haha", "wow", "sad", "angry"],
   },
-  time_stamp: {
-    type: Date,
-    default: Date.now(),
-  },
   is_deleted: {
     type: Boolean,
     default: false,
   },
-});
+},{timestamps:true,paranoid:true});
 
 reaction_schema.pre('find', function(next) {
   this.where({ is_deleted: false });
