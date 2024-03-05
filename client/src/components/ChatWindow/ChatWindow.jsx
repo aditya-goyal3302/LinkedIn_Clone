@@ -11,6 +11,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
+
+
 function ChatWindow() {
     const [expandedInput, setExpandedInput] = useState(false)
     console.log('expandedInput: ', expandedInput);
