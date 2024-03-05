@@ -51,7 +51,7 @@ function Post({ post }) {
     else dispatch(addPostReaction({ postId: post._id, newReaction: '' }));
   };
   const id = Boolean(anchor) ? 'simple-popper' : undefined;
-
+console.log("post: ", post);
   return (
     <Card className={styles.main}>
       <CardHeader
