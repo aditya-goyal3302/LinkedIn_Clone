@@ -16,13 +16,18 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MoreHoriz from "@mui/icons-material/MoreHoriz";
 import { Edit } from "../../assets/svg/Extras";
 import io from "../../config/Socket";
-
+import { getChats } from "../../store/ChatsSlice/Chats.Api";
+import { useDispatch, useSelector } from "react-redux";  
 
 function Chat() {
-  
+  const dispatch = useDispatch();
+  const chatsData = useSelector((state) => state.Chats_reducer);
+  console.log('chatsData: ', chatsData.chats);
   useEffect(()=>{
+    if(chatsData.chats.length === 0 && !chatsData.isLoading)
+      dispatch(getChats());
     io.emit('abc',{name:"abc"})
-  })
+  },[])
   const [searcAction, setSearcAction] = useState("main");
   return (
     <Box className={styles.root}>
@@ -118,7 +123,9 @@ function Chat() {
           </Box>
           <Box className={styles.chatBoxWrapper}>
             <Box className={styles.contactBox}>
-              <ChatContact />
+              {chatsData.chats.map((chat) => {
+                  return <ChatContact key={chat._id} chat={chat} />
+              })}
             </Box>
             <Box className={styles.chatBox}>
               <ChatWindow />

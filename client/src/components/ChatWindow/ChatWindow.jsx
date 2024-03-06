@@ -12,7 +12,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function ChatWindow() {
     const [expandedInput, setExpandedInput] = useState(false)
-    console.log('expandedInput: ', expandedInput);
+    // console.log('expandedInput: ', expandedInput);
     return (
         <Box className={styles.chatBox}>
             <Box className={styles.chatHeader}>
