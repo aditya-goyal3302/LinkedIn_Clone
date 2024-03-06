@@ -9,70 +9,71 @@ import { Attachment, GIF, Image, Smiley } from '../../assets/svg/Extras';
 import MoreHoriz from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import io from '../../config/Socket';
+import socket from '../../config/Socket';
 import { FullMessage, OnlyMessage } from './Message';
 import { useSelector } from 'react-redux';
 
 
-function ChatWindow({MessagesData,currentChat}) {
+function ChatWindow({ MessagesData, currentChat }) {
     const [expandedInput, setExpandedInput] = useState(false)
-    const [newMessage, setNewMessage] = useState('')    
+    const io = socket();
+    const [newMessage, setNewMessage] = useState('')
     const user = currentChat?.users;
-    const loginedUser = useSelector((state)=>state.persistedReducer.user);
+    const loginedUser = useSelector((state) => state.persistedReducer.user);
     var messages = MessagesData?.messages[currentChat?.uuid] || [];
     // console.log('messages: ', messages);
-    const sendMessage = ()=>{
+    const sendMessage = () => {
         const data = {
-            message : newMessage,
-            sender:loginedUser._id,
-            chat_room:currentChat.uuid
+            message: newMessage,
+            sender: loginedUser._id,
+            chat_room: currentChat.uuid
         }
-        io.emit("send-message",data)
+        io.emit("send-message", data)
         setNewMessage("");
     }
     return (
         <Box className={styles.chatBox}>
             <Box className={styles.chatHeader}>
                 <Box className={styles.chatUser}>
-                    <Typography className={styles.chatUserName}>{user?.first_name ? `${user?.first_name} ${user?.last_name}`:user?.username || "LinkedIn User"}</Typography>
+                    <Typography className={styles.chatUserName}>{user?.first_name ? `${user?.first_name} ${user?.last_name}` : user?.username || "LinkedIn User"}</Typography>
                     <Typography className={styles.chatUserHeading}>{user?.heading || "Heading "}</Typography>
                 </Box>
                 <Box className={styles.chatHeaderActions}>
-                    <IconButton className={styles.chatHeaderActionBtn}><MoreIcon/></IconButton>
-                    <IconButton className={styles.chatHeaderActionBtn}><VideoCallIcon/></IconButton>
-                    <IconButton className={styles.chatHeaderActionBtn}><StarBorderIcon/></IconButton>
+                    <IconButton className={styles.chatHeaderActionBtn}><MoreIcon /></IconButton>
+                    <IconButton className={styles.chatHeaderActionBtn}><VideoCallIcon /></IconButton>
+                    <IconButton className={styles.chatHeaderActionBtn}><StarBorderIcon /></IconButton>
                 </Box>
             </Box>
-           {expandedInput===false && 
-            <Box className={styles.chats}>
-                {messages.length >0 && messages.map((message)=>{
-                    // console.log(message.sender === user._id , user.user_id, message.sender, user._id, message._id)
-                    
-                    return <FullMessage key={message._id} user={message.sender === user._id?user:loginedUser} message={message}/>
-                })}
-                
-            </Box>}{/*to be replaced it by compmonent*/}
+            {expandedInput === false &&
+                <Box className={styles.chats}>
+                    {messages.length > 0 && messages.map((message) => {
+                        // console.log(message.sender === user._id , user.user_id, message.sender, user._id, message._id)
+
+                        return <FullMessage key={message._id} user={message.sender === user._id ? user : loginedUser} message={message} />
+                    })}
+
+                </Box>}{/*to be replaced it by compmonent*/}
             <Box className={styles.chatAction}>
                 <Box className={styles.actionInputWrap}>
-                    <InputBase className={styles.chatInput} multiline  value={newMessage} onChange={(e)=>setNewMessage(e.target.value)}/>
-                    <IconButton className={styles.chatBoxExpandBtn} onClick={()=>{setExpandedInput((pre)=>!pre)}}>{expandedInput === true ? <KeyboardArrowDownIcon/>:<KeyboardArrowUpIcon/>}</IconButton>
+                    <InputBase className={styles.chatInput} multiline value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+                    <IconButton className={styles.chatBoxExpandBtn} onClick={() => { setExpandedInput((pre) => !pre) }}>{expandedInput === true ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}</IconButton>
 
                 </Box>
                 <Box className={styles.actionBtnsWrap}>
                     <Box className={styles.actionBtns}>
-                        <IconButton className={styles.chatActionBtn}><Image/></IconButton>
-                        <IconButton className={styles.chatActionBtn}><Attachment/></IconButton>
-                        <IconButton className={styles.chatActionBtn}><GIF/></IconButton>
-                        <IconButton className={styles.chatActionBtn}><Smiley/></IconButton>
+                        <IconButton className={styles.chatActionBtn}><Image /></IconButton>
+                        <IconButton className={styles.chatActionBtn}><Attachment /></IconButton>
+                        <IconButton className={styles.chatActionBtn}><GIF /></IconButton>
+                        <IconButton className={styles.chatActionBtn}><Smiley /></IconButton>
                     </Box>
                     <Box className={styles.actionBtns}>
                         <Button className={styles.sendBtn} onClick={sendMessage}>Send</Button>
-                        <IconButton className={styles.chatOptionBtn}><MoreHoriz/></IconButton>
+                        <IconButton className={styles.chatOptionBtn}><MoreHoriz /></IconButton>
                     </Box>
                 </Box>
             </Box>
         </Box>
-  )
+    )
 }
 
 export default ChatWindow

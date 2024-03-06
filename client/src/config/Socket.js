@@ -1,3 +1,3 @@
 import { io } from "socket.io-client";
-
-export default io.connect(`http://localhost:8080`);
+const connect = ()=>{return io.connect(`http://localhost:8080`);}
+export default connect;

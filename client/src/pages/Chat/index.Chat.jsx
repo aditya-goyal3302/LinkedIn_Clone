@@ -9,7 +9,7 @@ import { SearchSvg } from "../../assets/svg/NavbarSvg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MoreHoriz from "@mui/icons-material/MoreHoriz";
 import { Edit } from "../../assets/svg/Extras";
-import io from "../../config/Socket";
+import socket from "../../config/Socket";
 import { getChats } from "../../store/ChatsSlice/Chats.Api";
 import { getMessages } from "../../store/MessagingSlice/Messaging.Api";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,7 @@ function Chat() {
   const dispatch = useDispatch();
   const chatsData = useSelector((state) => state.chatsReducer);
   const MessagesData = useSelector((state) => state.messagingReducer);
+  const io = socket();
   // const [initialLoad, setInitialLoad] = useState(false);
   const initialized = useRef(false)
   // console.log('MessagesData: ', MessagesData);
@@ -45,8 +46,8 @@ function Chat() {
       });
     }
     return () => {
-      // io.off()
-      io.off('recieve-message', HandlesetMessage);
+      io.off()
+      io.off('recieve-message');
       console.log("unmounted");
     }
   }, [])
