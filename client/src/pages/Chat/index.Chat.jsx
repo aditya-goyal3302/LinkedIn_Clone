@@ -1,33 +1,71 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/system";
 import styles from "./Chat.module.css";
 import ChatContact from "../../components/ChatContact/ChatContact.card";
 import ChatWindow from "../../components/ChatWindow/ChatWindow";
 import AdPanalWithFooter from "../../components/AdPanelWithFooter";
-import {
-  Button,
-  Divider,
-  IconButton,
-  InputBase,
-  Typography,
-} from "@mui/material";
+import { Button, Divider, IconButton, InputBase, Typography } from "@mui/material";
 import { SearchSvg } from "../../assets/svg/NavbarSvg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MoreHoriz from "@mui/icons-material/MoreHoriz";
 import { Edit } from "../../assets/svg/Extras";
 import io from "../../config/Socket";
 import { getChats } from "../../store/ChatsSlice/Chats.Api";
-import { useDispatch, useSelector } from "react-redux";  
+import { getMessages } from "../../store/MessagingSlice/Messaging.Api";
+import { useDispatch, useSelector } from "react-redux";
+import { getMessagesSuccess } from "../../store/MessagingSlice/Messaging.Slice";
+
 
 function Chat() {
   const dispatch = useDispatch();
-  const chatsData = useSelector((state) => state.Chats_reducer);
-  console.log('chatsData: ', chatsData.chats);
-  useEffect(()=>{
-    if(chatsData.chats.length === 0 && !chatsData.isLoading)
+  const chatsData = useSelector((state) => state.chatsReducer);
+  const MessagesData = useSelector((state) => state.messagingReducer);
+  // const [initialLoad, setInitialLoad] = useState(false);
+  const initialized = useRef(false)
+  // console.log('MessagesData: ', MessagesData);
+  // console.log('chatsData: ', chatsData.chats);
+  const [currentChat, setCurrentChat] = useState({})
+  // console.log('currentChat: ', currentChat);
+  useEffect(() => {
+    if (currentChat)
+      io.emit('join', currentChat.uuid)
+  }, [currentChat])
+  const HandlesetMessage = (data) => {
+    dispatch(getMessagesSuccess({ roomId: data.chat_room, data }))
+  }
+  useEffect(() => {
+    io.on("run", () => {
+      console.log("run");
+    })
+    console.log('initialized: ', initialized);
+    if (!initialized.current) {
+      initialized.current = true
+      io.on('receive-message', (data) => {
+        HandlesetMessage(data);
+      });
+    }
+    return () => {
+      // io.off()
+      io.off('recieve-message', HandlesetMessage);
+      console.log("unmounted");
+    }
+  }, [])
+
+
+  useEffect(() => {
+    if (chatsData.chats.length === 0 && !chatsData.isLoading) {
       dispatch(getChats());
-    io.emit('abc',{name:"abc"})
-  },[])
+    }
+    if (chatsData.chats.length > 0)
+      chatsData.chats.map((chat) => {
+        dispatch(getMessages(chat.uuid))
+        // console.log('chat: ');
+      })
+    setCurrentChat(chatsData.chats[0])
+  }, [chatsData])
+
+
+
   const [searcAction, setSearcAction] = useState("main");
   return (
     <Box className={styles.root}>
@@ -61,9 +99,8 @@ function Chat() {
           <Box className={styles.chatBtnsBar}>
             <Button
               key={"main"}
-              className={`${styles.optionBtnMain} ${
-                searcAction === "main" ? styles.optionBtnActive : ""
-              }`}
+              className={`${styles.optionBtnMain} ${searcAction === "main" ? styles.optionBtnActive : ""
+                }`}
               onClick={() => {
                 setSearcAction("main");
               }}
@@ -78,9 +115,8 @@ function Chat() {
             />
             <Button
               key={"Unread"}
-              className={`${styles.optionBtn} ${
-                searcAction === "Unread" ? styles.optionBtnActive : ""
-              }`}
+              className={`${styles.optionBtn} ${searcAction === "Unread" ? styles.optionBtnActive : ""
+                }`}
               onClick={() => {
                 setSearcAction("Unread");
               }}
@@ -89,9 +125,8 @@ function Chat() {
             </Button>
             <Button
               key={"My Connections"}
-              className={`${styles.optionBtn} ${
-                searcAction === "My Connections" ? styles.optionBtnActive : ""
-              }`}
+              className={`${styles.optionBtn} ${searcAction === "My Connections" ? styles.optionBtnActive : ""
+                }`}
               onClick={() => {
                 setSearcAction("My Connections");
               }}
@@ -100,9 +135,8 @@ function Chat() {
             </Button>
             <Button
               key={"InMail"}
-              className={`${styles.optionBtn} ${
-                searcAction === "InMail" ? styles.optionBtnActive : ""
-              }`}
+              className={`${styles.optionBtn} ${searcAction === "InMail" ? styles.optionBtnActive : ""
+                }`}
               onClick={() => {
                 setSearcAction("InMail");
               }}
@@ -111,9 +145,8 @@ function Chat() {
             </Button>
             <Button
               key={"Starred"}
-              className={`${styles.optionBtn} ${
-                searcAction === "Starred" ? styles.optionBtnActive : ""
-              }`}
+              className={`${styles.optionBtn} ${searcAction === "Starred" ? styles.optionBtnActive : ""
+                }`}
               onClick={() => {
                 setSearcAction("Starred");
               }}
@@ -124,11 +157,11 @@ function Chat() {
           <Box className={styles.chatBoxWrapper}>
             <Box className={styles.contactBox}>
               {chatsData.chats.map((chat) => {
-                  return <ChatContact key={chat._id} chat={chat} />
+                return <ChatContact key={chat._id} chat={chat} currentChat={currentChat} setCurrentChat={setCurrentChat} />
               })}
             </Box>
             <Box className={styles.chatBox}>
-              <ChatWindow />
+              <ChatWindow currentChat={currentChat} MessagesData={MessagesData} />
             </Box>
           </Box>
         </Box>

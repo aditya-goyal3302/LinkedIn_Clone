@@ -6,7 +6,7 @@ const initialState = {
     error: null
 }
 
-const MessagingSlice = createSlice({
+const chatSlice = createSlice({
     name: 'Messaging',
     initialState,
     reducers: {},
@@ -27,15 +27,15 @@ const MessagingSlice = createSlice({
         })
         builder.addCase(getChats.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.chats = action.payload.data;
-            // let chats=[];
-            // action.payload.data.forEach((chat)=>{
-            //     chats.push(setUser(chat,action.payload.userId));
-            // })
-            // state.chats = chats;
-            // // console.log('action.payload: ', action.payload);
-            // // console.log('users: ', state.chats);
-            // console.log('chats: ', chats);
+            // state.chats = action.payload.data;
+            let chats=[];
+            action.payload.data.forEach((chat)=>{
+                chats.push(setUser(chat,action.payload.userId));
+            })
+            state.chats = chats;
+            // console.log('action.payload: ', action.payload);
+            // console.log('users: ', state.chats);
+            console.log('chats: ', chats);
         })
         builder.addCase(getChats.rejected, (state, action) => {
             state.isLoading = false;
@@ -57,4 +57,4 @@ const setUser = (data,userId) => {
     return data;
 }
 
-export default MessagingSlice.reducer;
+export default chatSlice.reducer;

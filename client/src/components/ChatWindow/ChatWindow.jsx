@@ -9,16 +9,33 @@ import { Attachment, GIF, Image, Smiley } from '../../assets/svg/Extras';
 import MoreHoriz from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import io from '../../config/Socket';
+import { FullMessage, OnlyMessage } from './Message';
+import { useSelector } from 'react-redux';
 
-function ChatWindow() {
+
+function ChatWindow({MessagesData,currentChat}) {
     const [expandedInput, setExpandedInput] = useState(false)
-    // console.log('expandedInput: ', expandedInput);
+    const [newMessage, setNewMessage] = useState('')    
+    const user = currentChat?.users;
+    const loginedUser = useSelector((state)=>state.persistedReducer.user);
+    var messages = MessagesData?.messages[currentChat?.uuid] || [];
+    // console.log('messages: ', messages);
+    const sendMessage = ()=>{
+        const data = {
+            message : newMessage,
+            sender:loginedUser._id,
+            chat_room:currentChat.uuid
+        }
+        io.emit("send-message",data)
+        setNewMessage("");
+    }
     return (
         <Box className={styles.chatBox}>
             <Box className={styles.chatHeader}>
                 <Box className={styles.chatUser}>
-                    <Typography className={styles.chatUserName}>Sherya Garg</Typography>
-                    <Typography className={styles.chatUserHeading}>Full-stack Developer</Typography>
+                    <Typography className={styles.chatUserName}>{user?.first_name ? `${user?.first_name} ${user?.last_name}`:user?.username || "LinkedIn User"}</Typography>
+                    <Typography className={styles.chatUserHeading}>{user?.heading || "Heading "}</Typography>
                 </Box>
                 <Box className={styles.chatHeaderActions}>
                     <IconButton className={styles.chatHeaderActionBtn}><MoreIcon/></IconButton>
@@ -28,17 +45,16 @@ function ChatWindow() {
             </Box>
            {expandedInput===false && 
             <Box className={styles.chats}>
-                <Box className={styles.chatWraper}>
-                    <Box className={styles.chatSend}>
-                        <Typography  className={styles.chatTitle}>Aditya Goyal</Typography>
-                        <Typography  className={styles.chatText}>Ignore messages</Typography>
-                    </Box>
-                </Box>
+                {messages.length >0 && messages.map((message)=>{
+                    // console.log(message.sender === user._id , user.user_id, message.sender, user._id, message._id)
+                    
+                    return <FullMessage key={message._id} user={message.sender === user._id?user:loginedUser} message={message}/>
+                })}
                 
             </Box>}{/*to be replaced it by compmonent*/}
             <Box className={styles.chatAction}>
                 <Box className={styles.actionInputWrap}>
-                    <InputBase className={styles.chatInput} multiline/>
+                    <InputBase className={styles.chatInput} multiline  value={newMessage} onChange={(e)=>setNewMessage(e.target.value)}/>
                     <IconButton className={styles.chatBoxExpandBtn} onClick={()=>{setExpandedInput((pre)=>!pre)}}>{expandedInput === true ? <KeyboardArrowDownIcon/>:<KeyboardArrowUpIcon/>}</IconButton>
 
                 </Box>
@@ -50,7 +66,7 @@ function ChatWindow() {
                         <IconButton className={styles.chatActionBtn}><Smiley/></IconButton>
                     </Box>
                     <Box className={styles.actionBtns}>
-                        <Button className={styles.sendBtn}>Send</Button>
+                        <Button className={styles.sendBtn} onClick={sendMessage}>Send</Button>
                         <IconButton className={styles.chatOptionBtn}><MoreHoriz/></IconButton>
                     </Box>
                 </Box>

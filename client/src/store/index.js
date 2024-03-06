@@ -5,8 +5,8 @@ import Post_reducer from './PostSlice/Post.Slice';
 import commentReducer from './CommentSlice/Comment.Slice';
 import reactionReducer from './ReactionSlice/Reaction.Slice';
 import myConnectionReducer from './MyConnections/MyConnection.Slice';
-import MessagingReducer from './MessagingSlice/Messaging.Slice';
-import Chats_reducer from './ChatsSlice/Chats.Slice';
+import messagingReducer from './MessagingSlice/Messaging.Slice';
+import chatsReducer from './ChatsSlice/Chats.Slice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
@@ -27,8 +27,8 @@ export const store = configureStore({
         commentReducer,
         reactionReducer,
         myConnectionReducer,
-        MessagingReducer,
-        Chats_reducer
+        messagingReducer,
+        chatsReducer
     },
     middleware: getDefaultMiddleware=> getDefaultMiddleware({
       serializableCheck: false

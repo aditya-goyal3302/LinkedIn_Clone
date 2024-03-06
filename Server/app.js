@@ -9,8 +9,8 @@ const { multer: { upload } } = require("./middlewares");
 const server = http.createServer(app);
 
 //Socket connection
-require("./config/index.socket")(server);
-
+const {socket} =require("./config").
+socket(server);
 
 app.use(upload.fields([{ name: "link", maxCount: 4 }]));
 app.use(express.static("public"));

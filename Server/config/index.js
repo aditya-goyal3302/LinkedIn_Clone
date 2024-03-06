@@ -1,3 +1,4 @@
-exports.modules = {
-  mongo_db: require("./mongodb"),
+module.exports  = {
+  mongo_db: require("./mongo_db"),
+  socket: require("./socket"),
 };

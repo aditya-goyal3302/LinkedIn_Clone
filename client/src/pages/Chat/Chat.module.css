@@ -80,12 +80,13 @@
 }
 .contactBox{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     height: 100%;
     width: 50%;
     max-width: 295px !important;
+    box-sizing: border-box !important;
     border-bottom: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
 }

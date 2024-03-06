@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Box } from '@mui/system'
 import { Avatar, Button, ButtonGroup, Divider, Typography } from '@mui/material'
 import PhotoSizeSelectActualRoundedIcon from '@mui/icons-material/PhotoSizeSelectActualRounded';
@@ -16,22 +16,25 @@ function FeedPage({setOpen}) {
     const posts = useSelector((state) => state.Post_reducer.feed)
     const user = useSelector((state) => state.persistedReducer.user) || {}
     const isLoadingPosts = useSelector((state) => state.Post_reducer.isLoading);
+    const initialized = useRef(false)
     const dispatch = useDispatch()
     useEffect(() => {
-        if (posts.length === 0 && !isLoadingPosts){
-           dispatch(fetchFeed({time:Date.now()}))
-            console.log('posts: ', "usseeffect called");
-    }
+
+        if (posts.length === 0 && !isLoadingPosts && !initialized.current){
+            initialized.current = true
+            dispatch(fetchFeed({time:Date.now()}))
+            // console.log('posts: ', "usseeffect called");
+        }
     }, [dispatch])
-    const fetchMorePoste = async ()=>{
+    const fetchMorePosts = async ()=>{
         if (isLoadingPosts) return;
         await dispatch(fetchFeed({time:posts[posts.length - 1]?.createdAt}))
     }
     const handleScroll = async (e) => {
-        if (window.innerHeight + (Math.ceil(document.documentElement.scrollTop)) <= document.documentElement.scrollHeight -100 || isLoadingPosts) {
+        if (window.innerHeight + (Math.ceil(document.documentElement.scrollTop)) <= document.documentElement.scrollHeight -400 || isLoadingPosts) {
             return;
           }
-        await fetchMorePoste();
+        await fetchMorePosts();
     }
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);

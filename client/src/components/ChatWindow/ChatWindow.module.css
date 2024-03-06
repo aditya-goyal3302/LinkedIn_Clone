@@ -14,23 +14,23 @@
     margin-right: auto;
 }
 .chatHeader{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    height: 44px;
-    width: 100%;
-    padding:0px 12px;
-    border-bottom: 1px solid #e0e0e0;
-    position: relative;
+    display: flex ;
+    flex-direction: row ;
+    justify-content: space-between ;
+    align-items: center ;
+    box-sizing: border-box !important;
+    height: 44px !important;
+    width: 100% !important;
+    padding:0px 12px !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    position: relative !important;
 }
 .chatUser{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    height: 100%;
+    height: 100% !important; 
     width: auto;
 }
 .chatUserName{
@@ -50,13 +50,14 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    height: 100%;
+    height: 100% !important;
     width: auto;
 }
 .chatHeaderActionBtn{
     height: 40px !important;
     width: 40px !important;
     border-radius: 50% !important;
+    margin: 1.5px 0 !important;
 }
 .chatAction{
     display: flex;
@@ -174,6 +175,11 @@
     flex-direction: row !important;
     justify-content: flex-start !important;
     align-items: flex-start !important;
+    position: relative !important;
+    margin-top: 12px !important;
+}
+.chatWraper:nth-child(1){
+    margin-top: 0px !important;
 
 }
 .chatSend{
@@ -183,15 +189,25 @@
     text-align: left !important;
 }
 .chatTitle{
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    color: #000000e6 !important;
-    line-height: 20px !important;
-    /* margin-bottom: 4px !important; */
     width:335.736px !important;
     padding-right:12px;
     margin: 4px auto 0 56px !important;
-
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+.chatTitleText {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #000000e6 !important;
+    line-height: 16px !important;
+    /* margin-bottom: 4px !important; */
+}
+.chatTitleTime{
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #00000099 !important;
+    line-height: 20px !important;
 }
 .chatText{
     width:335.736px !important;
@@ -200,4 +216,12 @@
     color: #000000e6 !important;
     line-height: 20px !important;
     margin: 4px auto 4px 56px !important;
+}
+.chatTextWrap:hover{
+    background-color: rgba(0, 0, 0, 0.08) !important;
+}
+.messageAvatar{
+    position:absolute !important;
+    top: 4px !important;
+    left: 8px !important;
 }

@@ -7,12 +7,14 @@ exports.get_chat_by_room_id = async (req, res) => {
     
 }
 
-exports.send_message = async (req, res) => {
-    const { chat_room, sender, message } = req.body;
-    const newMessage = new messages_model({
+exports.send_message = async (data) => {
+    const { chat_room, sender, message } = data;
+    console.log('chat_room, sender, message: ', chat_room, sender, message);
+    const newMessage = await messages_model.create({
         chat_room,
         sender,
         message
     });
-    return await newMessage.save();
+    console.log('newMessage: ', newMessage);
+    return newMessage;  
 }
