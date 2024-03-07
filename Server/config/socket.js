@@ -39,7 +39,7 @@ module.exports = async (server) => {
                 const response = await messages_service.send_message(data)
                 console.log('response: ', response);
                 if (response) {
-                    io.to(data.chat_room).emit('receive-message',response);
+                    io.to(data.chat_room).emit('receivemessage',response);
                 }
             } catch (error) {
                 console.log('error: ', error);

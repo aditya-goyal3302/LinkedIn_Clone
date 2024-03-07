@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { getMessages} from './Messaging.Api';
 const initialState = {
     messages: {},
@@ -16,6 +16,8 @@ const MessagingSlice = createSlice({
         getMessagesSuccess: (state, action) => {
             // console.log('action: ', action.payload);
             state.loading = false;
+            const messages = current(state.messages);
+            console.log(action.payload.roomId,"***********",messages[action.payload.roomId]);
             state.messages[action.payload.roomId].push(action.payload.data);
         },
         // getMessagesFailure: (state, action) => {

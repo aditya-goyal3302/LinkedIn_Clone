@@ -30,26 +30,23 @@ function Chat() {
     if (currentChat)
       io.emit('join', currentChat.uuid)
   }, [currentChat])
-  const HandleSetMessage = (data) => {
-    console.log("sent message recieved")
-    dispatch(getMessagesSuccess({ roomId: data.chat_room, data }))
-  }
-  useEffect(() => {
-    console.log('initialized: ', initialized);
-    if (!initialized.current) {
-      console.count("mounted")
-      initialized.current = true
-      io.on('receive-message', (data) => {
-        HandleSetMessage(data);
-      });
-    }
-    return () => {
-      initialized.current = false
-      io.off('recieve-message');
-      console.log("unmounted");
-    }
-  }, [io, HandleSetMessage])
 
+  useEffect(()=>{
+    console.log(".");
+    if(initialized.current === false){
+      initialized.current = true
+      io.on("receivemessage",(data)=>{
+        // console.log(data)
+        dispatch(getMessagesSuccess({ roomId: data.chat_room, data }))
+      })
+      // console.log("cndf")
+    }
+    return ()=>{
+      initialized.current = false
+      // console.log("off pre");
+      io.off("receivemessage")
+    }
+  },[io])
 
   useEffect(() => {
     if (chatsData.chats.length === 0 && !chatsData.isLoading) {
@@ -58,10 +55,9 @@ function Chat() {
     if (chatsData.chats.length > 0)
       chatsData.chats.map((chat) => {
         dispatch(getMessages(chat.uuid))
-        // console.log('chat: ');
       })
     setCurrentChat(chatsData.chats[0])
-  }, [chatsData])
+  }, [chatsData.chats])
 
 
 
