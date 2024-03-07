@@ -48,3 +48,14 @@ exports.get_pending_connections = async (req, res) => {
     }
 
 }
+
+exports.get_suggestions_for_user = async (req, res) => {
+    try {
+        const { user_id } = req.body.user;
+        const response = await connections_service.get_suggestions_for_user(user_id);
+        if (response.length === 0) return res.status(404).send({ error: "No suggestions found" });
+        res.status(200).send(response);
+    } catch (error) {
+        res.status(500).send({ error: error });
+    }
+}

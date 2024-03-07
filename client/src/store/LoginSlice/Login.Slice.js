@@ -18,6 +18,7 @@ const LoginSlice = createSlice({
             state.error = false;
         },
         reset: (state)=>{
+            // console.log('reset: ');
             state.error = false;
         }
     },
@@ -37,7 +38,7 @@ const LoginSlice = createSlice({
         })
         builder.addCase(login.rejected, (state, action)=>{
             state.isLoading = false;
-            state.error = action.payload;
+            state.error = {message:action.payload ,status:true};
             state.user = null;
             state.token = null;
         })

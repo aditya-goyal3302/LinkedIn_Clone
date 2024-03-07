@@ -9,7 +9,7 @@ import { SearchSvg } from "../../assets/svg/NavbarSvg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MoreHoriz from "@mui/icons-material/MoreHoriz";
 import { Edit } from "../../assets/svg/Extras";
-import socket from "../../config/Socket";
+import io from "../../config/Socket";
 import { getChats } from "../../store/ChatsSlice/Chats.Api";
 import { getMessages } from "../../store/MessagingSlice/Messaging.Api";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,6 @@ function Chat() {
   const dispatch = useDispatch();
   const chatsData = useSelector((state) => state.chatsReducer);
   const MessagesData = useSelector((state) => state.messagingReducer);
-  const io = socket();
   // const [initialLoad, setInitialLoad] = useState(false);
   const initialized = useRef(false)
   // console.log('MessagesData: ', MessagesData);
@@ -31,26 +30,25 @@ function Chat() {
     if (currentChat)
       io.emit('join', currentChat.uuid)
   }, [currentChat])
-  const HandlesetMessage = (data) => {
+  const HandleSetMessage = (data) => {
+    console.log("sent message recieved")
     dispatch(getMessagesSuccess({ roomId: data.chat_room, data }))
   }
   useEffect(() => {
-    io.on("run", () => {
-      console.log("run");
-    })
     console.log('initialized: ', initialized);
     if (!initialized.current) {
+      console.count("mounted")
       initialized.current = true
       io.on('receive-message', (data) => {
-        HandlesetMessage(data);
+        HandleSetMessage(data);
       });
     }
     return () => {
-      io.off()
+      initialized.current = false
       io.off('recieve-message');
       console.log("unmounted");
     }
-  }, [])
+  }, [io, HandleSetMessage])
 
 
   useEffect(() => {

@@ -52,6 +52,7 @@ const setUser = (data,userId) => {
         if(user._id !== userId){
             selectedUser = user;
         }
+        return null;
     })
     data.users = selectedUser;
     return data;

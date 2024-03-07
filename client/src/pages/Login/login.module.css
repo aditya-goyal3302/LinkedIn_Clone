@@ -51,7 +51,6 @@
 .title2{
     float: left !important;
     font-weight: 400 !important;
-    /* width: 100%; */
     color: rgba(0, 0, 0, 0.8) !important;
     font-size: 14px !important;
     margin-top:0px !important;
@@ -60,11 +59,13 @@
     margin: 0 auto !important;
     margin-top: 22px !important;
     width: 302px !important;
-    /* width: 100% !important; */
     border-radius: 4px;
     font-size: 28px;
-    /* height : 52px !important; */
     background-color: unset !important;
+    & div>input{
+        padding: 25px 12px 8px 12px !important;
+        width: 100% !important;
+    }
 }
 .login_inputs>div>fieldset{
     border-color:rgba(0, 0, 0, 0.8) ;

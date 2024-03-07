@@ -1,4 +1,5 @@
-const { connections_model } = require('../models');
+const { connections_model, user_model } = require('../models');
+const connectionsModel = require('../models/connections.model');
 
 exports.get_connections_for_user = async (user_id) => {
 
@@ -40,4 +41,12 @@ exports.set_connections = async (req) => {
 }
 exports.get_pending_connections = async (user_id) => {
     return await connections_model.find({ sent_to:user_id, status: "pending" }, null, { populate: {  path: 'requested_by', select: 'firstname lastname image heading'} });
+}
+exports.get_suggestions_for_user = async (user_id) => {
+    const response = await connections_model.find({ $or:[{sent_to:user_id},{requested_by:user_id}]})
+    const suggestions = response.map((connection)=>{
+        return connection.sent_to === user_id ? connection.requested_by : connection.sent_to
+    })
+    const resp = await user_model.find({ _id: { $nin: [...suggestions, user_id] } },null,{limit:12 ,select: 'username first_name last_name image heading' });
+    return resp;
 }

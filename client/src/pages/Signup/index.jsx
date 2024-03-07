@@ -56,30 +56,30 @@ function Signup() {
   };
   
   const validatePassword = (password) => {
-    return password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/);
+    return String(password).match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/);
      
   };
   
-  async function reset_err(){
-     setError((pre)=>({ ...pre, email: false, password: false }));
+  function reset_err() {
+    if(status.error?.status){
+      // console.log('status.errors: ',status);
+      dispatch(reset())
+    }
   }
   
-  async function check_email(){
-    if (data.email === "" || !validateEmail(data.email)) 
+  function check_email(data){
+    if (data === "" || !validateEmail(data)) 
         setError((pre)=>({ ...pre, email: true }));
     else  setError((pre)=>({ ...pre, email: false }));
   }
   
-  async function check_password(){
-    if (data.password === "" || !validatePassword(data.password) || data.password.length < 6) 
+  function check_password(data){
+    if (data === "" || !validatePassword(data) || data.length < 6) 
         setError((pre)=>({ ...pre, password: true }));
     else  setError((pre)=>({ ...pre, password: false }));
     }
   
   const HandleSubmit = async () => {
-    await reset_err();
-    await check_email();
-    await check_password();
     if (error.email || error.password) {
       return;
     }
@@ -117,7 +117,11 @@ function Signup() {
                 </FormLabel>
                 <InputBase
                   value={data.email}
-                  onChange={(e) => setdata({ ...data, email: e.target.value })}
+                  onChange={(e) => {
+                    setdata({ ...data, email: e.target.value })
+                    check_email(e.target.value)
+                    reset_err();
+                  }}
                   className={styles.login_inputs}
                   error={error.email}
                   helperText={error.email ? "Invalid Email" : ""}
@@ -129,11 +133,14 @@ function Signup() {
                   Password (6+ characters)
                 </FormLabel>
                 <InputBase
-                //   style={{borderColor: error.password ? 'red' : 'black'}}
+                  style={{borderColor: error.password ? 'red' : 'black'}}
                   value={data.password}
-                  onChange={(e) =>
-                    setdata({ ...data, password: e.target.value })
-                  }
+                  onChange={(e) =>{
+                    setdata({ ...data, password: e.target.value });
+                    // console.log(e.target.value) 
+                    check_password(e.target.value);
+                    reset_err();
+                  }}
                   type={error.show_password ? "text" : "password"}
                   className={styles.login_inputs}
                   endAdornment={

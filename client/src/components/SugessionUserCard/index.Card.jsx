@@ -22,7 +22,7 @@ function UserCard({user}) {
   if(removed) return null
   return (
     <Card className={styles.root}>
-        <CardContent className={styles.content} onclick={""}>
+        <CardContent className={styles.content} onClick={""}>
           <Box>
               <img src={user?.cover_image ||coverImg} alt="Cover_Photo" className={styles.coverImg} />
               <IconButton className={styles.clearBtn}>

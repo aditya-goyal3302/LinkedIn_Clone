@@ -78,6 +78,9 @@
     padding: 0px 0px !important;
     border:0px solid rgba(0, 0, 0, 0.75);
     padding-left: 15px !important;
+    & input{
+        width: 100% !important;
+    }
 }
 .login_inputs:hover{
     background-color: #f3f2f0 !important;

@@ -11,7 +11,7 @@ function GrowPanel({ myConnections }) {
     <>
         <Box className={styles.requestPanel}>
             <Box className={styles.requestPanelHead}>
-                <Typography className={styles.requestTitle}>{myConnections?.requests ? "Pending Requests" : "No pending invitations"}</Typography>
+                <Typography className={styles.requestTitle}>{myConnections?.requests.length>0 ? "Pending Requests" : "No pending invitations"}</Typography>
                 <Button className={styles.titleBtn}>Manage</Button>
             </Box>
             {/* <Box className={styles.requestPanelBody}> */}

@@ -9,14 +9,14 @@ import { Attachment, GIF, Image, Smiley } from '../../assets/svg/Extras';
 import MoreHoriz from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import socket from '../../config/Socket';
+import io from '../../config/Socket';
 import { FullMessage, OnlyMessage } from './Message';
 import { useSelector } from 'react-redux';
 
 
 function ChatWindow({ MessagesData, currentChat }) {
     const [expandedInput, setExpandedInput] = useState(false)
-    const io = socket();
+    // const io = socket();
     const [newMessage, setNewMessage] = useState('')
     const user = currentChat?.users;
     const loginedUser = useSelector((state) => state.persistedReducer.user);
@@ -31,6 +31,8 @@ function ChatWindow({ MessagesData, currentChat }) {
         io.emit("send-message", data)
         setNewMessage("");
     }
+    if(!currentChat )
+    return( <> </>)
     return (
         <Box className={styles.chatBox}>
             <Box className={styles.chatHeader}>

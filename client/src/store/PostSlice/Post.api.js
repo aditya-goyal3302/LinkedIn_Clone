@@ -5,7 +5,7 @@ import axios from 'axios';
 export const fetchFeed = createAsyncThunk(
     'feed/fetchFeed',
     
-    async (payload,{getState}) => {
+    async (payload,{getState,rejectWithValue}) => {
         try {
             const state = getState()
             var time = Date.now()
@@ -20,20 +20,20 @@ export const fetchFeed = createAsyncThunk(
                     Authorization: state.persistedReducer.token
                 }
             });
-            return response.data;
+            // console.log('response.data : ', response.data );
+            return response.data ;
         } catch (error) {
-            // console.log('error: ', error);
+            return rejectWithValue({ error });
         }
     }
 );
 
 export const createPost = createAsyncThunk(
     'feed/createPost',
-    async (payload,{getState}) => {
+    async (payload,{getState, rejectWithValue}) => {
         try {
             console.log('payload: ', payload);
             const state = getState()
-            // let data = JSON.stringify(payload)
             console.log("state: ", state.persistedReducer.token)
             const response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/posts`, payload,
             {
@@ -44,7 +44,7 @@ export const createPost = createAsyncThunk(
             });
             return response.data;
         } catch (error) {
-            
+            return rejectWithValue({ error });
         }
     }
 );

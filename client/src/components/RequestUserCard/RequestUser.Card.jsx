@@ -1,15 +1,40 @@
 import { Avatar, Button, Card, CardContent, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './RequestUser.module.css'
 import { useDispatch } from 'react-redux'
 import { responseConnectionRequest } from '../../store/MyConnections/MyConnection.Api'
 
 function RequestUser({ request }) {
     const dispatch = useDispatch()
-    const handleAccept = () => {
-        dispatch(responseConnectionRequest({id:request._id,requested_by:request.requested_by._id,status:'accepted'}))
+    const [state, setState] = useState(0)
+    const cal_days = (date) => {
+        const date1 = new Date(date);
+        const date2 =  Date.now();
+        const diffTime = Math.abs(date2 - date1);
+        const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+        if(diffTime<(1000 * 60 * 60 * 24)) return "Today";
+        else if(days<2) return "Yesterday";
+        else if(days<7) return `${days} days ago`;
+        else if(days<13) return `1 week ago`;
+        else if(days<30) return `${Math.floor(days/7)} weeks ago`;
+        else if(days<31) return `${Math.floor(days/30)} month ago`;
+        else if(days<365) return `${Math.floor(days/30)} months ago`;
+        else return `${Math.floor(days/365)}y`;
+      }
+    const handleAccept =async () => {
+        // console.log(request._id,request.requested_by._id);
+        setState(1)
+        const response = await dispatch(responseConnectionRequest({id:request._id,requested_by:request.requested_by._id,status:'accepted'}))
+        // console.log('response: ', response);
+        if(response.payload.status === 'accepted'){
+            setState(2)
+        }
     }
+    if (state === 2) {
+        return null
+    }
+    else
     return (
         <Card className={styles.root}>
             <CardContent className={styles.content}>
@@ -18,12 +43,12 @@ function RequestUser({ request }) {
                     <Box className={styles.userData}>
                         <Typography className={styles.userName}>{request?.requested_by.firstname ? `${request?.requested_by.firstname} ${request?.requested_by.lastname}`:`Linkedin User`}</Typography>
                         <Typography className={styles.userHeading}>{request?.requested_by.heading ? `${request?.requested_by.heading}`:`Linkedin User Heading`}</Typography>
-                        <Typography className={styles.userTime}>Sent 1 day ago</Typography>
+                        <Typography className={styles.userTime}>{`Sent ${cal_days(request.createdAt)}`}</Typography>
                     </Box>
                 </Box>
                 <Box className={styles.wrapBtns}>
-                    <Button onClick={handleAccept} className={styles.rejectBtn}>Ignore</Button>
-                    <Button className={styles.acceptBtn}>Accept</Button>
+                    <Button className={styles.rejectBtn}>Ignore</Button>
+                    <Button onClick={handleAccept} className={styles.acceptBtn} disabled={state >= 1? true:false}>{state === 0?'Accept':'Pending'}</Button>
                 </Box>
             </CardContent>
         </Card>
