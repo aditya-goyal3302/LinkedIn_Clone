@@ -23,9 +23,10 @@ import {
 // import caretDown from "../../assets/svg/caretDown.svg";
 import { useSelector } from "react-redux";
 
-const Navbar = ({setPage}) => {
+const Navbar = ({setPage,page}) => {
   const user = useSelector((state) => state.persistedReducer.user) || {};
-  const [navbarSelector, setNavbarSelector] = useState("1");
+  const initVal= page || "1"
+  const [navbarSelector, setNavbarSelector] = useState(initVal);
   // console.log('navbarSelector: ', navbarSelector ==="1");
   const handleChange = (event, newValue) => {
     setNavbarSelector(newValue);

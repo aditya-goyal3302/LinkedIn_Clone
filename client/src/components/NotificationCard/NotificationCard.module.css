@@ -1,0 +1,62 @@
+.root{
+    width: 555px !important;
+    height: 92px !important;
+    padding: 16px 8px 16px 24px !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    outline:unset !important;
+    border: unset !important;
+}
+.root:hover{
+    background-color: rgba(0, 0, 0, 0.08);
+}
+.content{
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction:  row !important;
+    align-items:  flex-start !important;
+    justify-content: flex-start !important;
+    padding:0 !important;
+}
+.action{
+    display:flex !important;
+    flex-direction: column !important;
+    width:40px !important;
+    height: 40px !important;
+}
+.moreButton{
+    width:40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    color: #000000bf !important;
+}
+.textBox{
+    margin-right: 8px !important;
+    width: 411px !important;
+}
+.text{
+    text-align: left !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #000000e6 !important;
+    margin-right: 8px !important;
+    line-height: 18px !important;
+    height: 56px !important;
+    overflow: hidden;
+}
+.avatar{
+    height: 48px !important;
+    width: 48px !important;
+    margin-right: 16px !important;
+}
+.time{
+    height: 16px !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: #00000099 !important;
+    margin-right: 8px !important;
+    text-align: right !important;
+    line-height: 16px !important;
+}

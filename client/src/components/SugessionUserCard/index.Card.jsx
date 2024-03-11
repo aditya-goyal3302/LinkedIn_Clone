@@ -24,7 +24,7 @@ function UserCard({user}) {
     <Card className={styles.root}>
         <CardContent className={styles.content} onClick={""}>
           <Box>
-              <img src={user?.cover_image ||coverImg} alt="Cover_Photo" className={styles.coverImg} />
+              <img src={user?.cover_image?`${process.env.REACT_APP_IMG_BASE_URL}/${user.cover_image}`:coverImg} alt="Cover_Photo" className={styles.coverImg} />
               <IconButton className={styles.clearBtn}>
                   <CloseIcon onClick={()=>setRemoved(true)}/>
               </IconButton>

@@ -109,4 +109,11 @@ function SendIcon() {
   );
 }
 
-export { Globe, ThumbUpOutlinedIcon, ThumbUpOutlinedIconFilled, CommentOutlinedIcon, RepeatOutlinedIcon, SendIcon};
+export {
+  Globe,
+  ThumbUpOutlinedIcon,
+  ThumbUpOutlinedIconFilled,
+  CommentOutlinedIcon,
+  RepeatOutlinedIcon,
+  SendIcon,
+};

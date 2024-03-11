@@ -118,7 +118,7 @@ function Post({ post }) {
         <ReactionBarSelector
           className={styles.reactionSelector}
           onSelect={(reaction) => handlereaction(reaction)}
-          reactions={[{ label: "like", node: <div><ThumbUpOutlinedIconFilled /></div>, key: "Like" }, { label: "Celebrate", node: <div>👏</div>, key: "Celebrate" }, { label: "support", node: <div>🫰</div>, key: "Support" }, { label: "love", node: <div>❤️</div>, key: "Love" }, { label: "Insightful", node: <div>💡</div>, key: "Insightful" }, { label: "Funny", node: <div>😄</div>, key: "Funny" }]}
+          reactions={[{ label: "Like", node: <div><ThumbUpOutlinedIconFilled /></div>, key: "Like" }, { label: "Celebrate", node: <div>👏</div>, key: "Celebrate" }, { label: "Support", node: <div>🫰</div>, key: "Support" }, { label: "Love", node: <div>❤️</div>, key: "Love" }, { label: "Insightful", node: <div>💡</div>, key: "Insightful" }, { label: "Funny", node: <div>😄</div>, key: "Funny" }]}
         />
       </BasePopup>
 
@@ -136,7 +136,7 @@ function Post({ post }) {
             ref={setAnchor}
             style={{ color: reaction[user._id]?.reaction === "Like" ? "blue !important" : "black" }}
           >
-            {reactionLogo[reaction[user._id]?.reaction] ||<ThumbUpOutlinedIcon />}&nbsp; {reaction[user._id]?.reaction || "like"}
+            {reactionLogo[reaction[user._id]?.reaction] ||<ThumbUpOutlinedIcon />}&nbsp; {reaction[user._id]?.reaction || "Like"}
           </Button>
           <Button
             className={styles.postButton}

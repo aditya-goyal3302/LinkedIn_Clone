@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import FeedPage from './FeedPage'
 import MyNetwork from '../MyNetwork'
 import Chat from '../Chat/index.Chat'
+import Notification from '../Notification/index.Notification'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -24,7 +25,7 @@ const Home = () => {
             <Navbar className={styles.navbar} setPage={setPage} />
             {page === '1' && <FeedPage />}
             {page === '2' && <MyNetwork />}
-            {page === '5' && <div>Notifications</div>}
+            {page === '5' && <Notification/>}
             {page === '3' && <div>Jobs</div>}
             {page === '4' && <Chat />}
         </>
