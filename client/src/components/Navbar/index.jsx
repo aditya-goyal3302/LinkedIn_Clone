@@ -7,7 +7,7 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState,  } from "react";
 import styles from "./Navbar.module.css";
 import {
   HomeSvg,
@@ -22,8 +22,10 @@ import {
 } from "../../assets/svg/NavbarSvg";
 // import caretDown from "../../assets/svg/caretDown.svg";
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = ({setPage,page}) => {
+  const navigate = useNavigate()
   const user = useSelector((state) => state.persistedReducer.user) || {};
   const initVal= page || "1"
   const [navbarSelector, setNavbarSelector] = useState(initVal);
@@ -136,6 +138,7 @@ const Navbar = ({setPage,page}) => {
         <Box className={styles.profileBtnWrap}>
           <Avatar
             className={styles.profileBtn}
+            onClick={()=>{navigate("/in")}}
             src={
               user?.image
                 ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}`

@@ -18,17 +18,18 @@ const LoginSlice = createSlice({
             state.error = false;
         },
         reset: (state)=>{
-            // console.log('reset: ');
             state.error = false;
         }
     },
     extraReducers: (builder)=>{
         builder.addCase(login.pending, (state)=>{
+            console.log('pending: ');
             state.isLoading = true;
             state.error = null;
             state.user = null;
         })
         builder.addCase(login.fulfilled, (state, action)=>{
+            console.log('fulfilled: ');
             state.user = null;
             state.token = null;
             state.isLoading = false;
@@ -37,6 +38,7 @@ const LoginSlice = createSlice({
             state.error = null;
         })
         builder.addCase(login.rejected, (state, action)=>{
+            console.log('rejected: ');
             state.isLoading = false;
             state.error = {message:action.payload ,status:true};
             state.user = null;
