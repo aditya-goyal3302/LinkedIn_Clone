@@ -10,8 +10,8 @@ import {
 import styles from "./NotificationCard.module.css";
 import MoreHoriz from "@mui/icons-material/MoreHoriz";
 
-const NotificationCard = ({ data }) => {
-  const user = data?.user;
+const NotificationCard = ({ notification }) => {
+  const user = notification?.user;
   return (
     <Card className={styles.root}>
       <CardContent className={styles.content}>
@@ -21,7 +21,7 @@ const NotificationCard = ({ data }) => {
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
               }/>
         <Box className={styles.textBox}>
-          <Typography className={styles.text}>{data?.content || "Notification : it a sample post cdsuyvf bdkz fbaj fr ae bfuefbau dsu b vfdvfdvd"}</Typography>
+          <Typography className={styles.text}>{notification?.content || "Notification : it a sample post cdsuyvf bdkz fbaj fr ae bfuefbau dsu b vfdvfdvd"}</Typography>
         </Box>
         <Box className={styles.action}>
           <Typography className={styles.time}>{"N/A"}</Typography>
