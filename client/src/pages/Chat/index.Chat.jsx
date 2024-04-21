@@ -19,6 +19,7 @@ import { getMessagesSuccess } from "../../store/MessagingSlice/Messaging.Slice";
 function Chat() {
   const dispatch = useDispatch();
   const chatsData = useSelector((state) => state.chatsReducer);
+  const loading = useRef(true)
   const MessagesData = useSelector((state) => state.messagingReducer);
   // const [initialLoad, setInitialLoad] = useState(false);
   const initialized = useRef(false)
@@ -49,7 +50,8 @@ function Chat() {
   },[io])
 
   useEffect(() => {
-    if (chatsData.chats.length === 0 && !chatsData.isLoading) {
+    if (chatsData.chats.length === 0 && !chatsData.isLoading && loading.current) {
+      loading.current = false
       dispatch(getChats());
     }
     if (chatsData.chats.length > 0)
@@ -57,6 +59,7 @@ function Chat() {
         dispatch(getMessages(chat.uuid))
       })
     setCurrentChat(chatsData.chats[0])
+    // return ()=> loading.current = true
   }, [chatsData.chats])
 
 

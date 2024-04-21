@@ -45,8 +45,9 @@
     margin-bottom: 15px !important;
     padding: 0 24px 24px !important;
     position: relative !important;
-    border-end-start-radius: 8px !important;
+    border-radius: 8px !important;
     background-color: #fff !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
 }
 .coverImg{
     width: calc(100% + 48px) !important;
@@ -82,6 +83,36 @@
     background-color: #fff !important;
     right: 20px !important;
     top: 20px !important;
+    & svg{
+        height: 20px !important;
+        width: 20px !important;
+        color: #0a66c2 !important;
+    }
+}
+.coverBtn:hover{
+    transition: ease-in-out 200ms !important;
+    /* background-color: rgba(140, 140, 140, 0.1) !important; */
+    &svg{
+        color : #004182 !important;
+    }
+}
+.profileBtn{
+    position: absolute !important;
+    width: 40px !important;
+    height: 40px !important;
+    background-color: #fff !important;
+    right: 20px !important;
+    top: 210px !important;
+    & svg{
+        color: #000 !important;
+    }
+}
+.profileBtn:hover{
+    transition: ease-in-out 200ms !important;
+    background-color: rgba(140, 140, 140, 0.1) !important;
+    &svg{
+        color : #004182 !important;
+    }
 }
 .editBtn{
     position: absolute !important;
@@ -139,4 +170,47 @@
     align-items: flex-start !important;
     justify-content: flex-start !important;
 
+}
+.connectionText{
+    margin: 8px 0 !important;
+    color: #0a66c2 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    font-weight: 600 !important;
+}
+.btnsWrapper{
+    height: 32px !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap:8px  !important;
+}
+.btn{
+    height: 32px !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    text-transform: none !important;
+    font-size: 16px !important;
+}
+.btn1{
+    background-color: #0a66c2 !important;
+    color:#fff !important;
+}
+.btn1:hover{
+    background-color: #004182 !important;
+}
+.btn2{
+    border: 1px solid #0a66c2 !important;
+    color: #0a66c2 !important;
+}
+.btn2:hover{
+    /* color: #004182 !important; */
+    border: 2px solid #004182 !important;
+    padding: 5px 15px !important;
+    box-shadow: none !important;
+}
+.btn3{
+    border: 1px solid #000000BF !important;
+    color: #000000BF !important;
 }

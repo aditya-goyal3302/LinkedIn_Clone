@@ -1,3 +1,4 @@
+import { persistReducer, persistStore } from 'redux-persist';
 import { configureStore } from '@reduxjs/toolkit';
 import login_reducer from './LoginSlice/Login.Slice';
 import signup_reducer from './SignupSlice/Signup.Slice';
@@ -8,7 +9,6 @@ import myConnectionReducer from './MyConnections/MyConnection.Slice';
 import messagingReducer from './MessagingSlice/Messaging.Slice';
 import chatsReducer from './ChatsSlice/Chats.Slice';
 import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
 
 
 

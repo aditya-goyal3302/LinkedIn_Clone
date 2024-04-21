@@ -1,7 +1,7 @@
 import React from "react";
 import adImg from '../../assets/images/ad.png'
 import footerLogo from '../../assets/svg//mini_logo.svg'
-import {  Box, Button,Icon,IconButton,Typography } from '@mui/material'
+import { Box, Button, IconButton, Typography } from '@mui/material'
 import styles from './Panel.module.css';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
@@ -10,8 +10,8 @@ const AdPanalWithFooter = () => {
     <>
       <Box className={styles.adBox}>
         <Box className={styles.adTextBox}>
-            <Typography className={styles.adText}>Ad</Typography>
-            <IconButton className={styles.adBtn}><MoreHorizIcon/></IconButton>
+          <Typography className={styles.adText}>Ad</Typography>
+          <IconButton className={styles.adBtn}><MoreHorizIcon /></IconButton>
         </Box>
         <img alt="Google Ads" src={adImg} className={styles.adImg} />
       </Box>
