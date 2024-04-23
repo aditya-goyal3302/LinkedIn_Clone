@@ -1,13 +1,14 @@
-.root{
+.root {
     width: 100% !important;
-    min-height: 500px !important;
+    height: 100% !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     background-color: #f4f2ee !important;
-    justify-content:flex-start  !important;
+    justify-content: flex-start !important;
 }
-.wraper{
+
+.wraper {
     width: 1128px !important;
     height: auto !important;
     display: flex !important;
@@ -16,17 +17,21 @@
     justify-content: space-between !important;
     min-height: 500px !important;
     margin-top: 24px !important;
+    margin-bottom: 20px !important;
 }
 
-.main{
-    width:804px !important;
+.main {
+    width: 804px !important;
     height: auto !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
+    gap: 8px !important;
 }
-.rightPanel{
+
+.rightPanel {
+    /* margin-top: -8px !important ; */
     width: 300px !important;
     height: auto !important;
     display: flex !important;
@@ -34,7 +39,8 @@
     align-items: flex-start !important;
     justify-content: flex-start !important;
 }
-.container{
+
+.container {
     width: 100% !important;
     height: auto !important;
     display: flex !important;
@@ -42,14 +48,15 @@
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
-    margin-bottom: 15px !important;
+    /* margin-bottom: 15px !important; */
     padding: 0 24px 24px !important;
     position: relative !important;
     border-radius: 8px !important;
     background-color: #fff !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 0 0 1px rgba(140, 140, 140, 0.2) !important;
 }
-.coverImg{
+
+.coverImg {
     width: calc(100% + 48px) !important;
     height: 200px !important;
     display: flex !important;
@@ -59,10 +66,11 @@
     background-color: #f4f2ee !important;
     position: relative !important;
     margin: 0 -24px !important;
-    border-radius: 8px 8px 0 0  !important;
+    border-radius: 8px 8px 0 0 !important;
 }
-.avatarWrap{
-    width: 100%!important;
+
+.avatarWrap {
+    width: 100% !important;
     height: auto !important;
     display: flex !important;
     box-sizing: border-box !important;
@@ -70,60 +78,71 @@
     align-items: flex-start !important;
     justify-content: flex-start !important;
 }
-.avatar{
+
+.avatar {
     width: 152px !important;
     height: 152px !important;
     border: 4px solid #fff !important;
     margin-top: -100px !important;
 }
-.coverBtn{
+
+.coverBtn {
     position: absolute !important;
     width: 32px !important;
     height: 32px !important;
     background-color: #fff !important;
     right: 20px !important;
     top: 20px !important;
-    & svg{
+
+    & svg {
         height: 20px !important;
         width: 20px !important;
         color: #0a66c2 !important;
     }
 }
-.coverBtn:hover{
+
+.coverBtn:hover {
     transition: ease-in-out 200ms !important;
+
     /* background-color: rgba(140, 140, 140, 0.1) !important; */
-    &svg{
-        color : #004182 !important;
+    &svg {
+        color: #004182 !important;
     }
 }
-.profileBtn{
+
+.profileBtn {
     position: absolute !important;
     width: 40px !important;
     height: 40px !important;
     background-color: #fff !important;
-    right: 20px !important;
+    right: 16px !important;
     top: 210px !important;
-    & svg{
+
+    & svg {
         color: #000 !important;
     }
 }
-.profileBtn:hover{
+
+.profileBtn:hover {
     transition: ease-in-out 200ms !important;
     background-color: rgba(140, 140, 140, 0.1) !important;
-    &svg{
-        color : #004182 !important;
+
+    &svg {
+        color: #004182 !important;
     }
 }
-.editBtn{
+
+.editBtn {
     position: absolute !important;
     width: 40px !important;
     height: 40px !important;
     right: 20px !important;
     bottom: 20px !important;
-    margin:0 4px !important;
+    margin: 0 4px !important;
     border-radius: 0 !important;
-}  
-.contextBox{
+}
+
+.contextBox {
     width: 100% !important;
     height: auto !important;
     display: flex !important;
@@ -133,7 +152,8 @@
     text-align: left !important;
     box-sizing: border-box !important;
 }
-.textBox{
+
+.textBox {
     width: auto !important;
     height: auto !important;
     display: flex !important;
@@ -141,28 +161,32 @@
     align-items: flex-start !important;
     justify-content: flex-start !important;
 }
-.name{
+
+.name {
     font-size: 24px !important;
     font-weight: 600 !important;
-    color: #000000e6 !important; 
-    line-height: 30px !important;   
+    color: #000000e6 !important;
+    line-height: 30px !important;
 }
-.heading{
+
+.heading {
     font-size: 16px !important;
     font-weight: 400 !important;
-    color: #000000e6 !important; 
+    color: #000000e6 !important;
     line-height: 20px !important;
-    overflow: hidden !important; 
-    max-height: 40px !important;  
+    overflow: hidden !important;
+    max-height: 40px !important;
 }
-.location{
+
+.location {
     font-size: 14px !important;
     font-weight: 400 !important;
-    color: #00000099 !important; 
+    color: #00000099 !important;
     line-height: 18px !important;
-    margin-top: 8px !important;   
+    margin-top: 8px !important;
 }
-.expBox{
+
+.expBox {
     min-width: 232px !important;
     height: auto !important;
     display: flex !important;
@@ -171,46 +195,284 @@
     justify-content: flex-start !important;
 
 }
-.connectionText{
+
+.connectionText {
     margin: 8px 0 !important;
     color: #0a66c2 !important;
     font-size: 14px !important;
     line-height: 18px !important;
     font-weight: 600 !important;
 }
-.btnsWrapper{
+
+.btnsWrapper {
     height: 32px !important;
     width: 100% !important;
     display: flex !important;
     justify-content: flex-start !important;
     align-items: center !important;
-    gap:8px  !important;
+    gap: 8px !important;
 }
-.btn{
+
+.btn {
     height: 32px !important;
     padding: 6px 16px !important;
     border-radius: 50px !important;
     text-transform: none !important;
     font-size: 16px !important;
+    & svg{
+        width: 24px !important;
+        height: 24px !important;
+        margin-left: -5px !important;
+        & path{
+            fill: #fff !important;
+        }
+    }
 }
-.btn1{
+
+.btn1 {
     background-color: #0a66c2 !important;
-    color:#fff !important;
+    color: #fff !important;
 }
-.btn1:hover{
+
+.btn1:hover {
     background-color: #004182 !important;
 }
-.btn2{
+
+.btn2 {
     border: 1px solid #0a66c2 !important;
     color: #0a66c2 !important;
 }
-.btn2:hover{
+
+.btn2:hover {
     /* color: #004182 !important; */
     border: 2px solid #004182 !important;
     padding: 5px 15px !important;
     box-shadow: none !important;
 }
-.btn3{
+
+.btn3 {
     border: 1px solid #000000BF !important;
     color: #000000BF !important;
+}
+
+.containerWrap {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    box-sizing: border-box !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    /* margin-bottom: 15px !important; */
+    /* padding: 0 24px 24px !important; */
+    position: relative !important;
+    border-radius: 8px !important;
+    background-color: #fff !important;
+    padding-bottom: 12px !important;
+    box-shadow: 0 0 0 1px rgba(140, 140, 140, 0.2) !important;
+}
+
+.headerWrap {
+    padding: 12px 12px 0 !important;
+    display: flex !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    justify-content: space-between !important;
+    height: 60px !important;
+}
+
+.headerText {
+    padding: 12px 12px 0 !important;
+    font-size: 20px !important;
+    line-height: 25px !important;
+    font-weight: 600 !important;
+    color: #000000e6 !important;
+}
+
+.headerBtn {
+    /* position: absolute !important; */
+    width: 48px !important;
+    height: 48px !important;
+    background-color: #fff !important;
+    & svg {
+        color: #000 !important;
+    }
+}
+
+.headerBtn:hover {
+    transition: ease-in-out 200ms !important;
+    background-color: rgba(140, 140, 140, 0.1) !important;
+    &svg {
+        width: 48px !important;
+        height: 48px !important;
+        color: #004182 !important;
+    }
+}
+
+.contentWraper {
+    padding: 12px 24px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+}
+
+.contentText {
+    font-size: 14px !important;
+    font-weight: 400px !important;
+    line-height: 20px !important;
+    color: #000000e6 !important;
+    text-align: left !important;
+}
+
+.skillBox {
+    border-radius: 8px !important;
+    padding: 12px !important;
+    box-shadow: 0 0 0 1px rgba(140, 140, 140, 0.2) !important;
+    height: 68px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+
+}
+
+.skillIcon {
+    width: 32px !important;
+
+    & svg {
+        color: #000000e6 !important;
+    }
+}
+
+.skillContentWrap {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    text-align: left !important;
+    padding-left: 3px !important;
+    box-sizing: border-box !important;
+}
+
+.skillContentTitle {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #000000e6 !important;
+    line-height: 24px !important;
+
+}
+
+.skillContentContent {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #000000e6 !important;
+    line-height: 20px !important;
+}
+
+.WrapBoxFlexRow {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-content: flex-start !important;
+
+}
+
+.WrapBoxFlexColumn {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-content: flex-start !important;
+    text-align: left !important;
+}
+.logoImg{
+    width: 48px !important;
+    height: 48px !important;
+    margin-right: 8px !important;
+}
+.expRoleTitle{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #000000e6 !important;
+    line-height: 24px !important;
+
+}
+.expRoleSubTitle{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #000000e6 !important;
+    line-height: 20px !important;
+}
+.expRoleDuration,.expRoleLocation{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #00000099 !important;
+    line-height: 20px !important;
+}
+.expRoleAbout{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #000000e6 !important;
+    line-height: 20px !important;
+    margin: 12px 0 !important;
+}
+.skillName{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #000000e6 !important;
+    line-height: 24px !important;
+    width: min-content !important;
+    text-wrap: nowrap !important;
+}
+.skillName:hover{
+    color:rgb(10,102,194) !important;
+    text-decoration: underline !important;
+}
+.editBoxWrap{
+    background-color: #fff !important;
+    padding: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+}
+.editBox{
+    position: relative !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-content: flex-start !important;
+    min-height: 49px !important;
+    text-align: left !important;
+}
+.editTextWrap{
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+.editTextTitle{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #000000e6 !important;
+    line-height: 24px !important;
+}
+.editTextValue{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #00000099 !important;
+    line-height: 20px !important;
+    padding-top: 4px !important;
+}
+.editBoxBtn{
+    width: 28px !important;
+    height: 28px !important;
+    background-color: #fff !important;
+    padding: 0 !important;
+    & svg {
+        color: #000 !important;
+        width: 28px !important;
+        height: 28px !important;
+    }
+}
+.editBoxBtn:hover{
+    transition: ease-in-out 200ms !important;
+    background-color: rgba(140, 140, 140, 0.1) !important;
+    &svg {
+        color: #004182 !important;
+    }
 }

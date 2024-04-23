@@ -12,7 +12,7 @@ const server = http.createServer(app);
 const {socket} =require("./config").
 socket(server);
 
-app.use(upload.fields([{ name: "link", maxCount: 4 }]));
+app.use(upload.fields([{ name: "link", maxCount: 4 },{ name: "image", maxCount: 1 },]));
 app.use(express.static("public"));
 app.use("/uploads/images", express.static("uploads/images"));
 

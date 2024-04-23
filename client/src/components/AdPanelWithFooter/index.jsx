@@ -5,17 +5,17 @@ import { Box, Button, IconButton, Typography } from '@mui/material'
 import styles from './Panel.module.css';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-const AdPanalWithFooter = () => {
+const AdPanalWithFooter = ({width}) => {
   return (
     <>
-      <Box className={styles.adBox}>
+      <Box sx={{width:width||"auto"}} className={styles.adBox}>
         <Box className={styles.adTextBox}>
           <Typography className={styles.adText}>Ad</Typography>
           <IconButton className={styles.adBtn}><MoreHorizIcon /></IconButton>
         </Box>
-        <img alt="Google Ads" src={adImg} className={styles.adImg} />
+        <img sx={{width:width||"auto"}} alt="Google Ads" src={adImg} className={styles.adImg} />
       </Box>
-      <Box className={styles.footerBtns}>
+      <Box sx={{width:width||"auto"}} className={styles.footerBtns}>
         <Button className={styles.footerBtn} variant="contained">
           About
         </Button>
@@ -44,7 +44,7 @@ const AdPanalWithFooter = () => {
           More
         </Button>
       </Box>
-      <Box className={styles.footerBox}>
+      <Box sx={{width:width||"auto"}} className={styles.footerBox}>
         <Typography className={styles.footerText}>
           <img src={footerLogo} alt="" />
           &nbsp;Linkedin Corporation © 2024

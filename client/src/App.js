@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { Routes, Route, Router } from 'react-router-dom';
+import { Routes, Route, Router, BrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
 import Singup from './pages/Signup';
 import Home from './pages/Home';
@@ -11,6 +11,7 @@ import Profile from './pages/Profile/index.Profile';
 function App() {
   return (
     <div className="App">
+       <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Singup />} />
@@ -20,6 +21,7 @@ function App() {
         {/* <Route path="/" element={<Login />} /> */}
         {/* <Route path="/chat" element={<Chat/>} /> */}
       </Routes>
+       </BrowserRouter>
     </div>
   );
 }
