@@ -1,13 +1,4 @@
-import {
-  Avatar,
-  Button,
-  ButtonGroup,
-  Card,
-  CardContent,
-  IconButton,
-  InputBase,
-  Typography,
-} from "@mui/material";
+import { Avatar, Button, ButtonGroup, Card, CardContent, IconButton, InputBase, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styles from "./comment.module.css";
 import { Box } from "@mui/system";
@@ -19,7 +10,7 @@ import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import MoreIcon from '@mui/icons-material/MoreHoriz';
 import { ThumbUpOutlinedIconFilled } from '../../assets/svg/PostSvg';
 import { Image, Smiley } from "../../assets/svg/Extras";
-import { createSubComment } from "../../store/CommentSlice/Comment.api";
+import { createSubComment, fetchSubComments } from "../../store/CommentSlice/Comment.api";
 
 function Comment({ comment }) {
   // console.log('comment: ', comment);
@@ -29,17 +20,29 @@ function Comment({ comment }) {
   const [reactionBar, setReactionBar] = useState(false);
   const [replyBox, setReplyBox] = useState(false);
   const [NewReply, setNewReply] = useState('');
+
   useEffect(() => {
     dispatch(fetchCommentsReactions(comment._id));
   }, [dispatch])
+
+  useEffect(()=>{
+    if(replyBox === true)
+      dispatch(fetchSubComments(comment._id))
+  },[replyBox])
+
   const reaction =
     useSelector(
       (state) => state.reactionReducer.reactions?.comment[comment._id]
     ) || {};
+
   const user = useSelector((state) => state.persistedReducer.user) || {};
   const handleReactionOnComment = (newReaction) => {
-    reaction[user._id]?.reaction === newReaction ? dispatch(addCommentReaction({ commentId: comment._id, newReaction: "" })) : dispatch(addCommentReaction({ commentId: comment._id, newReaction: newReaction }));
+    reaction[user._id]?.reaction === newReaction ?
+      dispatch(addCommentReaction({ commentId: comment._id, newReaction: "" }))
+      :
+      dispatch(addCommentReaction({ commentId: comment._id, newReaction: newReaction }));
   }
+
   const cal_days = (date) => {
     // console.log('date: ', date);
     const date1 = new Date(date);
@@ -53,12 +56,15 @@ function Comment({ comment }) {
     else if (days < 365) return `${Math.floor(days / 30)}m`;
     else return `${Math.floor(days / 365)}y`;
   }
+
   const handlePostComment = () => {
     console.log("newComment: ", NewReply)
-    dispatch(createSubComment({ commentId:comment._id, content: NewReply }))
+    dispatch(createSubComment({ commentId: comment._id, content: NewReply }))
     setNewReply("")
   }
+
   const subComments = useSelector((state) => state.commentReducer.content[comment._id]) || [];
+
   return (
     <Card className={styles.commentRoot}>
       <CardContent className={styles.comment} >
@@ -169,4 +175,3 @@ function Comment({ comment }) {
 }
 
 export default Comment;
-                                                                                                                                                                        

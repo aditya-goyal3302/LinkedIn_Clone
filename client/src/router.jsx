@@ -11,7 +11,6 @@ import Profile from './pages/Profile/index.Profile';
 
 
 const route = (isLogined) => {
-
     const routes = [
         {
             path: 'auth',
@@ -29,7 +28,7 @@ const route = (isLogined) => {
         },
         {
             path: '',
-            element: <NavbarLayout />,
+            element: isLogined? <NavbarLayout /> : <Navigate to={"/auth/login"}/>,
             children: [
                 {
                     path: '',
@@ -53,7 +52,12 @@ const route = (isLogined) => {
                 },
                 {
                     path:"in",
-                    element:<Profile/>
+                    children:[
+                        {
+                            path:'',
+                            element:<Profile/>
+                        }
+                    ]
                 }
             ]
         }

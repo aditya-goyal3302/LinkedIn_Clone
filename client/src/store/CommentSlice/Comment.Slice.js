@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchComments, createComment, createSubComment } from './Comment.api';
+import { fetchComments, createComment, createSubComment, fetchSubComments } from './Comment.api';
 const commentSlice = createSlice({
     name: "comments",
     initialState: {
@@ -54,6 +54,23 @@ const commentSlice = createSlice({
         })
         builder.addCase(createSubComment.rejected, (state, action) => {
             // console.log('rejected: ',);
+            state.isLoading = false
+            state.error = action.error
+        })
+        builder.addCase(fetchSubComments.pending, (state) => {
+            // console.log('fetchSubComments.pending: ',);
+            state.isLoading = false
+        })
+        builder.addCase(fetchSubComments.fulfilled, (state, action) => {
+            console.log('action: ', action.payload);
+            state.isLoading = false
+            state.content = {
+                ...state.content,
+                [action.payload.commentId]: action.payload.data
+            }
+        })
+        builder.addCase(fetchSubComments.rejected, (state, action) => {
+            console.log('fetchSubComments.rejected: ',);
             state.isLoading = false
             state.error = action.error
         })

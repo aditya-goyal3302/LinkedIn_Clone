@@ -58,6 +58,25 @@ export const createSubComment = createAsyncThunk(
     }
 );
 
+export const fetchSubComments = createAsyncThunk(
+    "comments/fetchSubComments",
+    async (commentId, { getState, rejectWithValue }) => {
+        try {
+            let token = getState().persistedReducer.token;
+            const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/comments/sub-comment/${commentId}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                },
+            })
+            // console.log('{data:response.data, commentId}: ', { data: response.data, commentId });
+            return { data: response.data, commentId };
+        } catch (error) {
+            console.log('error: ', error);
+            return rejectWithValue({ error: error.message });
+        }
+    }
+);
                                                                                                                                                                                                                                                                                    
 
 

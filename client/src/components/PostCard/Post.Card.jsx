@@ -12,7 +12,7 @@ import { Plus } from "../../assets/svg/Extras";
 
 
 function Post({ post }) {
-  console.log('post: ', post);
+  // console.log('post: ', post);
   const [showComments, setShowComments] = useState(false);
   const [anchor, setAnchor] = useState(null);
   const user = useSelector((state) => state.persistedReducer.user);

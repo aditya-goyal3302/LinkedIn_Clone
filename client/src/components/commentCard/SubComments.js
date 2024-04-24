@@ -33,10 +33,10 @@ function SubComment({ comment }) {
   return (
     <Card className={styles.commentRoot}>
       <CardContent className={styles.comment}>
-        <Avatar className={styles.subCommentAvatar} src={`${process.env.REACT_APP_IMG_BASE_URL}/${comment.user_id.image}` || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
+        <Avatar className={styles.subCommentAvatar} src={`${process.env.REACT_APP_IMG_BASE_URL}/${comment.user_id?.image}` || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
         <Box className={styles.commentsBox}>
           <Box className={styles.commentAction}>
-            <Typography className={styles.commentActionText}>{cal_days(comment.time_stamp || comment.createdAt)}</Typography>
+            <Typography className={styles.commentActionText}>{cal_days(comment?.time_stamp || comment?.createdAt)}</Typography>
             <IconButton className={styles.commentActionBtn} >
               <MoreIcon sx={{ width: "18px" }} />
             </IconButton>
@@ -45,10 +45,10 @@ function SubComment({ comment }) {
             <Box className={styles.commentWraper}>
               <Box className={styles.commentHeader}>
                 <Typography className={styles.commentUserUsername}>
-                  {comment.user_id.first_name ? `${comment.user_id.first_name} ${comment.user_id.last_name}` : "Linekdin User"}
+                  {comment.user_id?.first_name ? `${comment.user_id?.first_name} ${comment.user_id?.last_name}` : "Linekdin User"}
                 </Typography>
                 <Typography className={styles.commentUserHeading}>
-                  {comment.user_id.headline || "Linekdin User Heading"}
+                  {comment.user_id?.headline || "Linekdin User Heading"}
                 </Typography>
               </Box>
               <Box className={styles.commentContent}>
