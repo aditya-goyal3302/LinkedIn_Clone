@@ -12,22 +12,25 @@ import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsAc
 import Container from './Container'
 import AdPanalWithFooter from '../../components/AdPanelWithFooter'
 import { SendIcon } from '../../assets/svg/PostSvg'
-import EditCover from '../../components/EditCover/EditCover'
-import EditProfilePic from '../../components/EditProfilePic/EditProfilePic'
+import EditCover from '../../components/Edit/EditCover/EditCover'
+import EditProfilePic from '../../components/Edit/EditProfilePic/EditProfilePic'
 import { useSelector } from 'react-redux'
+import EditProfileData from '../../components/Edit/EditProfileData/EditProfileData'
 
 const Profile = () => {
     const user = useSelector(state=>state.persistedReducer.user);
     const [openEditCover, setOpenEditCover] = useState(false)
     const [openEditProfilePic, setOpenEditProfilePic] = useState(false)
+    const [openEditProfileData, setOpenEditProfileData] = useState(false)
     const handleOpenEditCover = () => setOpenEditCover(true)
     const handleOpenEditProfilePic = () => setOpenEditProfilePic(true)
+    const handleOpenEditProfileData = () => setOpenEditProfileData(true)
 
     const skills = ['MERN Stack', "Data Structure", "Problem Solving"]
     const loginedUser = true;
     return (
         <Box className={styles.root}>
-            <Navbar page={"1"} />
+            {/* <Navbar page={"1"} /> */}
             <Box className={styles.wraper}>
                 <Box className={styles.main}>
 
@@ -44,7 +47,7 @@ const Profile = () => {
                                     user?.image
                                         ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}`
                                         : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
-                            {loginedUser && <IconButton className={styles.editBtn}></IconButton>}
+                            {/* {loginedUser && <IconButton className={styles.editBtn}></IconButton>} */}
                         </Box>
                         <Box className={styles.contextBox}>
 
@@ -56,7 +59,7 @@ const Profile = () => {
                             <Box className={styles.expBox}>
                                 FS
                             </Box>
-                            {loginedUser && <IconButton className={styles.profileBtn}><EditOutlinedIcon /> </IconButton>}
+                            {loginedUser && <IconButton className={styles.profileBtn} onClick={handleOpenEditProfileData}><EditOutlinedIcon /> </IconButton>}
                             {!loginedUser && <IconButton className={styles.profileBtn}><NotificationsActiveOutlinedIcon /> </IconButton>}
                         </Box>
                         <Typography className={styles.connectionText}>{`80 connections`}</Typography>
@@ -195,6 +198,7 @@ const Profile = () => {
             </Box>
             {openEditCover && <EditCover open={openEditCover} setOpen={setOpenEditCover} />}
             {openEditProfilePic && loginedUser && <EditProfilePic open={openEditProfilePic} setOpen={setOpenEditProfilePic} />}
+            {openEditProfileData && loginedUser && <EditProfileData open={openEditProfileData} setOpen={setOpenEditProfileData} />}
         </Box>
     )
 }

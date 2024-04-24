@@ -12,6 +12,7 @@ import { Plus } from "../../assets/svg/Extras";
 
 
 function Post({ post }) {
+  console.log('post: ', post);
   const [showComments, setShowComments] = useState(false);
   const [anchor, setAnchor] = useState(null);
   const user = useSelector((state) => state.persistedReducer.user);
@@ -68,7 +69,7 @@ function Post({ post }) {
                 <Typography>
                   {post?.user_id?.first_name ? `${post?.user_id?.first_name} ${post?.user_id?.last_name}` : "LinkedIn User"}
                 </Typography>
-                <Typography>{post?.user_id?.heading||"Linkedin User Heading "}</Typography>
+                <Typography>{post?.user_id?.headline||"Linkedin User Heading "}</Typography>
                 <Typography className={styles.timeText}>
                   {cal_days(post.createdAt)} •&nbsp;<Globe />
                 </Typography>

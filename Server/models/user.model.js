@@ -10,11 +10,6 @@ const user_schema = new mongoose.Schema({
     type: String,
     // required: true,
   },
-  username: {
-    type: String,
-    // required: true,
-    // unique: true,
-  },
   image: {
     type: String,
     // required: false,
@@ -36,9 +31,32 @@ const user_schema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  summary: {
+  about: {
     type: String,
     required: false,
+  },
+  city: {
+    type: String,
+    required: false,
+  },
+  country: {
+    type: String,
+    required: false,
+  },
+  phone_number: {
+    type: String,
+    required: false,
+  },
+  fax_number: {
+    type: String,
+    required: false,
+  },
+  current_position: {
+    type: String,
+    required: false,
+  },
+  is_company:{
+    type:Boolean
   },
   experience: {
     type: [

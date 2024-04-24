@@ -24,15 +24,14 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 
-const Navbar = ({setPage,page}) => {
+const Navbar = () => {
   const navigate = useNavigate()
   const user = useSelector((state) => state.persistedReducer.user) || {};
-  const initVal= page || "1"
-  const [navbarSelector, setNavbarSelector] = useState(initVal);
-  // console.log('navbarSelector: ', navbarSelector ==="1");
+  
+  const [navbarSelector, setNavbarSelector] = useState(1);
+
   const handleChange = (event, newValue) => {
     setNavbarSelector(newValue);
-    setPage(newValue)
   };
   return (
     <Box className={styles.root}>
@@ -56,6 +55,9 @@ const Navbar = ({setPage,page}) => {
             <Tab
               className={styles.navBtn}
               value="1"
+              onClick={()=>{
+                navigate('/')
+              }}
               label={
                 <>
                   <HomeSvg />
@@ -72,6 +74,9 @@ const Navbar = ({setPage,page}) => {
             <Tab
               value="2"
               className={styles.navBtn}
+              onClick={()=>{
+                navigate('/my-network')
+              }}
               label={
                 <>
                   <MyNetworkSvg />
@@ -88,6 +93,9 @@ const Navbar = ({setPage,page}) => {
             <Tab
               value="3"
               className={styles.navBtn}
+              onClick={()=>{
+                navigate('/jobs')
+              }}
               label={
                 <>
                   <JobsSvg />
@@ -104,6 +112,9 @@ const Navbar = ({setPage,page}) => {
             <Tab
               value="4"
               className={styles.navBtn}
+              onClick={()=>{
+                navigate('/chat')
+              }}
               label={
                 <>
                   <MessageSvg />
@@ -120,6 +131,9 @@ const Navbar = ({setPage,page}) => {
             <Tab
               value="5"
               className={styles.navBtn}
+              onClick={()=>{
+                navigate('/notifications')
+              }}
               label={
                 <>
                   <NotificationSvg />
@@ -138,7 +152,7 @@ const Navbar = ({setPage,page}) => {
         <Box className={styles.profileBtnWrap}>
           <Avatar
             className={styles.profileBtn}
-            onClick={()=>{navigate("/in")}}
+            onClick={()=>{ setNavbarSelector(0); navigate("/in")}}
             src={
               user?.image
                 ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}`

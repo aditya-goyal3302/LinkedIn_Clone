@@ -3,7 +3,7 @@ const { post_model } = require("../models/index");
 exports.show_posts = () => {
   return post_model.find(null, null, {
     sort: { createdAt: -1 },
-    populate: { path: "user_id", select: "username image first_name last_name" },
+    populate: { path: "user_id", select: "headline image first_name last_name" },
   });
 };
 
@@ -15,7 +15,7 @@ exports.create_posts = async (req) => {
     link,
     user_id: req.body.user.user_id,
   });
-  post.populate({ path: "user_id", select: "username image first_name last_name"})
+  post.populate({ path: "user_id", select: " headline image first_name last_name"})
   return post.save();
 };
 
@@ -34,7 +34,7 @@ exports.show_posts_on_scroll = async (req) => {
   return post_model
     .find({ createdAt: { $lt: time } }, null, {
       sort: { createdAt: -1 },
-      populate: { path: "user_id", select: "username image" },
+      populate: { path: "user_id", select: "headline image first_name last_name" },
       limit: 2,
     });
 };

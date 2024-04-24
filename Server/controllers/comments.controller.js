@@ -59,11 +59,13 @@ exports.update_comment = async (req, res) => {
 
 exports.create_sub_comment = async (req, res) => {
   try {
+    // console.log(' req.body: ',  req.body);
     const { content } = req.body;
-    const { sub_comment_id } = req.params;
-    if (!content || !comment_id) res.status(400).send("Invalid_input");
+    const { comment_id } = req.params;
+    // console.log('comment_id: ', comment_id);
+    if (!content || !comment_id) return res.status(400).send("Invalid_input");
     const response = await comments_service.create_sub_comments(req);
-    if (!response) res.status(404).send("Error_in_creating_sub_comment");
+    if (!response) return res.status(404).send("Error_in_creating_sub_comment");
     res.status(201).send(response);
   } catch (error) {
     console.log("error_in_creating_sub_comment: ", error);
@@ -73,7 +75,7 @@ exports.create_sub_comment = async (req, res) => {
 
 exports.view_sub_comment = async (req, res) => {
   try {
-    const { sub_comment_id } = req.params;
+    const { comment_id } = req.params;
     if (!comment_id) res.status(400).send("Invalid_input");
     const response = await comments_service.view_sub_comments(req);
     res.status(200).send(response);

@@ -77,7 +77,7 @@
         height:14px !important;
         /* width */
         fill: #000000bf !important;
-    
+        margin-left: 10px  !important;
     }
     & input[placeholder], [placeholder], *[placeholder] {
         color: #000000bf !important;

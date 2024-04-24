@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { login } from './Login.Api';
 
 const initialState = {
@@ -7,32 +7,31 @@ const initialState = {
     token: null,
     error: false,
 }
-
 const LoginSlice = createSlice({
     name: "login",
     initialState,
     reducers: {
-        logout: (state)=> {
+        logout: (state) => {
             state.user = null;
             state.token = null;
             state.error = false;
         },
-        reset: (state)=>{
+        reset: (state) => {
             state.error = false;
         },
-        setUser: (state,action)=>{
+        setUser: (state, action) => {
             // console.log(action);
-            state.user = action.payload
+            state.user = { ...state.user, ...action.payload }
         }
     },
-    extraReducers: (builder)=>{
-        builder.addCase(login.pending, (state)=>{
+    extraReducers: (builder) => {
+        builder.addCase(login.pending, (state) => {
             console.log('pending: ');
             state.isLoading = true;
             state.error = null;
             state.user = null;
         })
-        builder.addCase(login.fulfilled, (state, action)=>{
+        builder.addCase(login.fulfilled, (state, action) => {
             console.log('fulfilled: ');
             state.user = null;
             state.token = null;
@@ -41,15 +40,15 @@ const LoginSlice = createSlice({
             state.token = action.payload.token;
             state.error = null;
         })
-        builder.addCase(login.rejected, (state, action)=>{
+        builder.addCase(login.rejected, (state, action) => {
             console.log('rejected: ');
             state.isLoading = false;
-            state.error = {message:action.payload ,status:true};
+            state.error = { message: action.payload, status: true };
             state.user = null;
             state.token = null;
         })
     }
 })
-export const {logout,reset,setUser} = LoginSlice.actions; 
+export const { logout, reset, setUser } = LoginSlice.actions;
 export default LoginSlice.reducer;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

@@ -28,3 +28,12 @@ exports.set_cover_pic = async (req,res)=>{
         res.status(500).send(error)
     }
 }
+exports.update_user_data = async (req,res)=>{
+    try {
+        const resp = await user_service.update_user_data(req)
+        res.status(200).send(resp)
+    } catch (error) {
+        console.log('error_in_profile_pic: ', error);
+        res.status(500).send(error)
+    }
+}

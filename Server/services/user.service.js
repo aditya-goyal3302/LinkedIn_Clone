@@ -20,3 +20,12 @@ exports.set_cover_pic = async (req,res)=>{
     },{upsert:false,new:true})
     return resp
 }
+exports.update_user_data = async (req,res)=>{
+    const {user,data} = req.body
+    console.log('data: ', data);
+    // console.log('user: ', req.body);
+    const resp = await user_model.findOneAndUpdate({_id:user.user_id},{
+        ...data
+    },{upsert:false,new:true})
+    return resp
+}
