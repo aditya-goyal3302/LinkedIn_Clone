@@ -39,10 +39,9 @@ exports.update_comments = async (req) => {
 exports.view_sub_comments = async (req, res) => {
   const { comment_id } = req.params;
   const response = await comments_model
-    .find({ comment_id: comment_id }, {
+    .find({ comment_id: comment_id },{}, {
       populate: { path: "user_id", select: "headline image first_name last_name" },
     })
-
   return response;
 };
 exports.create_sub_comments = async (req) => {

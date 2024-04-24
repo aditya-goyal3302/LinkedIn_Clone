@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <Box className={styles.root}>
       <Box className={styles.navbar}>
-        <Box className={styles.navLogoWrap}>
+        <Box className={styles.navLogoWrap} onClick={()=>{navigate('/')}}>
           <LogoSvg />
         </Box>
         <Box className={styles.navSearchWrap}>

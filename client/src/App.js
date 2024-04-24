@@ -7,7 +7,7 @@ import { CssBaseline } from '@mui/material';
 
 function App() {
   const user = useSelector((state) => state.persistedReducer)
-  const content = useRoutes(route(user.isLogedin))
+  const content = useRoutes(route(user.token?true:false))
   return (
     <>
       <CssBaseline>

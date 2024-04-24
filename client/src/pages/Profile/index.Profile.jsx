@@ -16,16 +16,19 @@ import EditCover from '../../components/Edit/EditCover/EditCover'
 import EditProfilePic from '../../components/Edit/EditProfilePic/EditProfilePic'
 import { useSelector } from 'react-redux'
 import EditProfileData from '../../components/Edit/EditProfileData/EditProfileData'
+import EditAbout from '../../components/Edit/EditAbout/EditAbout'
 
 const Profile = () => {
-    const user = useSelector(state=>state.persistedReducer.user);
+    const user = useSelector(state => state.persistedReducer.user);
     const [openEditCover, setOpenEditCover] = useState(false)
     const [openEditProfilePic, setOpenEditProfilePic] = useState(false)
     const [openEditProfileData, setOpenEditProfileData] = useState(false)
+    const [openEditAbout, setOpenEditAbout] = useState(false)
+    console.log('openEditAbout: ', openEditAbout);
     const handleOpenEditCover = () => setOpenEditCover(true)
     const handleOpenEditProfilePic = () => setOpenEditProfilePic(true)
     const handleOpenEditProfileData = () => setOpenEditProfileData(true)
-
+    const connections = useSelector(state=>state.myConnectionReducer)
     const skills = ['MERN Stack', "Data Structure", "Problem Solving"]
     const loginedUser = true;
     return (
@@ -52,9 +55,9 @@ const Profile = () => {
                         <Box className={styles.contextBox}>
 
                             <Box className={styles.textBox}>
-                                <Typography className={styles.name}>Aditya Goyal</Typography>
-                                <Typography className={styles.heading}>Full-stack Developer at Zenmonk || MERN Stack Developer || Ex-GDSC CUIET Web Team</Typography>
-                                <Typography className={styles.location}>Fatehabad, Haryana, India</Typography>
+                                <Typography className={styles.name}>{user.first_name ? `${user.first_name} ${user.last_name}` : "LinkedIn User"}</Typography>
+                                <Typography className={styles.heading}>{user.headline || "Linkedin User Headline"}</Typography>
+                                <Typography className={styles.location}>{(true) ? `${user.city || ""}${user.city && user.country && ","} ${user.country || ""}` : "Linkedin User Location"}</Typography>
                             </Box>
                             <Box className={styles.expBox}>
                                 FS
@@ -62,7 +65,7 @@ const Profile = () => {
                             {loginedUser && <IconButton className={styles.profileBtn} onClick={handleOpenEditProfileData}><EditOutlinedIcon /> </IconButton>}
                             {!loginedUser && <IconButton className={styles.profileBtn}><NotificationsActiveOutlinedIcon /> </IconButton>}
                         </Box>
-                        <Typography className={styles.connectionText}>{`80 connections`}</Typography>
+                        <Typography className={styles.connectionText}>{`${connections.myConnections.length||"0"} connections`}</Typography>
                         {
                             loginedUser && <Box className={styles.btnsWrapper}>
                                 <Button className={`${styles.btn1} ${styles.btn}`}>
@@ -88,7 +91,7 @@ const Profile = () => {
                         }
                     </Box>
 
-                    <Container title="About" loginedUser={loginedUser}  >
+                    <Container title="About" loginedUser={loginedUser} onEdit={()=>setOpenEditAbout(true)} >
                         <>
                             <ContentBox>
                                 <Typography className={styles.contentText}>
@@ -199,6 +202,7 @@ const Profile = () => {
             {openEditCover && <EditCover open={openEditCover} setOpen={setOpenEditCover} />}
             {openEditProfilePic && loginedUser && <EditProfilePic open={openEditProfilePic} setOpen={setOpenEditProfilePic} />}
             {openEditProfileData && loginedUser && <EditProfileData open={openEditProfileData} setOpen={setOpenEditProfileData} />}
+            {openEditAbout && loginedUser && <EditAbout open={openEditAbout} setOpen={setOpenEditAbout} />}
         </Box>
     )
 }

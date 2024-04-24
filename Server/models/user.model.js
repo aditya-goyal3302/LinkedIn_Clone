@@ -32,7 +32,10 @@ const user_schema = new mongoose.Schema({
     required: false,
   },
   about: {
-    type: String,
+    type: {
+      body:String,
+      skills:[String]
+    },
     required: false,
   },
   city: {

@@ -18,8 +18,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./home.module.css";
 import { fetchFeed } from "../../store/PostSlice/Post.api";
 import CreatePost from "../../components/CreatePost";
+import { useNavigate } from "react-router-dom";
 
 function FeedPage() {
+  const navigate = useNavigate();
   const posts = useSelector((state) => state.Post_reducer.feed);
   const user = useSelector((state) => state.persistedReducer.user) || {};
   const [open, setOpen] = useState(false);
@@ -40,7 +42,7 @@ function FeedPage() {
   const handleScroll = async (e) => {
     if (
       window.innerHeight + Math.ceil(document.documentElement.scrollTop) <=
-        document.documentElement.scrollHeight - 400 ||
+      document.documentElement.scrollHeight - 400 ||
       isLoadingPosts
     ) {
       return;
@@ -52,8 +54,8 @@ function FeedPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isLoadingPosts]);
   return (
-      <Box className={styles.mainBody}>
-        <CreatePost open={open} setOpen={setOpen} user={user} />
+    <Box className={styles.mainBody}>
+      <CreatePost open={open} setOpen={setOpen} user={user} />
       <Box className={styles.leftPanel}>
         <Box className={styles.profile}>
           <Box className={styles.profileCover}>
@@ -63,6 +65,7 @@ function FeedPage() {
               alt="profile cover"
             />
             <Avatar
+              onClick={() => { navigate('/in') }}
               className={styles.profileAvatar}
               src={
                 user?.image
@@ -127,6 +130,7 @@ function FeedPage() {
             <Box className={styles.createPostWrapHead}>
               <Avatar
                 className={styles.createPostAvatar}
+                onClick={() => { navigate('/in') }}
                 src={
                   user?.image
                     ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}`
@@ -157,7 +161,7 @@ function FeedPage() {
                   />
                   &nbsp; Event
                 </Button>
-                <Button className={styles.createPostWrapBodyBtn}>
+                <Button className={styles.createPostWrapBodyBtn} >
                   <NewspaperRoundedIcon
                     sx={{ color: "#e06847", height: "20px" }}
                   />
@@ -168,6 +172,9 @@ function FeedPage() {
           </Box>
         </Box>
         {/* for create post */}
+        <Box className={styles.dividerWrap}> 
+          <Divider/>
+        </Box>
         <Box>
           {posts.map((post) => {
             return <Post key={post._id} post={post} />;

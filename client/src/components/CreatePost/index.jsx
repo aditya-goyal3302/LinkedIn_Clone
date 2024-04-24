@@ -119,7 +119,7 @@ function CreatePost({ open, setOpen}) {
                     />
 
                     <Box className={styles.createPostBtns}>
-                        <Button className={`${styles.aibtn} ${styles.contentImgBtn}`} > <AutoAwesomeIcon sx={{color:'#c37d16', height:"16px"}}/>Rewrite with AI </Button>
+                        <Button className={`${styles.aibtn} ${styles.contentImgBtn}`} > <AutoAwesomeIcon sx={{color:'#c37d16', height:"16px",paddingLeft:"12px"}}/>Rewrite with AI </Button>
                         <input type="file" id="file-picker" multiple onChange={(e) => setFile(e.target.files)} hidden />
                         <Button disabled ={isLoading} onClick={(e) => { e.preventDefault(); document.getElementById("file-picker").click() }} className={styles.contentImgBtn}><PhotoSizeSelectActualRoundedIcon sx={{color:'#00000099', height:"20px"}}/>&nbsp; </Button>
                         <Button className={styles.contentImgBtn}  > <CalendarMonthRoundedIcon sx={{color:'#00000099', height:"20px"}}/>&nbsp; </Button>
