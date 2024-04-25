@@ -94,7 +94,7 @@ function Signup() {
     }
     if(status.status === 'sucessful'){
       setdata({email: "", password: ""});
-      navigate('/login');
+      navigate('/auth/login');
     }
     console.log("status: ", status);
   }, [status]);
@@ -196,7 +196,7 @@ function Signup() {
             <Box className={styles.go_login}>
               <Typography className={styles.sign_up_text}>
                 Already on LinkedIn?{" "}
-                <Link className={styles.sign_up_link} href="/login">
+                <Link className={styles.sign_up_link} href="/auth/login">
                   Sign In
                 </Link>
               </Typography>

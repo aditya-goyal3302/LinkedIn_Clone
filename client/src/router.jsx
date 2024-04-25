@@ -55,7 +55,11 @@ const route = (isLogined) => {
                     children:[
                         {
                             path:'',
-                            element:<Profile/>
+                            element:<Profile loginedUser={true}/>
+                        },
+                        {
+                            path:':user_id',
+                            element:<Profile loginedUser={false}/>
                         }
                     ]
                 }

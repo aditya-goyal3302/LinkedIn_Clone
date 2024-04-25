@@ -74,6 +74,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    & input{
+        width: 80% !important;
+        
+    }
 }
 .postCommentInputField:active{
     border-width: 2px !important;

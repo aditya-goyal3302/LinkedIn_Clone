@@ -28,6 +28,7 @@ exports.get_comment_reactions = async (req) => {
 exports.create_update_comment_reactions = async (req) => {
   const { comment_id } = req.params;
   const { reaction } = req.body;
+  console.log('reaction: ', reaction);
   const { user_id } = req.body.user;
   const updates ={ 
     reaction: reaction || null,

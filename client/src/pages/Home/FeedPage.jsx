@@ -28,6 +28,12 @@ function FeedPage() {
   const isLoadingPosts = useSelector((state) => state.Post_reducer.isLoading);
   const initialized = useRef(false);
   const dispatch = useDispatch();
+  const navigateToProfile=()=>{
+    // if(user._id === user._id)
+      navigate('/in')
+    // else 
+    //   navigate(`/in/${user._id}`)
+  }
   useEffect(() => {
     if (posts.length === 0 && !isLoadingPosts && !initialized.current) {
       initialized.current = true;
@@ -58,15 +64,15 @@ function FeedPage() {
       <CreatePost open={open} setOpen={setOpen} user={user} />
       <Box className={styles.leftPanel}>
         <Box className={styles.profile}>
-          <Box className={styles.profileCover}>
+          <Box className={styles.profileCover} onClick={navigateToProfile}>
             <img
-              src={coverImg}
+              src={user.cover ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.cover}`: coverImg}
               className={styles.coverPhoto}
               alt="profile cover"
             />
             <Avatar
-              onClick={() => { navigate('/in') }}
               className={styles.profileAvatar}
+              
               src={
                 user?.image
                   ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}`
@@ -79,7 +85,7 @@ function FeedPage() {
                 : "LinkedIn User"}
             </Typography>
             <Typography className={styles.profileHeading}>
-              {user?.heading || "LinkedIn User Heading"}
+              {user?.headline || "LinkedIn User Heading"}
             </Typography>
           </Box>
           <Box className={styles.profileCounts}>

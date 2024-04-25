@@ -79,7 +79,11 @@
     font-weight: 400 !important;
     line-height: 20px !important;
     color:#00000099 !important;
-
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .CardAction{
     display: flex !important;
@@ -108,10 +112,19 @@
     height: 32px !important;
     padding: 6px 16px !important;
     text-transform: none !important;
+    & svg{
+        width: 24px !important;
+        height: 24px !important;
+        margin-left: -5px !important;
+        & path{
+            fill: #0a66c2 !important;
+        }
+    }
 }
 .connectBtn:hover{
     background-color: #0a66c220 !important;
     border-width: 2px !important;
+    
 }
 .connectBtn > svg,.PendingBtn > svg{
     height : 20px !important;

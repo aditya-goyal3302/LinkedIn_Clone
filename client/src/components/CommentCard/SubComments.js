@@ -1,14 +1,18 @@
 import { Avatar, Button, ButtonGroup, Card, CardContent, IconButton, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./comment.module.css";
 import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import MoreIcon from '@mui/icons-material/MoreHoriz';
-import { addCommentReaction } from "../../store/ReactionSlice/Reaction.api";
+import { addCommentReaction, fetchCommentsReactions } from "../../store/ReactionSlice/Reaction.api";
 
 function SubComment({ comment }) {
-  console.log('comment: ', comment);
+  // console.log('comment: ', comment);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCommentsReactions(comment._id));
+  }, [dispatch])
+
   const reaction =
     useSelector(
       (state) => state.reactionReducer.reactions?.comment[comment._id]
@@ -33,7 +37,7 @@ function SubComment({ comment }) {
   return (
     <Card className={styles.commentRoot}>
       <CardContent className={styles.comment}>
-        <Avatar className={styles.subCommentAvatar} src={`${process.env.REACT_APP_IMG_BASE_URL}/${comment.user_id?.image}` || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
+        <Avatar className={styles.postSubCommentAvatar} src={`${process.env.REACT_APP_IMG_BASE_URL}/${comment.user_id?.image}` || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
         <Box className={styles.commentsBox}>
           <Box className={styles.commentAction}>
             <Typography className={styles.commentActionText}>{cal_days(comment?.time_stamp || comment?.createdAt)}</Typography>

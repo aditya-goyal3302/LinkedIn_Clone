@@ -78,7 +78,7 @@ const EditProfileData = ({ open, setOpen, }) => {
                 <FormSet title={"Email (Can't be changed from here)"} disabled={true} required={false} tag={'email'} value={value.email} setValue={setValue} />
                 {/* <FormSet title={"Username (Can't be changed from here)"} disabled={true} required={false} tag={'username'} value={value.username} setValue={setValue} /> */}
 
-                <Snackbar open={snackbar} message={snackbar} handleClose={() => setSnackbar(null)} autoHideDuration={1000} />
+                <Snackbar open={snackbar} message={snackbar} onClose={() => setSnackbar(null)} autoHideDuration={1000} />
 
             </Box>
         </CustomModel>

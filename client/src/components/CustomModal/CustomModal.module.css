@@ -9,7 +9,7 @@
     transform: translate(-50%, 0%);
     z-index: 999 !important;
     box-shadow: 24px;
-    border-radius: 12px !important;
+    border-radius: 8px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;

@@ -11,8 +11,10 @@ import peopleImg from '../../assets/images/man.png'
 import styles from './MyNetwork.module.css'
 import React from "react";
 import AdPanalWithFooter from '../../components/AdPanelWithFooter';
+import { useSelector } from 'react-redux';
 
 const SidePanel = () => {
+  const connections = useSelector(state=>state.myConnectionReducer)
   return (
     <>
       <Accordion className={`myNetworkAccordion ${styles.myNetworkAccordion}`}>
@@ -31,7 +33,7 @@ const SidePanel = () => {
               <img alt="" className={styles.menuBtnImg} src={connectionsImg} />
               Connections
             </Typography>
-            <Typography>0</Typography>
+            <Typography>{connections.myConnections.length}</Typography>
           </MenuItem>
           <MenuItem className={styles.menuBtn} >
             <Typography>

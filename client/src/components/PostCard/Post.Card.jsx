@@ -9,9 +9,11 @@ import { fetchPostReactions, addPostReaction } from "../../store/ReactionSlice/R
 import { ReactionBarSelector, ReactionCounter } from '@charkour/react-reactions';
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { Plus } from "../../assets/svg/Extras";
+import { useNavigate } from "react-router-dom";
 
 
 function Post({ post }) {
+  const navigate = useNavigate()
   // console.log('post: ', post);
   const [showComments, setShowComments] = useState(false);
   const [anchor, setAnchor] = useState(null);
@@ -50,6 +52,12 @@ function Post({ post }) {
   };
   const id = Boolean(anchor) ? 'simple-popper' : undefined;
 // console.log("post: ", post);
+const navigateToProfile=()=>{
+  if(post.user_id._id === user._id)
+    navigate('/in')
+  else 
+    navigate(`/in/${post.user_id._id}`)
+}
   return (
     <Card className={styles.main}>
       <CardHeader
@@ -59,6 +67,7 @@ function Post({ post }) {
             <Box className={styles.subpostHeader}>
               <Avatar
                 className={styles.postHeaderAvatar}
+                onClick={navigateToProfile}
                 src={post?.user_id?.image ?
                   `${process.env.REACT_APP_IMG_BASE_URL}/${post?.user_id?.image}` :
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
@@ -66,7 +75,7 @@ function Post({ post }) {
                 alt={post?.user_id?.first_name ||"avatar"}
               />
               <Box className={styles.postHeaderUser}>
-                <Typography>
+                <Typography onClick={navigateToProfile}>
                   {post?.user_id?.first_name ? `${post?.user_id?.first_name} ${post?.user_id?.last_name}` : "LinkedIn User"}
                 </Typography>
                 <Typography>{post?.user_id?.headline||"Linkedin User Heading "}</Typography>

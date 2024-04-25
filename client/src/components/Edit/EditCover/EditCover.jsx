@@ -63,7 +63,7 @@ const EditCover = ({ open, setOpen }) => {
     return (
         <CustomModal open={open} handleClose={handleClose} title={'BackGround Image'} newMode={true} handelSubmit={handelSubmit}>
             <Box className={styles.root}>
-                <Snackbar open={snackbar} message={snackbar} handleClose={() => setSnackbar(null)} autoHideDuration={4500} />
+                <Snackbar open={snackbar} message={snackbar} onClose={() => setSnackbar(null)} autoHideDuration={4500} />
                 <MyDropzone setFiles={setFile} className={styles.dropzone} multiple={false} >
                     <Box className={styles.dropzoneWrap}>
                         <img src={DZicon} alt='img' />

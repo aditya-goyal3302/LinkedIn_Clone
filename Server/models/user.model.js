@@ -120,18 +120,19 @@ const user_schema = new mongoose.Schema({
     default: [],
   },
   skills: {
-    type: [
-      {
-        skill: {
-          type: String,
-          required: true,
-        },
-        time_stamp: {
-          type: Date,
-          default: null,
-        },
-      },
-    ],
+    type: [String],
+    // [
+    //   {
+    //     skill: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     time_stamp: {
+    //       type: Date,
+    //       default: null,
+    //     },
+    //   },
+    // ],
     required: false,
     default: [],
   },

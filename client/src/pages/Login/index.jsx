@@ -196,7 +196,7 @@ function Login() {
         <Box>
           <Typography className={styles.sign_up_text}>
             New to LinkedIn?{" "}
-            <Link className={styles.sign_up_link} href="/signup">
+            <Link className={styles.sign_up_link} href="/auth/signup">
               Join now
             </Link>
           </Typography>

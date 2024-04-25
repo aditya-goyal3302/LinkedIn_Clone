@@ -10,6 +10,16 @@ exports.getAllUsers = async (req, res) => {
     }
 }
 
+exports.getUserData = async (req, res) => {
+    try {
+        const user = await user_service.get_user_data(req)
+        res.status(200).json(user);
+    } catch (error) {
+        console.log('error: ', error);
+        res.status(500).json({ message: error.message });
+    }
+}
+
 exports.set_profile_pic = async (req,res)=>{
     try {
         const resp = await user_service.set_profile_pic(req)

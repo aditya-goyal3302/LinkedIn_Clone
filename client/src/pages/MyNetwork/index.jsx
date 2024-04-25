@@ -32,7 +32,7 @@ function MyNetwork() {
             </Box>
             <Box className={styles.RightPanel}>
                 <Box className={styles.tabPanel} >
-                    <Tabs  value={rightPanalTab} className={styles.tabsBar} onChange={handleChange} indicatorColor="secondary" aria-label="Right panal">
+                    <Tabs value={rightPanalTab} className={styles.tabsBar} onChange={handleChange} indicatorColor="secondary" aria-label="Right panal">
                         <Tab value='1' className={`${styles.tabBtn} ${rightPanalTab ==='1' ? styles.tabBtnActive:""}`} label="Grow" />
                         <Tab value='2' className={`${styles.tabBtn} ${rightPanalTab ==='2' ? styles.tabBtnActive:""}`} label="Catch up" />
                     </Tabs>

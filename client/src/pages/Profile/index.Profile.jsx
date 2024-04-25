@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Avatar, Box, Button, Divider, Icon, IconButton, Typography } from '@mui/material'
 import styles from './Profile.module.css'
 import Navbar from '../../components/Navbar'
@@ -17,20 +17,65 @@ import EditProfilePic from '../../components/Edit/EditProfilePic/EditProfilePic'
 import { useSelector } from 'react-redux'
 import EditProfileData from '../../components/Edit/EditProfileData/EditProfileData'
 import EditAbout from '../../components/Edit/EditAbout/EditAbout'
+import EditSkills from '../../components/Edit/EditSkills/EditSkills'
+import { useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
 
-const Profile = () => {
-    const user = useSelector(state => state.persistedReducer.user);
+const Profile = ({ loginedUser }) => {
+    const navigate = useNavigate()
+    const { user_id } = useParams()
+    // console.log('user_id: ', user_id);
+    const logined_user = useSelector(state => state.persistedReducer)
+    const  [user, setUser] = useState({})
+    const getUser = async() =>{
+        const resp = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/users/${user_id}`,{
+            headers:{
+                Authorization:logined_user.token
+            }
+        })
+        console.log('resp: ', resp);
+        setUser(resp.data)
+    }
+    const sendMessage = async() =>{
+        const resp = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/chats`,{requested_user:user_id},{
+            headers:{
+                Authorization:logined_user.token
+            }
+        })
+        console.log('resp: ', resp);
+        if(resp)
+            navigate('/chat')
+        // setUser(resp.data)
+    }
+    useEffect(()=>{
+        if(user_id === undefined){
+            setUser(logined_user.user)
+        }
+        else if(user_id === logined_user.user._id){
+            navigate('/in')
+            setUser(logined_user.user)
+
+        }
+        else{
+            getUser()
+        }
+    },[])
     const [openEditCover, setOpenEditCover] = useState(false)
     const [openEditProfilePic, setOpenEditProfilePic] = useState(false)
     const [openEditProfileData, setOpenEditProfileData] = useState(false)
     const [openEditAbout, setOpenEditAbout] = useState(false)
-    console.log('openEditAbout: ', openEditAbout);
+    const [openEditSkills, setOpenEditSkills] = useState(false)
+    // console.log('openEditAbout: ', openEditAbout);
     const handleOpenEditCover = () => setOpenEditCover(true)
     const handleOpenEditProfilePic = () => setOpenEditProfilePic(true)
     const handleOpenEditProfileData = () => setOpenEditProfileData(true)
-    const connections = useSelector(state=>state.myConnectionReducer)
+    const connections = useSelector(state => state.myConnectionReducer)
     const skills = ['MERN Stack', "Data Structure", "Problem Solving"]
-    const loginedUser = true;
+    // const loginedUser = true;
+    if (user._id === undefined){
+        return(<Typography sx={{textAlign:"center",
+        fontSize:"28px",fontWeight:"600"}}>Loading...</Typography>)
+    }
     return (
         <Box className={styles.root}>
             {/* <Navbar page={"1"} /> */}
@@ -60,12 +105,12 @@ const Profile = () => {
                                 <Typography className={styles.location}>{(true) ? `${user.city || ""}${user.city && user.country && ","} ${user.country || ""}` : "Linkedin User Location"}</Typography>
                             </Box>
                             <Box className={styles.expBox}>
-                                FS
+
                             </Box>
                             {loginedUser && <IconButton className={styles.profileBtn} onClick={handleOpenEditProfileData}><EditOutlinedIcon /> </IconButton>}
                             {!loginedUser && <IconButton className={styles.profileBtn}><NotificationsActiveOutlinedIcon /> </IconButton>}
                         </Box>
-                        <Typography className={styles.connectionText}>{`${connections.myConnections.length||"0"} connections`}</Typography>
+                        <Typography className={styles.connectionText}>{`${connections.myConnections.length || "0"} connections`}</Typography>
                         {
                             loginedUser && <Box className={styles.btnsWrapper}>
                                 <Button className={`${styles.btn1} ${styles.btn}`}>
@@ -81,7 +126,7 @@ const Profile = () => {
                         }
                         {
                             !loginedUser && <Box className={styles.btnsWrapper}>
-                                <Button className={`${styles.btn1} ${styles.btn}`}>
+                                <Button className={`${styles.btn1} ${styles.btn}`} onClick={sendMessage}>
                                     <SendIcon />  Message
                                 </Button>
                                 <Button className={`${styles.btn3} ${styles.btn}`}>
@@ -91,35 +136,37 @@ const Profile = () => {
                         }
                     </Box>
 
-                    <Container title="About" loginedUser={loginedUser} onEdit={()=>setOpenEditAbout(true)} >
+                    <Container title="About" loginedUser={loginedUser} onEdit={() => setOpenEditAbout(true)} >
                         <>
-                            <ContentBox>
+                            {user.about?.body && <ContentBox>
                                 <Typography className={styles.contentText}>
-                                    As a web developer skilled in the MERN stack, I'm passionate about using technology to create innovative solutions. With experience in merging different technologies, I specialize in developing cutting-edge products. I stay updated on industry trends to remain at the forefront of technological advancements. Let's connect to explore collaboration opportunities in the tech world.
+                                    {/* As a web developer skilled in the MERN stack, I'm passionate about using technology to create innovative solutions. With experience in merging different technologies, I specialize in developing cutting-edge products. I stay updated on industry trends to remain at the forefront of technological advancements. Let's connect to explore collaboration opportunities in the tech world. */}
+                                    {user.about.body}
                                 </Typography>
-                            </ContentBox>
-                            <ContentBox>
-                                <Box className={styles.skillBox}>
-                                    <Icon className={styles.skillIcon} sx={{ justifySelf: "left", alignSelf: "top" }}><DiamondOutlinedIcon /> </Icon>
-                                    <Box className={styles.skillContentWrap}>
-                                        <Typography className={styles.skillContentTitle}>
-                                            Top Skills
-                                        </Typography>
-                                        <Typography className={styles.skillContentContent}>
-                                            {
-                                                skills.map((item, index) => {
-                                                    let text = ''
-                                                    if (index > 0)
-                                                        text += ` • `
-                                                    text += item
-                                                    return `${text} `
-                                                })
-                                            }
-                                        </Typography>
+                            </ContentBox>}
+                            {user.about?.skills?.length > 0 &&
+                                <ContentBox>
+                                    <Box className={styles.skillBox}>
+                                        <Icon className={styles.skillIcon} sx={{ justifySelf: "left", alignSelf: "top" }}><DiamondOutlinedIcon /> </Icon>
+                                        <Box className={styles.skillContentWrap}>
+                                            <Typography className={styles.skillContentTitle}>
+                                                Top Skills
+                                            </Typography>
+                                            <Typography className={styles.skillContentContent}>
+                                                {
+                                                    user.about.skills.map((item, index) => {
+                                                        let text = ''
+                                                        if (index > 0)
+                                                            text += ` • `
+                                                        text += item
+                                                        return `${text} `
+                                                    })
+                                                }
+                                            </Typography>
+                                        </Box>
+                                        <IconButton className={styles.skillIcon}><EastOutlinedIcon /></IconButton>
                                     </Box>
-                                    <IconButton className={styles.skillIcon}><EastOutlinedIcon /></IconButton>
-                                </Box>
-                            </ContentBox>
+                                </ContentBox>}
                         </>
                     </Container>
 
@@ -154,8 +201,18 @@ const Profile = () => {
                         <ContentBox></ContentBox>
                     </Container>
 
-                    <Container title={'Skills'} loginedUser={loginedUser} AddBtn={loginedUser} >
-                        <ContentBox>
+                    <Container title={'Skills'} loginedUser={loginedUser} AddBtn={false} onEdit={() => { setOpenEditSkills(true) }} >
+                        {user?.skills?.length > 0 && user.skills.map((item, index) => {
+                            return <React.Fragment>
+                                <ContentBox>
+                                    <Typography className={styles.skillName}>
+                                        {item}
+                                    </Typography>
+                                </ContentBox>
+                                {index !== user.skills.length-1 && <Divider sx={{ width: "calc(100% - 48px)", margin: "0 24px" }} />}
+                            </React.Fragment>
+                        })}
+                        {/* <ContentBox>
                             <Typography className={styles.skillName}>
                                 MERN Stack
                             </Typography>
@@ -165,12 +222,12 @@ const Profile = () => {
                             <Typography className={styles.skillName}>
                                 MERN Stack
                             </Typography>
-                        </ContentBox>
+                        </ContentBox> */}
                     </Container>
 
                 </Box>
                 <Box className={styles.rightPanel}>
-                    <Box className={styles.editBoxWrap}>
+                    {loginedUser&& <Box className={styles.editBoxWrap}>
                         <Box className={styles.editBox}>
                             <Box className={styles.editTextWrap}>
                                 <Typography className={styles.editTextTitle}>
@@ -195,7 +252,7 @@ const Profile = () => {
                             </Box>
                             <IconButton className={styles.editBoxBtn}><EditOutlined /></IconButton>
                         </Box>
-                    </Box>
+                    </Box>}
                     <AdPanalWithFooter />
                 </Box>
             </Box>
@@ -203,6 +260,7 @@ const Profile = () => {
             {openEditProfilePic && loginedUser && <EditProfilePic open={openEditProfilePic} setOpen={setOpenEditProfilePic} />}
             {openEditProfileData && loginedUser && <EditProfileData open={openEditProfileData} setOpen={setOpenEditProfileData} />}
             {openEditAbout && loginedUser && <EditAbout open={openEditAbout} setOpen={setOpenEditAbout} />}
+            {openEditSkills && loginedUser && <EditSkills open={openEditSkills} setOpen={setOpenEditSkills} />}
         </Box>
     )
 }

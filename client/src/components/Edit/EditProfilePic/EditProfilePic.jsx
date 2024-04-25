@@ -61,7 +61,7 @@ const EditProfilePicture = ({ open, setOpen }) => {
         <CustomModal open={open} handleClose={handleClose} title={'Profile Picture'} newMode={true} handelSubmit={handelSubmit}>
             <Box className={styles.root}>
                 <MyDropzone setFiles={setFile} className={styles.dropzone} multiple={false} >
-                    <Snackbar open={snackbar} message={snackbar} handleClose={() => setSnackbar(null)} autoHideDuration={4500} />
+                    <Snackbar open={snackbar} message={snackbar} onClose={() => setSnackbar(null)} autoHideDuration={4500} />
                     <Box className={styles.dropzoneWrap}>
                         <img src={DZicon} alt='img' />
                         <Typography className={styles.DZtext}>Drop your images here, or browse</Typography>

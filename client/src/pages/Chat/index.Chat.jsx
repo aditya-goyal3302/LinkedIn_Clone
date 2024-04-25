@@ -32,22 +32,22 @@ function Chat() {
       io.emit('join', currentChat.uuid)
   }, [currentChat])
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(".");
-    if(initialized.current === false){
+    if (initialized.current === false) {
       initialized.current = true
-      io.on("receivemessage",(data)=>{
+      io.on("receivemessage", (data) => {
         // console.log(data)
         dispatch(getMessagesSuccess({ roomId: data.chat_room, data }))
       })
       // console.log("cndf")
     }
-    return ()=>{
+    return () => {
       initialized.current = false
       // console.log("off pre");
       io.off("receivemessage")
     }
-  },[io])
+  }, [io])
 
   useEffect(() => {
     if (chatsData.chats.length === 0 && !chatsData.isLoading && loading.current) {
@@ -172,4 +172,3 @@ function Chat() {
 }
 
 export default Chat;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

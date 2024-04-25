@@ -27,9 +27,9 @@ function Comments({ postId, image }) {
     <Box className={styles.root} >
       <Box className={styles.postComment}>
         <Avatar className={styles.postCommentAvatar} src={image ?
-                  `${process.env.REACT_APP_IMG_BASE_URL}/${image}` :
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
-                } alt="avatar" />
+          `${process.env.REACT_APP_IMG_BASE_URL}/${image}` :
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"
+        } alt="avatar" />
         <Box className={styles.postCommentInput}>
           <InputBase
             sx={{ width: "unset" }}
@@ -43,9 +43,10 @@ function Comments({ postId, image }) {
                 <Smiley />
               </Button>
               <Button className={styles.endAdornmentIcon}>
-                <Image/>
+                <Image />
               </Button>
-            </Box>}
+            </Box>
+            }
           />
           {
             newComment
@@ -61,7 +62,7 @@ function Comments({ postId, image }) {
         </Box>
       </Box>
       <Box className={styles.comments}>
-        {comments  &&
+        {comments &&
           comments?.map((comment, index) => (
             <Comment key={index} comment={comment} />
           ))}

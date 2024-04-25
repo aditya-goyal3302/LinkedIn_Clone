@@ -20,8 +20,10 @@ const CustomModal = ({ open, handleClose, title, children, newMode, editMode, ha
                             <CloseIcon />
                         </IconButton>
                     </Box>
-                    
-                    {children}
+                    {/* <Box sx={{width:"100%", height:"100%"}}> */}
+                        {children}
+
+                    {/* </Box> */}
 
                     <Box className={styles.footer}>
                         <Box className={styles.btnWraper}>
