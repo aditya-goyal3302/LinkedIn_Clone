@@ -10,9 +10,9 @@ module.exports = async (server) => {
     })
 
     io.on("connection", (socket) => {
-        // console.log('Socket.io is connected socketId: ', socket.id);
+        console.log('Socket.io is connected socketId: ',socket.id);
         socket.on("disconnect", () => {
-            // console.log('Socket.io is disconnected socketId: ', socket.id);
+            console.log('Socket.io is disconnected socketId: ', socket.id);
         });
         socket.on("join", (roomId) => {
             socket.emit("run",{})
@@ -20,7 +20,7 @@ module.exports = async (server) => {
             socket.join(roomId);
         });
         socket.on('send-message',async (data)=>{
-            console.log('data: ', data);
+            // console.log('data: ', data);
             try {
                 const response = await messages_service.send_message(data)
                 // console.log('response: ', response);
