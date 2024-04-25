@@ -21,12 +21,8 @@ function Chat() {
   const chatsData = useSelector((state) => state.chatsReducer);
   const loading = useRef(true)
   const MessagesData = useSelector((state) => state.messagingReducer);
-  // const [initialLoad, setInitialLoad] = useState(false);
   const initialized = useRef(false)
-  // console.log('MessagesData: ', MessagesData);
-  // console.log('chatsData: ', chatsData.chats);
   const [currentChat, setCurrentChat] = useState({})
-  // console.log('currentChat: ', currentChat);
   useEffect(() => {
     if (currentChat)
       io.emit('join', currentChat.uuid)

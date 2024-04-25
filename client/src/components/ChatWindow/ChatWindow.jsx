@@ -20,6 +20,7 @@ function ChatWindow({ MessagesData, currentChat }) {
     const [newMessage, setNewMessage] = useState('')
     const chatBox = useRef()
     const user = currentChat?.users;
+    console.log('user: ', user);
     const loginedUser = useSelector((state) => state.persistedReducer.user);
     var messages = MessagesData?.messages[currentChat?.uuid] || [];
     // console.log('messages: ', messages);
