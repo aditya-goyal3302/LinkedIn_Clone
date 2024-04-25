@@ -18,7 +18,7 @@ exports.create_comments = async (req) => {
   const resp = await comments_model.findOne({ _id: comment._id },{}, {
     populate: { path: "user_id", select: "headline image first_name last_name" },
   })
-  console.log('resp: ', resp);
+  // console.log('resp: ', resp);
   return resp
 };
 exports.delete_comments = async (req) => {
@@ -46,7 +46,7 @@ exports.view_sub_comments = async (req, res) => {
 };
 exports.create_sub_comments = async (req) => {
   const { content } = req.body;
-  console.log('content: ', content);
+  // console.log('content: ', content);
   const { comment_id } = req.params;
   // console.log('comment_id: ', comment_id);
   const { user_id } = req.body.user;
@@ -61,7 +61,7 @@ exports.create_sub_comments = async (req) => {
   const resp = await comments_model.findOne({ _id: comment._id },{}, {
     populate: { path: "user_id", select: "headline image first_name last_name" },
   })
-  console.log('resp: ', resp);
+  // console.log('resp: ', resp);
   return resp
 };
 //sub-comments_routes

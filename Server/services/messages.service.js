@@ -9,12 +9,12 @@ exports.get_chat_by_room_id = async (req, res) => {
 
 exports.send_message = async (data) => {
     const { chat_room, sender, message } = data;
-    console.log('chat_room, sender, message: ', chat_room, sender, message);
+    // console.log('chat_room, sender, message: ', chat_room, sender, message);
     const newMessage = await messages_model.create({
         chat_room,
         sender,
         message
     });
-    console.log('newMessage: ', newMessage);
+    // console.log('newMessage: ', newMessage);
     return newMessage;  
 }
