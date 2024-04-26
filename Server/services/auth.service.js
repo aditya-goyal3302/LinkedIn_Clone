@@ -1,14 +1,14 @@
 const { user_model } = require('../models/index');
 const { utils } = require('../libs')
 exports.signup = async (req) => {
-  const { email, password } = req.body;
+  const { email, password, first_name, last_name } = req.body;
   const exesting_user = await user_model.findOne({ email: email });
   if (exesting_user) {
     throw Object.assign(new Error("email_already_exists"), { code: 409 });
   }
   const user = new user_model({
-    // first_name,
-    // last_name,
+    first_name,
+    last_name,
     // username,
     email,
     password,

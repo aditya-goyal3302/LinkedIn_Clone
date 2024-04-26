@@ -1,0 +1,138 @@
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+.outerNavbar {
+    width: 100% !important;
+    height: 52px !important;
+    display: flex !important;
+    background-color: white !important;
+    justify-content: center !important;
+}
+
+.innerNavbar {
+    width: 1128px !important;
+    display: flex !important;
+    height: 100% !important;
+    align-items: center !important;
+}
+
+.logo {
+    padding-left: 30px !important;
+    height: 26px !important;
+    width: 102px;
+}
+
+.body {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    height: 50% !important;
+}
+
+.content {
+    width: 320px;
+    height: 480px !important;
+    justify-content: center;
+    padding-top: 48px;
+    flex-direction: column;
+    
+}
+
+.notfound {
+    width: 256px !important;
+    height: 256px !important;
+    padding-top: 16px !important;
+}
+
+
+.maincontainer {
+    height: 100vh !important;
+    background-color: rgb(244, 242, 238);
+}
+.text{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.heading{
+         color: var(--color-text) !important; 
+        font-weight:600;
+        margin: 8px;
+}
+.feedButton{
+    width: 148px !important;
+    height: 32px!important;
+    border-radius: 20px!important;
+    font-size: 14px!important;
+    font-weight: 700!important;
+    text-transform: none !important;
+}
+.button{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.para{
+    margin-top: 8px;
+    margin-bottom: 24px;
+    color: grey;
+    font-size: 16px;   
+}
+.footer{
+   position: absolute;
+   bottom: 0;
+}
+
+.footer {
+    position: relative !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: auto !important;
+    align-items: start !important;
+    justify-items: start !important;
+    flex-wrap: wrap !important;
+}
+
+.footer_text {
+    font-size: 12px !important;
+    color: #00000099 !important;
+    font-weight: 600 !important;
+    line-height: 1.5rem !important;
+    margin: 0 8px !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.footer_text>img {
+    width: 60px !important;
+    height: 16px !important;
+    margin-right: 3px !important;
+
+}
+
+.footer_text:hover {
+    text-decoration: underline !important;
+}
+
+.footer_text:nth-child(1):hover {
+    text-decoration: none !important;
+}
+.helps{
+    margin-top: 16px !important;
+    font-size: 14px !important;
+}
+.helps_link{
+    color: #0a66c2 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}

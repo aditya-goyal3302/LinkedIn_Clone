@@ -33,7 +33,7 @@
 }
 
 .box {
-    width: 352px;
+    width: 400px;
     height: auto;
     margin: 0px auto !important;
     padding: 24px 24px 0px;
@@ -52,7 +52,7 @@
     color: #000000ec !important;
     height: 40px;
     padding: 24px 16px !important;
-
+    height: 87px;
 }
 
 .title2 {
@@ -63,10 +63,15 @@
     font-size: 14px !important;
     margin-top: 0px !important;
 }
-
-.field2{
+.form{
+    width: 100% !important;
+}
+.field1{
     margin-top: 16px !important;
     margin-bottom: 16px !important;
+}
+.field2{
+    width: 100% !important;
 }
 .login_inputs {
     margin: 0 auto !important;
@@ -90,8 +95,9 @@
     font-size: 14px !important;
     /* margin-top: 22px !important; */
     font-weight: 600 !important;
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */
     color:rgba(0, 0, 0, 0.75) !important;
+    margin: 16px 0 4px ;
 }
 
 .login_inputs>div>fieldset {
@@ -154,7 +160,7 @@
     height: auto !important;
     box-shadow: none !important;
     background-color: transparent !important;
-    width: 323.5px !important;
+    width: 100% !important;
     font-size: 16px !important;
     font-weight: 500 !important;
     text-transform: none !important;
@@ -270,6 +276,7 @@
 .helps{
     margin-top: 16px !important;
     font-size: 14px !important;
+    text-align: center !important;
 }
 .helps_link{
     color: #0a66c2 !important;

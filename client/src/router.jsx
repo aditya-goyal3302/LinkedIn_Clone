@@ -8,7 +8,7 @@ import MyNetwork from './pages/MyNetwork';
 import Chat from './pages/Chat/index.Chat';
 import Notification from './pages/Notification/index.Notification'
 import Profile from './pages/Profile/index.Profile';
-
+import NotFound from './pages/NotFound/index';
 
 const route = (isLogined) => {
     const routes = [
@@ -64,6 +64,9 @@ const route = (isLogined) => {
                     ]
                 }
             ]
+        },{
+            path:"*",
+            element:<NotFound/>
         }
     ]
     return routes
