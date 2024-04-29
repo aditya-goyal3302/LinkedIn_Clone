@@ -211,6 +211,9 @@
     color: #0a66c2 !important;
     font-weight: 600 !important;
     text-decoration: none !important;
+    text-transform: none !important;
+    padding: 0 !important;
+    height: auto !important;
 }
 
 .sign_up_link:hover {

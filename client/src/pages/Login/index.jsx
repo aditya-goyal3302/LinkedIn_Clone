@@ -7,6 +7,7 @@ import {
   InputAdornment,
   Fab,
   Divider,
+  Button,
 } from "@mui/material";
 import Logo from "../../assets/svg/logo.js";
 import { Box } from "@mui/system";
@@ -196,9 +197,9 @@ function Login() {
         <Box>
           <Typography className={styles.sign_up_text}>
             New to LinkedIn?{" "}
-            <Link className={styles.sign_up_link} href="/auth/signup">
+            <Button className={styles.sign_up_link} onClick={()=>{navigate('/auth/signup')}}>
               Join now
-            </Link>
+            </Button>
           </Typography>
         </Box>
       </Box>
