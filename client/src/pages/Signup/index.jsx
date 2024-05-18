@@ -10,6 +10,7 @@ import {
   FormLabel,
   FormHelperText,
   InputBase,
+  Button,
 } from "@mui/material";
 import Logo from "../../assets/images/Logo.png";
 import { Box } from "@mui/system";
@@ -203,9 +204,9 @@ function Signup() {
                 <Box className={styles.go_login}>
                   <Typography className={styles.sign_up_text}>
                     Already on LinkedIn?{" "}
-                    <Link className={styles.sign_up_link} href="/auth/login">
+                    <Button className={styles.sign_up_link} onClick={()=>{navigate('/auth/signup')}}>
                       Sign In
-                    </Link>
+                    </Button>
                   </Typography>
                 </Box>
               </Box>
@@ -265,9 +266,9 @@ function Signup() {
                 <Box className={styles.go_login}>
                   <Typography className={styles.sign_up_text}>
                     Already on LinkedIn?{" "}
-                    <Link className={styles.sign_up_link} href="/auth/login">
+                    <Button className={styles.sign_up_link} onClick={()=>{navigate('/auth/signup')}}>
                       Sign In
-                    </Link>
+                    </Button>
                   </Typography>
                 </Box>
               </Box>
