@@ -4,7 +4,6 @@ import axios from "axios";
 const getMessages = createAsyncThunk(
     'Messaging/GetMessages',
     async (payload,{getState,rejectWithValue})=>{
-        // console.log('payload: ', payload);
         try{
             const token = getState().persistedReducer.token;
             const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/chats/${payload}`,{

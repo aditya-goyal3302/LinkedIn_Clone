@@ -45,7 +45,6 @@ function Login() {
 
   function reset_err() {
     if(status.error?.status){
-      // console.log('status.errors: ',status);
       dispatch(reset())
     }
   }
@@ -68,7 +67,6 @@ function Login() {
     if (!error.email && !error.password) {
       await dispatch(login(data));
     }
-    // return;
   };
   useEffect(() => {
     if (status.token) {

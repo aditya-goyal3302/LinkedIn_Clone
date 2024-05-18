@@ -27,14 +27,11 @@ const chatSlice = createSlice({
         })
         builder.addCase(getChats.fulfilled, (state, action) => {
             state.isLoading = false;
-            // state.chats = action.payload.data;
             let chats=[];
             action.payload.data.forEach((chat)=>{
                 chats.push(setUser(chat,action.payload.userId));
             })
             state.chats = chats;
-            // console.log('action.payload: ', action.payload);
-            // console.log('users: ', state.chats);
             console.log('chats: ', chats);
         })
         builder.addCase(getChats.rejected, (state, action) => {
@@ -46,7 +43,6 @@ const chatSlice = createSlice({
 })
 
 const setUser = (data,userId) => {
-    // console.log('data,userId: ', data,userId);
     let selectedUser ;
     data.users.map((user)=>{
         if(user._id !== userId){

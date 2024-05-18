@@ -11,7 +11,6 @@ const EditProfileData = ({ open, setOpen, }) => {
     const state = useSelector(state=>state.persistedReducer)
     const user = state.user
     const [snackbar, setSnackbar] = useState()
-    // console.log('user: ', user);
     const [value, setValue] = useState({
         first_name:user?.first_name||'',
         last_name:user?.last_name||"",
@@ -22,11 +21,8 @@ const EditProfileData = ({ open, setOpen, }) => {
         phone_number:user?.phone_number||"",
         fax_number:user?.fax_number||"",
         email:user?.email||"",
-        // username:user?.username ||"",
-        // summary:user?.summary||""
     })
     const handleClose = () => setOpen(false)
-    // console.log('value: ', value);
 
     const handleSubmit = async () =>{
         if(!value.first_name || !value.last_name || !value.headline ||  !value.city || !value.country){
@@ -36,11 +32,9 @@ const EditProfileData = ({ open, setOpen, }) => {
             try {
                 const resp = await axios.put(`${process.env.REACT_APP_IMG_BASE_URL}/users/`, {data:value}, {
                     headers: {
-                        // "Content-Type": "multipart/form-data",
                         Authorization: state.token
                     }
                 })
-                // console.log('resp: ', resp);
                 dispatch(setUser(resp.data))
                 if (resp) {
                     setSnackbar("Sucessfully Updated Data")

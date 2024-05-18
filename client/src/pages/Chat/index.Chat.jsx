@@ -33,14 +33,11 @@ function Chat() {
     if (initialized.current === false) {
       initialized.current = true
       io.on("receivemessage", (data) => {
-        // console.log(data)
         dispatch(getMessagesSuccess({ roomId: data.chat_room, data }))
       })
-      // console.log("cndf")
     }
     return () => {
       initialized.current = false
-      // console.log("off pre");
       io.off("receivemessage")
     }
   }, [io])
@@ -55,10 +52,7 @@ function Chat() {
         dispatch(getMessages(chat.uuid))
       })
     setCurrentChat(chatsData.chats[0])
-    // return ()=> loading.current = true
   }, [chatsData.chats])
-
-
 
   const [searcAction, setSearcAction] = useState("main");
   return (

@@ -4,7 +4,6 @@ import { addPostReaction, fetchCommentsReactions, fetchPostReactions,addCommentR
 const initialState = {
     reactions: {
         post: {
-            //userId:{}
         },
         comment: {}
     },
@@ -23,7 +22,6 @@ const reactionSlice = createSlice({
                 state.error = null;
             })
             .addCase(fetchPostReactions.fulfilled, (state, action) => {
-                // console.log('action: ', action.payload.data);
                 state.loading = false;
                 let data ={}
                 action.payload.data.data.forEach((item)=>{
@@ -65,13 +63,10 @@ const reactionSlice = createSlice({
             })
 
             .addCase(addPostReaction.pending, (state, action) => {
-                // console.log('addPostReaction.pending: ', );
                 state.loading = true;
                 state.error = null;
             })
             .addCase(addPostReaction.fulfilled, (state, action) => {
-                // console.log('addPostReaction.fulfilled: ', );
-                // console.log('action.payload: ', action.payload.response);
                 state.loading = false;
                 state.reactions={
                     comment:{...state.reactions.comment},
@@ -86,7 +81,6 @@ const reactionSlice = createSlice({
                 if(action.payload.response.data.is_deleted) delete state.reactions.post[action.payload.postId][action.payload.response.data.user_id._id]
             })
             .addCase(addPostReaction.rejected, (state, action) => {
-                // console.log('addPostReaction.rejected: ', );
                 state.loading = false;
                 state.error = action.error;
             })

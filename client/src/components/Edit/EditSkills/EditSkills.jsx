@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Icon, IconButton, InputBase, Snackbar, Typography } from '@mui/material'
+import { Box, IconButton, InputBase, Snackbar, Typography } from '@mui/material'
 import styles from './EditSkills.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
@@ -30,11 +30,9 @@ const EditSkills = ({ open, setOpen }) => {
             try {
                 const resp = await axios.put(`${process.env.REACT_APP_IMG_BASE_URL}/users/`, { data: {skills:value} }, {
                     headers: {
-                        // "Content-Type": "multipart/form-data",
                         Authorization: state.token
                     }
                 })
-                // console.log('resp: ', resp);
                 dispatch(setUser(resp.data))
                 if (resp) {
                     setSnackbar("Sucessfully Updated Data")
@@ -55,35 +53,15 @@ const EditSkills = ({ open, setOpen }) => {
     return (
         <CustomModal title={'Edit About'} open={open} handleClose={handleClose} newMode={true} handelSubmit={handleSubmit} >
             <Box className={styles.root}>
-                {/* <Typography className={styles.label}>
-                    You can write about your years of experience, industry, or skills. People also talk about their achievements or previous job experiences.
-                </Typography>
-                <InputBase
-                    multiline
-                    className={styles.input}
-                    value={value.about.body}
-                    onChange={(e) => {
-                        if (e.target.value.length <= 3000) {
-                            setValue(pre => ({ about: { ...pre.about, body: e.target.value } }))
-                        }
-                    }
-                    }
-                />
-                <Typography className={styles.count}>
-                    {`${value.about.body.length}/3000`}
-                </Typography> */}
-
                 <Typography className={styles.heading}>Skills</Typography>
-                {/* <Typography className={styles.subHeading}>Show your top skills — add up to 5 skills you want to be known for. They’ll also appear in your Skills section.</Typography> */}
                 {value?.length > 0 && value.map((item) => <SkillTile title={item} handleDelete={handleDelete} />)}
 
                 {value?.length < 15 && <InputBase className={styles.inputSkill} placeholder='Enter Skills Here then press Enter' onKeyDown={(e) => {
-                    if (e.keyCode === 13) {
+                    if (e.key === "Enter") {
                         let arr = [...value, e.target.value]
                         setValue(arr)
                         e.target.value = ''
                     }
-                    // console.log('e.target: ', e.keyCode);
                 }} />}
                 {value?.length === 15 && <Typography className={styles.warningMessage}>You’ve reached the 15 skills maximum.</Typography>}
                 <Snackbar open={snackbar} message={snackbar} onClose={() => setSnackbar(null)} autoHideDuration={1000} />

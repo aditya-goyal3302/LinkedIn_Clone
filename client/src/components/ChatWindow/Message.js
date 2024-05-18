@@ -11,7 +11,6 @@ const FullMessage = ({ user, message }) => {
             t = "PM";
         }
         let m = time.getMinutes()
-        // console.log(`${h}:${m} ${t}`);
         return `${h}:${m} ${t}`
 
     }

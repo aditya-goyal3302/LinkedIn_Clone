@@ -6,7 +6,7 @@ import  { Globe, ThumbUpOutlinedIcon, ThumbUpOutlinedIconFilled, CommentOutlined
 import Comments from "../CommentCard/index.card";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostReactions, addPostReaction } from "../../store/ReactionSlice/Reaction.api";
-import { ReactionBarSelector, ReactionCounter } from '@charkour/react-reactions';
+import { ReactionBarSelector } from '@charkour/react-reactions';
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { Plus } from "../../assets/svg/Extras";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 
 function Post({ post }) {
   const navigate = useNavigate()
-  // console.log('post: ', post);
   const [showComments, setShowComments] = useState(false);
   const [anchor, setAnchor] = useState(null);
   const user = useSelector((state) => state.persistedReducer.user);
@@ -51,7 +50,6 @@ function Post({ post }) {
     else dispatch(addPostReaction({ postId: post._id, newReaction: '' }));
   };
   const id = Boolean(anchor) ? 'simple-popper' : undefined;
-// console.log("post: ", post);
 const navigateToProfile=()=>{
   if(post.user_id._id === user._id)
     navigate('/in')

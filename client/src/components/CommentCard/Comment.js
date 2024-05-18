@@ -13,7 +13,6 @@ import { Image, Smiley } from "../../assets/svg/Extras";
 import { createSubComment, fetchSubComments } from "../../store/CommentSlice/Comment.api";
 
 function Comment({ comment }) {
-  // console.log('comment: ', comment);
   const dispatch = useDispatch();
   const [anchor, setAnchor] = useState(null);
   const id = Boolean(anchor) ? 'simple-popper' : undefined;
@@ -23,12 +22,12 @@ function Comment({ comment }) {
 
   useEffect(() => {
     dispatch(fetchCommentsReactions(comment._id));
-  }, [dispatch])
+  }, [dispatch,comment._id])
 
   useEffect(()=>{
     if(replyBox === true)
       dispatch(fetchSubComments(comment._id))
-  },[replyBox])
+  },[replyBox,comment._id])
 
   const reaction =
     useSelector(
@@ -44,7 +43,6 @@ function Comment({ comment }) {
   }
 
   const cal_days = (date) => {
-    // console.log('date: ', date);
     const date1 = new Date(date);
     const date2 = Date.now();
     const diffTime = Math.abs(date2 - date1);

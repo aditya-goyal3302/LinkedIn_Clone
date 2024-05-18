@@ -29,16 +29,12 @@ function FeedPage() {
   const initialized = useRef(false);
   const dispatch = useDispatch();
   const navigateToProfile=()=>{
-    // if(user._id === user._id)
       navigate('/in')
-    // else 
-    //   navigate(`/in/${user._id}`)
   }
   useEffect(() => {
     if (posts.length === 0 && !isLoadingPosts && !initialized.current) {
       initialized.current = true;
       dispatch(fetchFeed({ time: Date.now() }));
-      // console.log('posts: ', "usseeffect called");
     }
   }, [dispatch]);
   const fetchMorePosts = async () => {

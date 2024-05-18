@@ -21,7 +21,6 @@ function UserCard({ user, isConnected }) {
   const handleConnect = () => {
     dispatch(sendConnectionRequest(user._id))
     setPending(true)
-    // console.log('user._id: ', user._id);
   }
   const token = useSelector(state => state.persistedReducer.token)
   const sendMessage = async () => {
@@ -33,9 +32,7 @@ function UserCard({ user, isConnected }) {
     console.log('resp: ', resp);
     if (resp)
       navigate('/chat')
-    // setUser(resp.data)
   }
-  // const 
   if (removed) return null
   return (
     <Card className={styles.root}>

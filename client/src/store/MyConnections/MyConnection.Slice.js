@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchMyConnections, fetchRequests, fetchSuggessions, responseConnectionRequest, acceptConnectionRequest, sendConnectionRequest } from "./MyConnection.Api"
+import { fetchMyConnections, fetchRequests, fetchSuggessions, responseConnectionRequest, sendConnectionRequest } from "./MyConnection.Api"
 
 const initialState = {
     myConnections: [],
@@ -38,7 +38,6 @@ const myConnectionSlice = createSlice({
             console.log('action.payload: ', action.payload.error.response.status);
             if(action.payload.error.response.status === 404) state.requests = [];
             else state.error.fetchRequests = action.payload.error;
-            // state.error = action.payload.error;
         })
         .addCase(fetchSuggessions.pending, (state, action) => {
             state.loading.fetchSuggessions = true;
@@ -56,7 +55,6 @@ const myConnectionSlice = createSlice({
         })
         .addCase(responseConnectionRequest.fulfilled, (state, action) => {
             state.loading.responseConnectionRequest = false;
-            // state.myConnections = action.payload;
         })
         .addCase(responseConnectionRequest.rejected, (state, action) => {
             state.loading.responseConnectionRequest = false;
@@ -67,7 +65,6 @@ const myConnectionSlice = createSlice({
         })  
         .addCase(sendConnectionRequest.fulfilled, (state, action) => {
             state.loading.sendConnectionRequest = false;
-            // state.myConnections = action.payload;
         })
         .addCase(sendConnectionRequest.rejected, (state, action) => {
             state.loading.sendConnectionRequest = false;

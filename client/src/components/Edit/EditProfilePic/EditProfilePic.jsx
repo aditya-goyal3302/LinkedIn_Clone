@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CustomModal from '../../CustomModal/CustomModal'
-import { Box, FormGroup, FormLabel, Snackbar, Typography } from '@mui/material'
+import { Box, Snackbar, Typography } from '@mui/material'
 import DZicon from '../../../assets/svg/DZicon.svg'
 import styles from './EditProfilePic.module.css'
 import { MyDropzone } from '../../Dropzone'
@@ -9,9 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from '../../../store/LoginSlice/Login.Slice'
 
 const EditProfilePicture = ({ open, setOpen }) => {
-    // const handleOpen = () =>setOpen(true)
     const user = useSelector(state => state.persistedReducer)
-    const dispatch  = useDispatch()
+    const dispatch = useDispatch()
     const [file, setFile] = useState([])
     const [snackbar, setSnackbar] = useState()
     useEffect(() => {
@@ -26,11 +25,9 @@ const EditProfilePicture = ({ open, setOpen }) => {
     const handleClose = () => setOpen(false)
 
     const handelSubmit = async () => {
-        if(file.length > 0){
+        if (file.length > 0) {
             const form = new FormData()
-            // console.log(file[0].data)
             form.append('image', file[0].data)
-            // console.log(form.get('image'))
             try {
                 const resp = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/users/profile_pic`, form, {
                     headers: {
@@ -41,14 +38,14 @@ const EditProfilePicture = ({ open, setOpen }) => {
                 dispatch(setUser(resp.data))
                 if (resp) {
                     setSnackbar("Sucessfully Changed Profile Picture")
-                    const timeout = setTimeout(() => {
+                    setTimeout(() => {
                         handleClose()
                     }, 5000)
                 }
             } catch (error) {
                 console.log('error_in_PP_upload: ', error);
                 setSnackbar("Error in Changing Profile Picture")
-                const timeout = setTimeout(() => {
+                setTimeout(() => {
                     handleClose()
                 }, 5000)
             }
@@ -78,4 +75,3 @@ const EditProfilePicture = ({ open, setOpen }) => {
 }
 export default EditProfilePicture
 
-                                                                                                                                                                                                                                                                         

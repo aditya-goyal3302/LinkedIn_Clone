@@ -23,7 +23,6 @@ import {
   LogoSvg,
   SearchSvg,
 } from "../../assets/svg/NavbarSvg";
-// import caretDown from "../../assets/svg/caretDown.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { fetchMyConnections } from "../../store/MyConnections/MyConnection.Api";
@@ -70,7 +69,6 @@ const Navbar = () => {
             value={navbarSelector}
             onChange={handleChange}
             indicatorColor="primary"
-          // textColor="blackTheme"
           >
             <Tab
               className={styles.navBtn}

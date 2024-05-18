@@ -16,19 +16,15 @@ module.exports = async (server) => {
         });
         socket.on("join", (roomId) => {
             socket.emit("run",{})
-            // console.log('roomId: ', roomId);
             socket.join(roomId);
         });
         socket.on('send-message',async (data)=>{
-            // console.log('data: ', data);
             try {
                 const response = await messages_service.send_message(data)
-                // console.log('response: ', response);
                 if (response) {
                     io.to(data.chat_room).emit('receivemessage',response);
                 }
             } catch (error) {
-                // console.log('error: ', error);
                 
             }
 

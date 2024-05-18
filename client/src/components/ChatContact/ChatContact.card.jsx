@@ -5,9 +5,7 @@ import styles from './ChatContact.module.css'
 
 function ChatContact({chat,currentChat, setCurrentChat}) {
     const user = chat.users;
-    // console.log('user: ', user);
     const handleOpenChat = ()=>{
-        // console.log("clicked")
         setCurrentChat(chat)
     }
     return (

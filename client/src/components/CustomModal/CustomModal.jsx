@@ -1,4 +1,4 @@
-import { Box, Button, FormGroup, FormLabel, IconButton, Modal, Typography } from '@mui/material'
+import { Box, Button, IconButton, Modal, Typography } from '@mui/material'
 import React from 'react'
 import styles from './CustomModal.module.css'
 import CloseIcon from '@mui/icons-material/Close';

@@ -4,19 +4,15 @@ const bcrypt = require("bcrypt");
 const user_schema = new mongoose.Schema({
   first_name: {
     type: String,
-    // required: true,
   },
   last_name: {
     type: String,
-    // required: true,
   },
   image: {
     type: String,
-    // required: false,
   },
   cover: {
     type: String,
-    // required: false,
   },
   email: {
     type: String,
@@ -33,8 +29,8 @@ const user_schema = new mongoose.Schema({
   },
   about: {
     type: {
-      body:String,
-      skills:[String]
+      body: String,
+      skills: [String]
     },
     required: false,
   },
@@ -58,8 +54,8 @@ const user_schema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  is_company:{
-    type:Boolean
+  is_company: {
+    type: Boolean
   },
   experience: {
     type: [
@@ -121,31 +117,15 @@ const user_schema = new mongoose.Schema({
   },
   skills: {
     type: [String],
-    // [
-    //   {
-    //     skill: {
-    //       type: String,
-    //       required: true,
-    //     },
-    //     time_stamp: {
-    //       type: Date,
-    //       default: null,
-    //     },
-    //   },
-    // ],
     required: false,
     default: [],
   },
-},{timestamps:true,paranoid:true});
+}, { timestamps: true, paranoid: true });
 
 user_schema.pre("save", async function (next) {
   try {
-    // if (!this.isModified("password")) {
-    //   return next();
-    // }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(this.password, salt);
-    // console.log("hashedPassword: ", hashedPassword);
     this.password = hashedPassword;
     next();
   } catch (error) {

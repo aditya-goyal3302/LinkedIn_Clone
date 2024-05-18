@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Avatar, Box, Button, Divider, Icon, IconButton, Typography } from '@mui/material'
 import styles from './Profile.module.css'
-import Navbar from '../../components/Navbar'
 import coverImg from '../../assets/images/cover_img.webp'
 import ModeEditOutlineRoundedIcon from '@mui/icons-material/ModeEditOutlineRounded';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -24,7 +23,6 @@ import axios from 'axios'
 const Profile = ({ loginedUser }) => {
     const navigate = useNavigate()
     const { user_id } = useParams()
-    // console.log('user_id: ', user_id);
     const logined_user = useSelector(state => state.persistedReducer)
     const  [user, setUser] = useState({})
     const getUser = async() =>{
@@ -45,7 +43,6 @@ const Profile = ({ loginedUser }) => {
         console.log('resp: ', resp);
         if(resp)
             navigate('/chat')
-        // setUser(resp.data)
     }
     useEffect(()=>{
         if(user_id === undefined){
@@ -65,13 +62,10 @@ const Profile = ({ loginedUser }) => {
     const [openEditProfileData, setOpenEditProfileData] = useState(false)
     const [openEditAbout, setOpenEditAbout] = useState(false)
     const [openEditSkills, setOpenEditSkills] = useState(false)
-    // console.log('openEditAbout: ', openEditAbout);
     const handleOpenEditCover = () => setOpenEditCover(true)
     const handleOpenEditProfilePic = () => setOpenEditProfilePic(true)
     const handleOpenEditProfileData = () => setOpenEditProfileData(true)
     const connections = useSelector(state => state.myConnectionReducer)
-    const skills = ['MERN Stack', "Data Structure", "Problem Solving"]
-    // const loginedUser = true;
     if (user._id === undefined){
         return(<Typography sx={{textAlign:"center",
         fontSize:"28px",fontWeight:"600"}}>Loading...</Typography>)
@@ -91,6 +85,7 @@ const Profile = ({ loginedUser }) => {
                         <Box className={styles.avatarWrap}>
                             <Avatar className={styles.avatar}
                                 onClick={handleOpenEditProfilePic}
+                                
                                 src={
                                     user?.image
                                         ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}`

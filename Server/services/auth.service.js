@@ -9,7 +9,6 @@ exports.signup = async (req) => {
   const user = new user_model({
     first_name,
     last_name,
-    // username,
     email,
     password,
   });

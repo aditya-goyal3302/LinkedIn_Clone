@@ -1,5 +1,5 @@
 import { Box } from '@mui/system'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import styles from './ChatWindow.module.css'
 import { Button, IconButton, InputBase, Typography } from '@mui/material'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -10,20 +10,17 @@ import MoreHoriz from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import io from '../../config/Socket';
-import { FullMessage, OnlyMessage } from './Message';
+import { FullMessage } from './Message';
 import { useSelector } from 'react-redux';
 
 
 function ChatWindow({ MessagesData, currentChat }) {
     const [expandedInput, setExpandedInput] = useState(false)
-    // const io = socket();
     const [newMessage, setNewMessage] = useState('')
     const chatBox = useRef()
     const user = currentChat?.users;
-    console.log('user: ', user);
     const loginedUser = useSelector((state) => state.persistedReducer.user);
-    var messages = MessagesData?.messages[currentChat?.uuid] || [];
-    // console.log('messages: ', messages);
+    var messages = useMemo(()=>(MessagesData?.messages[currentChat?.uuid] || []),[MessagesData?.messages[currentChat?.uuid],currentChat?.uuid]);
     const sendMessage = () => {
         if (newMessage.length > 0) {
             const data = {
@@ -59,17 +56,14 @@ function ChatWindow({ MessagesData, currentChat }) {
             {expandedInput === false &&
                 <Box ref={chatBox} className={styles.chats}>
                     {messages.length > 0 && messages.map((message) => {
-                        // console.log(message.sender === user._id , user.user_id, message.sender, user._id, message._id)
-
                         return <FullMessage key={message._id} user={message.sender === user._id ? user : loginedUser} message={message} />
                     })}
 
-                </Box>}{/*to be replaced it by compmonent*/}
+                </Box>}
             <Box className={styles.chatAction}>
                 <Box className={styles.actionInputWrap}>
-                    <InputBase className={styles.chatInput} multiline value={newMessage} onKeyDown={(e) => { if (e.keyCode === 13) { e.preventDefault(); sendMessage(); } }} onChange={(e) => setNewMessage(e.target.value)} />
+                    <InputBase className={styles.chatInput} multiline value={newMessage} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } }} onChange={(e) => setNewMessage(e.target.value)} />
                     <IconButton className={styles.chatBoxExpandBtn} onClick={() => { setExpandedInput((pre) => !pre) }}>{expandedInput === true ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}</IconButton>
-
                 </Box>
                 <Box className={styles.actionBtnsWrap}>
                     <Box className={styles.actionBtns}>

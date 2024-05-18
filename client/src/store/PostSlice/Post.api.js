@@ -12,7 +12,6 @@ export const fetchFeed = createAsyncThunk(
             if (payload?.time) {
                 time = new Date(payload.time)
             }
-            // console.log("state: ", state.persistedReducer.token)
             const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/posts/next/${time}`,
             {
                 headers: {
@@ -20,7 +19,6 @@ export const fetchFeed = createAsyncThunk(
                     Authorization: state.persistedReducer.token
                 }
             });
-            // console.log('response.data : ', response.data );
             return response.data ;
         } catch (error) {
             return rejectWithValue({ error });

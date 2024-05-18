@@ -22,7 +22,6 @@ import { useState } from 'react';
 function CreatePost({ open, setOpen}) {
     const dispatch = useDispatch()
     const [data, setData] = React.useState({})
-    // console.log('data: ', data);
     const [file, setFile] = React.useState(null)
     
     const handleClose = () => {
@@ -30,7 +29,6 @@ function CreatePost({ open, setOpen}) {
     };
     const [isLoading, setIsLoading] = useState(false)
     const user = useSelector((state) => state.persistedReducer.user)
-    // console.log('user: ', user);
     const handleSubmit = async () => {
         console.log(file)
         try {
@@ -62,7 +60,6 @@ function CreatePost({ open, setOpen}) {
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
                 open={open}
-                // height="100%"
                 className={`dialogbox ${styles.dialog}`}
             >
                 {isLoading &&
@@ -73,7 +70,6 @@ function CreatePost({ open, setOpen}) {
                         width="100"
                         color="#4fa94d"
                         ariaLabel="three-circles-loading"
-                        // wrapperStyle={{backgroundColor: "#00000050"}}
                         wrapperClass={styles.loaderWrapper}
                     />
                 </Box>}

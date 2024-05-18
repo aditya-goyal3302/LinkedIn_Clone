@@ -17,13 +17,13 @@ const NotFound = () => {
     <div className={styles.maincontainer}>
       <div className={styles.outerNavbar}>
         <div className={styles.innerNavbar}>
-          <img src={notlogo} className={styles.logo}></img>
+          <img src={notlogo} alt="Logo" className={styles.logo}></img>
         </div>
       </div>
       <div className={styles.body}>
         <div className={styles.content}>
           <div>
-            <img src={notfound} className={styles.notfound}></img>
+            <img src={notfound} alt="Logo" className={styles.notfound}></img>
           </div>
           <div className={styles.text}>
             <h2 className={styles.heading}>This page doesn't exist</h2>

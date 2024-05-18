@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Icon, IconButton, InputBase, Snackbar, Typography } from '@mui/material'
+import { Box, IconButton, InputBase, Snackbar, Typography } from '@mui/material'
 import styles from './EditAbout.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
@@ -30,11 +30,9 @@ const EditAbout = ({ open, setOpen }) => {
       try {
         const resp = await axios.put(`${process.env.REACT_APP_IMG_BASE_URL}/users/`, { data: value }, {
           headers: {
-            // "Content-Type": "multipart/form-data",
             Authorization: state.token
           }
         })
-        // console.log('resp: ', resp);
         dispatch(setUser(resp.data))
         if (resp) {
           setSnackbar("Sucessfully Updated Data")
@@ -78,12 +76,11 @@ const EditAbout = ({ open, setOpen }) => {
         {value.about.skills?.length > 0 && value.about.skills.map((item) => <SkillTile title={item} handleDelete={handleDelete} />)}
 
         {value.about.skills?.length < 5 && <InputBase className={styles.inputSkill} placeholder='Enter Skills Here then press Enter' onKeyDown={(e) => {
-          if (e.keyCode === 13) {
+          if (e.key === "Enter") {
             let arr = [...value.about.skills, e.target.value]
             setValue(pre => ({ about: { ...pre.about, skills: arr } }))
             e.target.value = ''
           }
-          // console.log('e.target: ', e.keyCode);
         }} />}
         {value.about.skills?.length === 5 && <Typography className={styles.warningMessage}>You’ve reached the 5 skills maximum.</Typography>}
         <Snackbar open={snackbar} message={snackbar} onClose={() => setSnackbar(null)} autoHideDuration={1000} />

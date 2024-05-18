@@ -30,7 +30,6 @@ exports.update_posts = async (req) => {
 
 exports.show_posts_on_scroll = async (req) => {
   const time = req.params.time;
-  // console.log('time: ',  Date.now());
   return post_model
     .find({ createdAt: { $lt: time } }, null, {
       sort: { createdAt: -1 },
@@ -42,5 +41,4 @@ exports.show_posts_on_scroll = async (req) => {
 exports.delete_post = async (req) => {
   const { post_id } = req.body;
   return post_model.deleteOne({ _id: post_id, user_id: req.body.user.user_id });
-  // return post_model.deleteOne({ _id: post_id, user_id: req.body.user.user_id });
 };

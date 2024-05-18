@@ -23,7 +23,6 @@ const LoginSlice = createSlice({
             state.error = action.payload;
         },
         setUser: (state, action) => {
-            // console.log(action);
             state.user = { ...state.user, ...action.payload }
         }
     },

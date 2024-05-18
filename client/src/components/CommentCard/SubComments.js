@@ -7,11 +7,10 @@ import MoreIcon from '@mui/icons-material/MoreHoriz';
 import { addCommentReaction, fetchCommentsReactions } from "../../store/ReactionSlice/Reaction.api";
 
 function SubComment({ comment }) {
-  // console.log('comment: ', comment);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCommentsReactions(comment._id));
-  }, [dispatch])
+  }, [dispatch,comment._id])
 
   const reaction =
     useSelector(
@@ -22,7 +21,6 @@ function SubComment({ comment }) {
     reaction[user._id] ? dispatch(addCommentReaction({ commentId: comment._id, newReaction: "" })) : dispatch(addCommentReaction({ commentId: comment._id, newReaction: "like" }));
   }
   const cal_days = (date) => {
-    // console.log('date: ', date);
     const date1 = new Date(date);
     const date2 = Date.now();
     const diffTime = Math.abs(date2 - date1);

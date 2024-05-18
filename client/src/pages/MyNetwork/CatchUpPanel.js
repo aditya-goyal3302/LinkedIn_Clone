@@ -14,8 +14,7 @@ function CatchUpPanel() {
     setMoreBtnAnchorEl(null);
   };
   const [ScreenSize, setScreenSize] = useState(0);
-  //   console.log("ScreenSize: ", ScreenSize);
-  const catchUpPanelBtnsMenu = ["All","Job Changes","Birthdays","Work anniversaries","Education"];
+  const catchUpPanelBtnsMenu = ["All", "Job Changes", "Birthdays", "Work anniversaries", "Education"];
   var catchUpPanelBtnsMenu2 = [];
   const mediaQuery1 = window.matchMedia("(max-width: 1250px)");
   const mediaQuery2 = window.matchMedia("(max-width: 1030px)");
@@ -23,7 +22,6 @@ function CatchUpPanel() {
   const changeScreenSize = () => {
     handleClose();
     catchUpPanelBtnsMenu2 = [];
-    //   console.log('catchUpPanelBtnsMenu2: ', catchUpPanelBtnsMenu2);
     if (mediaQuery2.matches) {
       setScreenSize(3);
     } else if (mediaQuery1.matches) {
@@ -47,9 +45,8 @@ function CatchUpPanel() {
             return (
               <Button
                 key={index}
-                className={`${styles.optionBtn} ${
-                  catchUpType === btn ? styles.optionBtnActive : ""
-                }`}
+                className={`${styles.optionBtn} ${catchUpType === btn ? styles.optionBtnActive : ""
+                  }`}
                 onClick={() => {
                   setCatchUpType(btn);
                 }}
@@ -78,9 +75,8 @@ function CatchUpPanel() {
             return (
               <Button
                 key={index}
-                className={`${styles.optionBtn} ${
-                  catchUpType === btn ? styles.optionBtnActive : ""
-                }`}
+                className={`${styles.optionBtn} ${catchUpType === btn ? styles.optionBtnActive : ""
+                  }`}
                 onClick={() => {
                   setCatchUpType(btn);
                 }}
@@ -113,9 +109,8 @@ function CatchUpPanel() {
             return (
               <Button
                 key={index}
-                className={`${styles.optionBtn} ${
-                  catchUpType === btn ? styles.optionBtnActive : ""
-                }`}
+                className={`${styles.optionBtn} ${catchUpType === btn ? styles.optionBtnActive : ""
+                  }`}
                 onClick={() => {
                   setCatchUpType(btn);
                 }}

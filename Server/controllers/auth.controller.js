@@ -6,7 +6,6 @@ exports.signup = async (req, res) => {
     if (
         // !first_name ||
         // !last_name ||
-        // !username ||
         !email ||
         !password
     ) {

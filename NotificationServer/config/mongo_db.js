@@ -6,7 +6,6 @@ const connectDB = async() => {
         mongoose.connection
         .on('error', (err) => {
             console.log('Mongoose connecting error !!!!', err);
-            // throw new Error(err);
         })
         .on('reconnected', () => {
             console.log('Mongoose is reconnected!!!!');
@@ -34,9 +33,6 @@ const connectDB = async() => {
         
     } catch (err) {
         console.log(`Error_in_db: ${err.message}`);
-        // process.exit(1);
     }
 }
-// connectDB();
-// exports db
 module.exports = { connectDB };

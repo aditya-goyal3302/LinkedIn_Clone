@@ -69,7 +69,6 @@ export const fetchSubComments = createAsyncThunk(
                     Authorization: token,
                 },
             })
-            // console.log('{data:response.data, commentId}: ', { data: response.data, commentId });
             return { data: response.data, commentId };
         } catch (error) {
             console.log('error: ', error);

@@ -22,7 +22,6 @@ const verify_file = async (tfile) => {
     }
 }
 const Upload = async (file,randomString) => {
-    // console.log("file in upload")
     try {
         if (verify_file(file)) {
             AWS.config.update({
@@ -64,7 +63,6 @@ const Upload = async (file,randomString) => {
     catch (err) {
         console.error(err);
     }
-    // console.log("file in upload", file)   
 }
 let Uploader = (files) => {
     let urls = [];

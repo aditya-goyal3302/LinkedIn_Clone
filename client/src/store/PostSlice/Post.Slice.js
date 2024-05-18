@@ -40,6 +40,4 @@ const PostSlice = createSlice({
   }
 });
 
-// export const {} = FeepSlice.actions
-
 export default PostSlice.reducer

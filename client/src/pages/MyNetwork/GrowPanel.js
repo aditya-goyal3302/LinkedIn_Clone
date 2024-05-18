@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './MyNetwork.module.css'
 import { Box } from '@mui/system'
 import { Button, Typography } from '@mui/material'

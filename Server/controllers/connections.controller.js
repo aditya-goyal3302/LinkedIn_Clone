@@ -13,7 +13,6 @@ exports.get_connections_for_user = async (req, res) => {
 exports.create_connection = async (req, res) => {
     try {
         const response = await connections_service.create_connection(req);
-        // console.log('response: ', response);
         res.status(201).send(response);
     } catch (error) {
         console.log('error_in_create_connection: ', error);
@@ -26,7 +25,6 @@ exports.create_connection = async (req, res) => {
 exports.set_connections = async (req, res) => {
     try {
         const response = await connections_service.set_connections(req);
-        // console.log('response: ', response);
         if (response)res.status(200).send(response);
         else res.status(404).send({ error: "No pending Connection Request found" });
     } catch (error) {

@@ -12,9 +12,7 @@ const socket = io.connect(process.env.REACT_APP_NOTIFICATION_BASE_URL);
 const Notification = () => {
     const user = useSelector((state)=>state.persistedReducer)
     const [notifications, setNotifications] = useState([])
-    console.log('notifications: ', notifications);
-    // console.log('user_id: ', user_id);
-    
+    console.log('notifications: ', notifications);    
     const getData = async ()=>{
         return await axios.get(`${process.env.REACT_APP_NOTIFICATION_BASE_URL}/api/notifications`,{
             headers:{
@@ -25,7 +23,7 @@ const Notification = () => {
     }
     
     
-  useEffect(async()=>{
+  useEffect(()=>async()=>{
     let resp = await getData()
     setNotifications(resp.data)
 

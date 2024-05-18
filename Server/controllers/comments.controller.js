@@ -59,10 +59,8 @@ exports.update_comment = async (req, res) => {
 
 exports.create_sub_comment = async (req, res) => {
   try {
-    // console.log(' req.body: ',  req.body);
     const { content } = req.body;
     const { comment_id } = req.params;
-    // console.log('comment_id: ', comment_id);
     if (!content || !comment_id) return res.status(400).send("Invalid_input");
     const response = await comments_service.create_sub_comments(req);
     if (!response) return res.status(404).send("Error_in_creating_sub_comment");

@@ -65,7 +65,6 @@ function Signup() {
 
   function reset_err() {
     if (status.error?.status) {
-      // console.log('status.errors: ',status);
       dispatch(reset())
     }
   }
@@ -142,7 +141,6 @@ function Signup() {
                       value={data.password}
                       onChange={(e) => {
                         setdata({ ...data, password: e.target.value });
-                        // console.log(e.target.value) 
                         check_password(e.target.value);
                         reset_err();
                       }}

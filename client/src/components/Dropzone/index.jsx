@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 
@@ -25,10 +25,9 @@ export const MyDropzone = (props) => {
     })
     setTimeout(() => {
       setFiles(UpdatedFiles)
-      // console.log('UpdatedFiles: ', UpdatedFiles);
     }, 100);
 
-  }, [])
+  },[])
   const { getRootProps, getInputProps } = useDropzone({ onDrop, multiple:multiple})
 
   return (

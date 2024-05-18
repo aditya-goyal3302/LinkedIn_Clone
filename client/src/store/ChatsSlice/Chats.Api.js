@@ -25,7 +25,6 @@ const getChats = createAsyncThunk(
     async (payload,{getState,rejectWithValue})=>{
         try{
             const user = getState().persistedReducer;
-            // console.log('user: ', user);
             const response = await axios.get(`${process.env.REACT_APP_IMG_BASE_URL}/chats`,{
                 headers: {
                     "Content-Type": "application/json",

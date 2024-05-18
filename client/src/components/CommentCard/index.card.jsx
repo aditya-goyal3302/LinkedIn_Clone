@@ -6,14 +6,12 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createComment, fetchComments } from '../../store/CommentSlice/Comment.api'
 import Comment from './Comment'
-// import PhotoSizeSelectActualRoundedIcon from '@mui/icons-material/PhotoSizeSelectActualRounded'
 import { Image, Smiley } from '../../assets/svg/Extras'
 
 function Comments({ postId, image }) {
   const [newComment, setNewComment] = useState("")
   const dispatch = useDispatch()
   const comments = useSelector((state) => state.commentReducer.content[postId]) || []
-  // console.log("comments: ", comments)
   useEffect(() => {
     dispatch(fetchComments(postId))
   }, [dispatch, postId])

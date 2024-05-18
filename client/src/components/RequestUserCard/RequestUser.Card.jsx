@@ -27,10 +27,8 @@ function RequestUser({ request }) {
         else return `${Math.floor(days / 365)}y`;
     }
     const handleAccept = async () => {
-        // console.log(request._id,request.requested_by._id);
         setState(1)
         const response = await dispatch(responseConnectionRequest({ id: request._id, requested_by: request.requested_by._id, status: 'accepted' }))
-        // console.log('response: ', response);
         if (response.payload.status === 'accepted') {
             setState(2)
             setTimeout(() => {
