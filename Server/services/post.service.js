@@ -8,11 +8,12 @@ exports.show_posts = () => {
 };
 
 exports.create_posts = async (req) => {
-  const { title, content, link } = req.body;
+  const { title, content } = req.body;
+  const link = req.files.link[0].location.split("/")
   const post = new post_model({
     title,
     content,
-    link,
+    link:`uploads/images/${link[link.length-1]}`,
     user_id: req.body.user.user_id,
   });
   post.populate({ path: "user_id", select: " headline image first_name last_name"})

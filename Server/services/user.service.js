@@ -8,18 +8,18 @@ exports.get_user_data = async (req)=>{
 }
 exports.set_profile_pic = async (req,res)=>{
     const {user} = req.body
-    const file = req.files.image[0].path
+    const link = req.files.image[0].location.split("/")
     const resp = await user_model.findOneAndUpdate({_id:user.user_id},{
-        image:file
+        image:`uploads/images/${link[link.length-1]}`
     },{upsert:false,new:true})
     resp.password = undefined
     return resp
 }
 exports.set_cover_pic = async (req,res)=>{
     const {user} = req.body
-    const file = req.files.image[0].path
+    const link = req.files.image[0].location.split("/")
     const resp = await user_model.findOneAndUpdate({_id:user.user_id},{
-        cover:file
+        cover:`uploads/images/${link[link.length-1]}`
     },{upsert:false,new:true})
     resp.password = undefined
     return resp
