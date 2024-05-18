@@ -43,6 +43,10 @@ function CreatePost({ open, setOpen}) {
             }
             const res = await dispatch(createPost(formData))
             console.log(res)
+            if(res?.payload?.error?.response?.data ==="File size Error"){
+                console.log('res?.payload?.error?.response?.data: ', res?.payload?.error?.response?.data);
+                throw Error(res.payload.error.response.data)
+            }
             setData({})
             setFile(null)
             setOpen(false)
