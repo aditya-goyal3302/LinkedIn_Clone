@@ -242,7 +242,7 @@ const Profile = ({ loginedUser }) => {
                                     Public profile & URL
                                 </Typography>
                                 <Typography className={styles.editTextValue}>
-                                    www.linkedin.com/in/aditya-goyal-b469869a
+                                    {`clone-agdoie.netlify.app/in/${user_id || logined_user.id}`}
                                 </Typography>
                             </Box>
                             <IconButton className={styles.editBoxBtn}><EditOutlined /></IconButton>

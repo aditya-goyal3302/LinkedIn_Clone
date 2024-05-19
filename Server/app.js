@@ -32,7 +32,7 @@ app.use(express.static("public"));
 app.use("/uploads/images/:FileName",
   proxy(`https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/`,
     {
-      proxyReqPathResolver: (req) => `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${req.params.FileName.replace(" ", "+")}`
+      proxyReqPathResolver: (req) =>{console.log(req.params.FileName.replace(" ","+")); return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${req.params.FileName.replace(" ", "+")}`}
     }
   )
 );
