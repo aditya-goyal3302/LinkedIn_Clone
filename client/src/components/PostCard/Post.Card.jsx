@@ -92,7 +92,7 @@ const navigateToProfile=()=>{
         <Box className={styles.postBody}>
           <Typography className={styles.postTitle}>{post?.title}</Typography>
           <pre>{post?.content}</pre>
-          {post?.link && (
+          {post?.link?.length && (
             <img
               src={`${process.env.REACT_APP_IMG_BASE_URL}/${post.link[0]}`}
               alt="postImg"

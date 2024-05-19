@@ -9,14 +9,17 @@ exports.show_posts = () => {
 
 exports.create_posts = async (req) => {
   const { title, content } = req.body;
-  const link = req.files.link[0].location.split("/")
+  const link = req.files.link.map((file) => {
+    let fileName= file.location.split("/")
+    return `uploads/images/${fileName[fileName.length-1]}`
+  })
   const post = new post_model({
     title,
     content,
-    link:`uploads/images/${link[link.length-1]}`,
+    link,
     user_id: req.body.user.user_id,
   });
-  post.populate({ path: "user_id", select: " headline image first_name last_name"})
+  post.populate({ path: "user_id", select: " headline image first_name last_name" })
   return post.save();
 };
 

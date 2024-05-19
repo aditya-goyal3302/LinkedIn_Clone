@@ -9,6 +9,7 @@ exports.get_user_data = async (req)=>{
 exports.set_profile_pic = async (req,res)=>{
     const {user} = req.body
     const link = req.files.image[0].location.split("/")
+    console.log(`uploads/images/${link[link.length-1]}`);
     const resp = await user_model.findOneAndUpdate({_id:user.user_id},{
         image:`uploads/images/${link[link.length-1]}`
     },{upsert:false,new:true})

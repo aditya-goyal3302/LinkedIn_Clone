@@ -20,12 +20,12 @@ const s3 = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_KEY,
   }
 })
-global.s3 = s3
+
 const aws_storage = multerS3({
   s3: s3,
   bucket: process.env.AWS_BUCKET_NAME,
   key: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, Date.now() + "-" + file.originalname.trim());
   }
 })
 
@@ -51,3 +51,4 @@ const upload = multer({
 })
 
 exports.upload = upload;
+exports.S3 = s3
