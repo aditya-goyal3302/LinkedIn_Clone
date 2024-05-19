@@ -11,7 +11,7 @@ function ChatContact({chat,currentChat, setCurrentChat}) {
     return (
         <Card className={styles.root} onClick={handleOpenChat} >
             <Box className={styles.contactBoxImg}>
-                <Avatar className={styles.Avatar} alt="Remy Sharp" src={user?.image ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
+                <Avatar className={styles.Avatar} alt={user.first_name||"LInkedIn"} src={user?.image ? `${process.env.REACT_APP_IMG_BASE_URL}/${user.image}` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbi0Cq6ANBTGJwu8uGYunx3XKWJJW38NECclo4Iidgg&s"} />
             </Box>
             <Box className={styles.contactBoxName}>
                 <Box className={styles.contactNameWraper}>

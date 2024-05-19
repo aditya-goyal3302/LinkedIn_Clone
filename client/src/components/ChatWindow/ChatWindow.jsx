@@ -12,9 +12,11 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import io from '../../config/Socket';
 import { FullMessage, OnlyMessage } from './Message';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 
 function ChatWindow({ MessagesData, currentChat }) {
+    const navigate = useNavigate()
     const [expandedInput, setExpandedInput] = useState(false)
     const [newMessage, setNewMessage] = useState('')
     const chatBox = useRef()
@@ -43,7 +45,7 @@ function ChatWindow({ MessagesData, currentChat }) {
     return (
         <Box className={styles.chatBox}>
             <Box className={styles.chatHeader}>
-                <Box className={styles.chatUser}>
+                <Box className={styles.chatUser} onClick={() => { navigate(`/in/${user._id}`) }} >
                     <Typography className={styles.chatUserName}>{user?.first_name ? `${user?.first_name} ${user?.last_name}` : user?.username || "LinkedIn User"}</Typography>
                     <Typography className={styles.chatUserHeading}>{user?.headline || "Heading "}</Typography>
                 </Box>
