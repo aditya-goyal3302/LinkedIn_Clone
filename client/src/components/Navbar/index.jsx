@@ -24,10 +24,11 @@ import {
   SearchSvg,
 } from "../../assets/svg/NavbarSvg";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { fetchMyConnections } from "../../store/MyConnections/MyConnection.Api";
-import {logout} from '../../store/LoginSlice/Login.Slice'
+import { logout } from '../../store/LoginSlice/Login.Slice'
 const Navbar = () => {
+  const location = useLocation();
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const user = useSelector((state) => state.persistedReducer.user) || {};
@@ -39,9 +40,20 @@ const Navbar = () => {
   const handleChange = (event, newValue) => {
     setNavbarSelector(newValue);
   };
+  useEffect(() => {
+    if (location.pathname == '/')
+      setNavbarSelector('1')
+    else if (location.pathname == "/my-network")
+      setNavbarSelector('2')
+    else if (location.pathname == "/jobs")
+      setNavbarSelector('3')
+    else if (location.pathname == "/chat")
+      setNavbarSelector('4')
+    else if (location.pathname == "/notifications")
+      setNavbarSelector('5')
+  }, [location])
 
-
-  const [profileBtn, setProfileBtn] = React.useState(null);
+  const [profileBtn, setProfileBtn] = useState(null);
   const open = Boolean(profileBtn);
   const handleClick = (event) => {
     setProfileBtn(event.currentTarget);
@@ -49,7 +61,7 @@ const Navbar = () => {
   const handleClose = () => {
     setProfileBtn(null);
   };
-  const handleLogout = () =>{
+  const handleLogout = () => {
     dispatch(logout())
   }
   return (
@@ -201,10 +213,10 @@ const Navbar = () => {
               </Box>
             </Box>
             <Box className={styles.profileMenuBtnWrap}>
-                <Button className={styles.profileMenuBtn} onClick={()=>{navigate('/in')}} >View Profile</Button>
+              <Button className={styles.profileMenuBtn} onClick={() => { navigate('/in') }} >View Profile</Button>
             </Box>
           </MenuItem>
-          <MenuItem onClick={handleLogout} sx={{margin:"4px 0px", padding:"4px 12px", color:"#00000099",fontSize:"14px"}}>Logout</MenuItem>
+          <MenuItem onClick={handleLogout} sx={{ margin: "4px 0px", padding: "4px 12px", color: "#00000099", fontSize: "14px" }}>Logout</MenuItem>
         </Menu>
         <Divider orientation="vertical" flexItem />
         <Box className={styles.businessBtnWrap}>

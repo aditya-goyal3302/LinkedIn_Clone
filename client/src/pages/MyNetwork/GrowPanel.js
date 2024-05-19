@@ -44,10 +44,7 @@ function GrowPanel({ myConnections }) {
                     <Button className={`${styles.titleBtn} ${styles.titlebtn2}`} onClick={setSnackBarError}>See all</Button>
                 </Box>
                 <Box className={styles.suggessionPanelBody}>
-                    {myConnections.myConnections?.map((suggession, key) => {
-                        console.log('suggession: ', suggession);
-                        return <UserCard user={suggession.requested_by._id === user._id ? suggession.sent_to:suggession.requested_by} key={key} isConnected={true} />
-                    })}
+                    {myConnections.myConnections?.map((suggession, key) => <UserCard user={suggession.requested_by._id === user._id ? suggession.sent_to:suggession.requested_by} key={key} isConnected={true} />)}
                 </Box>
             </Box>
         </>

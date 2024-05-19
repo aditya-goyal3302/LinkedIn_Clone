@@ -5,19 +5,12 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const http = require("http");
-var proxy = require('express-http-proxy');
 const { multer: { upload } } = require("./middlewares");
-const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
 const { MulterError } = require("multer");
 const server = http.createServer(app);
 app.use(cors());
-const S3 = new S3Client({
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-  }
-})
+const re = new RegExp(" ","g");  
+var proxy = require('express-http-proxy');
 
 //Socket connection
 const { socket } = require("./config").socket(server);
@@ -32,7 +25,7 @@ app.use(express.static("public"));
 app.use("/uploads/images/:FileName",
   proxy(`https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/`,
     {
-      proxyReqPathResolver: (req) =>{console.log(req.params.FileName.replace(" ","+")); return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${req.params.FileName.replace(" ", "+")}`}
+      proxyReqPathResolver: (req) =>{return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${req.params.FileName.replace(re,"+")}`}
     }
   )
 );
@@ -43,7 +36,7 @@ require("./config/mongo_db").connectDB();
 //routes
 app.use("/", require("./routes"));
 //server
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.log('err: ', err);
   if (err instanceof MulterError)
     res.status(400).send("File size Error")

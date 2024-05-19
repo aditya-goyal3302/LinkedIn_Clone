@@ -10,7 +10,7 @@ import MoreHoriz from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import io from '../../config/Socket';
-import { FullMessage } from './Message';
+import { FullMessage, OnlyMessage } from './Message';
 import { useSelector } from 'react-redux';
 
 
@@ -20,7 +20,7 @@ function ChatWindow({ MessagesData, currentChat }) {
     const chatBox = useRef()
     const user = currentChat?.users;
     const loginedUser = useSelector((state) => state.persistedReducer.user);
-    var messages = useMemo(()=>(MessagesData?.messages[currentChat?.uuid] || []),[MessagesData?.messages[currentChat?.uuid],currentChat?.uuid]);
+    var messages = useMemo(() => (MessagesData?.messages[currentChat?.uuid] || []), [MessagesData?.messages[currentChat?.uuid], currentChat?.uuid]);
     const sendMessage = () => {
         if (newMessage.length > 0) {
             const data = {
@@ -55,8 +55,17 @@ function ChatWindow({ MessagesData, currentChat }) {
             </Box>
             {expandedInput === false &&
                 <Box ref={chatBox} className={styles.chats}>
-                    {messages.length > 0 && messages.map((message) => {
-                        return <FullMessage key={message._id} user={message.sender === user._id ? user : loginedUser} message={message} />
+                    {messages.length > 0 && messages.map((message, index) => {
+                        if (index > 0) {
+                            const t1 = new Date(messages[index - 1].createdAt)
+                            const t2 = new Date(message.createdAt)
+                            if (t1.getMinutes() === t2.getMinutes() && t1.getHours() === t2.getHours() && t1.getDate() === t2.getDate())
+                                return <OnlyMessage key={message._id} user={message.sender === user._id ? user : loginedUser} message={message} />
+                            else
+                                return <FullMessage key={message._id} user={message.sender === user._id ? user : loginedUser} message={message} />
+                        }
+                        else
+                            return <FullMessage key={message._id} user={message.sender === user._id ? user : loginedUser} message={message} />
                     })}
 
                 </Box>}
