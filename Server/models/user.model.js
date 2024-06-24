@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const user_schema = new mongoose.Schema({
   first_name: {
     type: String,
+    required: true,
   },
   last_name: {
     type: String,
@@ -17,7 +18,7 @@ const user_schema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   password: {
     type: String,
@@ -31,8 +32,22 @@ const user_schema = new mongoose.Schema({
     type: {
       body: String,
       skills: [String]
+    }||{
+      website:String,
+      phone:String,
+      industry:String,
+      company_size:{
+        type:{
+          min:Number,
+          max:Number,
+        }
+      },
+      headquaters:String,
+      Founded:Number,
+      spatialities:String
     },
     required: false,
+    default:null
   },
   city: {
     type: String,
@@ -55,7 +70,8 @@ const user_schema = new mongoose.Schema({
     required: false,
   },
   is_company: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
   experience: {
     type: [
@@ -120,6 +136,11 @@ const user_schema = new mongoose.Schema({
     required: false,
     default: [],
   },
+  business_info:{
+    type:{
+             
+    }
+  }
 }, { timestamps: true, paranoid: true });
 
 user_schema.pre("save", async function (next) {

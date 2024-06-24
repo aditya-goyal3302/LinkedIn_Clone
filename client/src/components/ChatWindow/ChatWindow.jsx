@@ -58,7 +58,7 @@ function ChatWindow({ MessagesData, currentChat }) {
             {expandedInput === false &&
                 <Box ref={chatBox} className={styles.chats}>
                     {messages.length > 0 && messages.map((message, index) => {
-                        if (index > 0) {
+                        if (index > 0 && message.sender === messages[index-1].sender) {
                             const t1 = new Date(messages[index - 1].createdAt)
                             const t2 = new Date(message.createdAt)
                             if (t1.getMinutes() === t2.getMinutes() && t1.getHours() === t2.getHours() && t1.getDate() === t2.getDate())

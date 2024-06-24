@@ -12,5 +12,6 @@ router.use("/reactions", require("./reactions.routes"));
 router.use("/connections", require("./connections.routes"));
 router.use('/users', require('./users.routes'));
 router.use('/chats', require('./chat.routes'));
+router.use('/company', require('./company.routes'));
 
 module.exports = router;

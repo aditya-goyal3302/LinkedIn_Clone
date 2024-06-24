@@ -7,4 +7,5 @@ module.exports = {
   connections_controller: require("./connections.controller"),
   messages_controller: require("./messages.controller"),
   chat_room_controller: require("./chat_room.controller"),
+  company_controller: require("./company.controller"),
 };

@@ -7,4 +7,5 @@ module.exports = {
   connections_service: require("./connections.service"),
   messages_service: require("./messages.service"),
   chat_room_service: require("./chat_room.service"),
+  company_service: require("./company.service"),
 };
