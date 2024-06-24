@@ -1,6 +1,7 @@
 require("dotenv").config()
 const express = require("express");
 const app = express();
+app.use(require('cors')())
 const http = require("http");
 const server = http.createServer(app)
 const {socket} =require("./config").
@@ -12,7 +13,6 @@ app.use(express.urlencoded({ extended: true }));
 // Connect to DB
 require("./config/mongo_db").connectDB();
 
-app.use(require('cors')())
 
 app.use('/',require('./routes'))
 

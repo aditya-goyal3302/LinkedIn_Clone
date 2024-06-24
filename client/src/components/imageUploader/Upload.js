@@ -46,13 +46,6 @@ const Upload = async (file,randomString) => {
                     );
                 })
                 .promise();
-
-            Upload.then((err, data) => {
-               console.log("data", data)
-            }).catch((err) => {
-            });
-
-
         }
         else {
             return "Invalid file type";
