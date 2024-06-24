@@ -4,8 +4,8 @@ const  event_emitter = require('../config/event_emitter');
 module.exports = async (server) => {
     const io = new Server(server,{
         cors: {
-            origin: "http://localhost:3000",
-            // methods: ["GET", "POST", "PUT", "DELETE"],
+            origin: "*",
+            methods: ["GET", "POST", "PUT", "DELETE"],
         }
     })
 
