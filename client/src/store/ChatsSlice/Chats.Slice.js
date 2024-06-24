@@ -32,7 +32,6 @@ const chatSlice = createSlice({
                 chats.push(setUser(chat,action.payload.userId));
             })
             state.chats = chats;
-            console.log('chats: ', chats);
         })
         builder.addCase(getChats.rejected, (state, action) => {
             state.isLoading = false;

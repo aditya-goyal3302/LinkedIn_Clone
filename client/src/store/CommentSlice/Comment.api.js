@@ -12,7 +12,6 @@ export const fetchComments = createAsyncThunk(
                     Authorization: token,
                 },
             })
-            console.log('{data:response.data, postId}: ', { data: response.data, postId });
             return { data: response.data, postId };
         } catch (error) {
             return rejectWithValue({ error: error.message });
@@ -24,7 +23,6 @@ export const createComment = createAsyncThunk(
     async (data, { getState, rejectWithValue }) => {
         try {
             let token = getState().persistedReducer.token;
-            console.log("data: ", data, token);
             const response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/comments/${data.postId}`, { content: data.content }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -43,7 +41,6 @@ export const createSubComment = createAsyncThunk(
     async (data, { getState, rejectWithValue }) => {
         try {
             let token = getState().persistedReducer.token;
-            console.log("data: ", data, token);
             const response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/comments/sub-comment/${data.commentId}`, { content: data.content }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -52,7 +49,6 @@ export const createSubComment = createAsyncThunk(
             });
             return { data: response.data, commentId: data.commentId };
         } catch (error) {
-            console.log('error: ', error);
             return rejectWithValue({ error: error.message });
         }
     }
@@ -71,7 +67,6 @@ export const fetchSubComments = createAsyncThunk(
             })
             return { data: response.data, commentId };
         } catch (error) {
-            console.log('error: ', error);
             return rejectWithValue({ error: error.message });
         }
     }

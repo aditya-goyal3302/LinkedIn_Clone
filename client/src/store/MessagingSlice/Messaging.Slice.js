@@ -13,7 +13,6 @@ const MessagingSlice = createSlice({
         getMessagesSuccess: (state, action) => {
             state.loading = false;
             const messages = current(state.messages);
-            console.log(action.payload.roomId,"***********",messages[action.payload.roomId]);
             state.messages[action.payload.roomId].push(action.payload.data);
         },
     },

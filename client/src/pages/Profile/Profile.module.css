@@ -442,6 +442,7 @@
     justify-content: flex-start !important;
     align-content: flex-start !important;
     min-height: 49px !important;
+    height: auto !important;
     text-align: left !important;
 }
 .editTextWrap{
@@ -461,8 +462,11 @@
     color: #00000099 !important;
     line-height: 20px !important;
     padding-top: 4px !important;
+    line-break: anywhere !important;
 }
 .editBoxBtn{
+    position: absolute !important ;
+    right: 0 !important;
     width: 28px !important;
     height: 28px !important;
     background-color: #fff !important;

@@ -29,7 +29,6 @@ function Chat() {
   }, [currentChat])
 
   useEffect(() => {
-    console.log(".");
     if (initialized.current === false) {
       initialized.current = true
       io.on("receivemessage", (data) => {

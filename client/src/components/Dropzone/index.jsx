@@ -5,7 +5,6 @@ import { useDropzone } from 'react-dropzone'
 export const MyDropzone = (props) => {
   const { setFiles, multiple, className } = props
   const onDrop = useCallback(async (acceptedFiles) => {
-    console.log('acceptedFiles: ', acceptedFiles);
     var UpdatedFiles= [] 
     acceptedFiles.forEach(async(file) => {
       try {
@@ -17,10 +16,8 @@ export const MyDropzone = (props) => {
           reader.readAsDataURL(file)
         }
         else {
-          console.log("wrong file");
         }
       } catch (error) {
-        console.log('error_in_DZ: ', error);
       }
     })
     setTimeout(() => {

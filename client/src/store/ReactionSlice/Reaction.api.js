@@ -55,7 +55,6 @@ export const addPostReaction = createAsyncThunk(
 export const addCommentReaction = createAsyncThunk(
     "reaction/addCommentReaction",
     async (data, { getState, rejectWithValue }) => {
-        console.log('data: ', data);
         try {
             let token = getState().persistedReducer.token;
             let response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/reactions/comments/${data.commentId}`, { reaction: data.newReaction }, {

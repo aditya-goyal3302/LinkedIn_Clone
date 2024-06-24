@@ -30,9 +30,7 @@ export const createPost = createAsyncThunk(
     'feed/createPost',
     async (payload,{getState, rejectWithValue}) => {
         try {
-            console.log('payload: ', payload);
             const state = getState()
-            console.log("state: ", state.persistedReducer.token)
             const response = await axios.post(`${process.env.REACT_APP_IMG_BASE_URL}/posts`, payload,
             {
                 headers: {

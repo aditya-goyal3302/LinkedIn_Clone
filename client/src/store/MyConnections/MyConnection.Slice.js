@@ -35,7 +35,6 @@ const myConnectionSlice = createSlice({
         })
         .addCase(fetchRequests.rejected, (state, action) => {
             state.loading.fetchRequests = false;
-            console.log('action.payload: ', action.payload.error.response.status);
             if(action.payload.error.response.status === 404) state.requests = [];
             else state.error.fetchRequests = action.payload.error;
         })

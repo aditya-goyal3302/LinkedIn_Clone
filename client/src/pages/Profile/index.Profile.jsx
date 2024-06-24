@@ -31,7 +31,6 @@ const Profile = ({ loginedUser }) => {
                 Authorization:logined_user.token
             }
         })
-        console.log('resp: ', resp);
         setUser(resp.data)
     }
     const sendMessage = async() =>{
@@ -40,7 +39,6 @@ const Profile = ({ loginedUser }) => {
                 Authorization:logined_user.token
             }
         })
-        console.log('resp: ', resp);
         if(resp)
             navigate('/chat')
     }
@@ -241,8 +239,8 @@ const Profile = ({ loginedUser }) => {
                                 <Typography className={styles.editTextTitle}>
                                     Public profile & URL
                                 </Typography>
-                                <Typography className={styles.editTextValue}>
-                                    {`clone-agdoie.netlify.app/in/${user_id || logined_user.id}`}
+                                <Typography className={styles.editTextValue} sx={{textOverflow:"ellipsis", overflow:"hidden", textWrap:"wrap"}}>
+                                    {`clone-agdoie.netlify.app/in/${logined_user.user._id}`}
                                 </Typography>
                             </Box>
                             <IconButton className={styles.editBoxBtn}><EditOutlined /></IconButton>

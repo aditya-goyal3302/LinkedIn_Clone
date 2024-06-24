@@ -99,7 +99,6 @@ function Signup() {
       setdata({ email: "", password: "" });
       navigate('/auth/login');
     }
-    console.log("status: ", status);
   }, [status]);
 
   return (
@@ -266,7 +265,7 @@ function Signup() {
                 <Box className={styles.go_login}>
                   <Typography className={styles.sign_up_text}>
                     Already on LinkedIn?{" "}
-                    <Button className={styles.sign_up_link} onClick={()=>{navigate('/auth/signup')}}>
+                    <Button className={styles.sign_up_link} onClick={()=>{navigate('/auth/login')}}>
                       Sign In
                     </Button>
                   </Typography>

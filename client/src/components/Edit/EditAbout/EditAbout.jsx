@@ -15,7 +15,6 @@ const EditAbout = ({ open, setOpen }) => {
   const user = state.user
   const [snackbar, setSnackbar] = useState('')
   const [value, setValue] = useState({ about: { body: user.about?.body || '', skills: user.about?.skills || [] } })
-  console.log('value: ', value);
   const handleClose = () => setOpen(false)
   const handleDelete = (item) =>{
     let arr = [...value.about.skills]
@@ -41,7 +40,6 @@ const EditAbout = ({ open, setOpen }) => {
           }, 5000)
         }
       } catch (error) {
-        console.log('error_in_PP_upload: ', error);
         setSnackbar("Error in Updating Data")
         setTimeout(() => {
           handleClose()

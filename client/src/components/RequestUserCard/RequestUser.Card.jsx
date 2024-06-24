@@ -7,7 +7,6 @@ import { responseConnectionRequest } from '../../store/MyConnections/MyConnectio
 import { useNavigate } from 'react-router'
 
 function RequestUser({ request }) {
-    console.log('request: ', request);
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [state, setState] = useState(0)

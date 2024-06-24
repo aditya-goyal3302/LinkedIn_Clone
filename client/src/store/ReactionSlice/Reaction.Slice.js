@@ -22,7 +22,6 @@ const reactionSlice = createSlice({
                 state.error = null;
             })
             .addCase(fetchPostReactions.fulfilled, (state, action) => {
-                console.log('action: ', action.payload.data);
                 state.loading = false;
                 let data = {};
                 action.payload.data.data.forEach((item) => {

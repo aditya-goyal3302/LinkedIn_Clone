@@ -12,7 +12,6 @@ const generateRandomString = async (tfile) => {
 };
 
 const verify_file = async (tfile) => {
-    console.log(tfile);
     let tname = tfile.name.toString().split('.')[1];
     if (tname == "jpg" || tname == "jpeg" || tname == "png" || tname == "gif" || tname == "webp") {
         return true;
@@ -51,7 +50,6 @@ const Upload = async (file,randomString) => {
             Upload.then((err, data) => {
                console.log("data", data)
             }).catch((err) => {
-                console.log(err);
             });
 
 
@@ -61,7 +59,6 @@ const Upload = async (file,randomString) => {
         }
     }
     catch (err) {
-        console.error(err);
     }
 }
 let Uploader = (files) => {

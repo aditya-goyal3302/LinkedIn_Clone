@@ -20,7 +20,6 @@ const commentSlice = createSlice({
             }
         })
         builder.addCase(fetchComments.rejected, (state, action) => {
-            console.log('fetchComments.rejected: ',);
             state.isLoading = false
             state.error = action.error
         })
@@ -30,7 +29,6 @@ const commentSlice = createSlice({
         builder.addCase(createComment.fulfilled, (state, action) => {
             state.isLoading = false
             state.content[action.payload.postId].unshift(action.payload.data)
-            console.log('action.payload.data: ', action.payload.data);
         })
         builder.addCase(createComment.rejected, (state, action) => {
             state.isLoading = false
@@ -40,7 +38,6 @@ const commentSlice = createSlice({
             state.isLoading = false
         })
         builder.addCase(createSubComment.fulfilled, (state, action) => {
-            console.log('action: ', action.payload);
             state.isLoading = false
             if (state.content[action.payload.commentId]?.length > 0)
                 state.content[action.payload.commentId].unshift(action.payload.data)
@@ -55,7 +52,6 @@ const commentSlice = createSlice({
             state.isLoading = false
         })
         builder.addCase(fetchSubComments.fulfilled, (state, action) => {
-            console.log('action: ', action.payload);
             state.isLoading = false
             state.content = {
                 ...state.content,
@@ -63,7 +59,6 @@ const commentSlice = createSlice({
             }
         })
         builder.addCase(fetchSubComments.rejected, (state, action) => {
-            console.log('fetchSubComments.rejected: ',);
             state.isLoading = false
             state.error = action.error
         })

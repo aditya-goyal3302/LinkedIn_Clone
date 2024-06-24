@@ -15,7 +15,6 @@ const EditSkills = ({ open, setOpen }) => {
     const user = state.user
     const [snackbar, setSnackbar] = useState('')
     const [value, setValue] = useState(user?.skills || [])
-    console.log('value: ', value);
     const handleClose = () => setOpen(false)
     const handleDelete = (item) => {
         let arr = [...value]
@@ -41,7 +40,6 @@ const EditSkills = ({ open, setOpen }) => {
                     }, 5000)
                 }
             } catch (error) {
-                console.log('error_in_PP_upload: ', error);
                 setSnackbar("Error in Updating Data")
                 setTimeout(() => {
                     handleClose()

@@ -43,7 +43,6 @@ const EditProfileData = ({ open, setOpen, }) => {
                     }, 5000)
                 }
             } catch (error) {
-                console.log('error_in_PP_upload: ', error);
                 setSnackbar("Error in Updating Data")   
                 setTimeout(() => {
                     handleClose()

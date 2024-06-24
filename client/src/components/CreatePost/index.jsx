@@ -30,7 +30,6 @@ function CreatePost({ open, setOpen}) {
     const [isLoading, setIsLoading] = useState(false)
     const user = useSelector((state) => state.persistedReducer.user)
     const handleSubmit = async () => {
-        console.log(file)
         try {
             setIsLoading(true)
             const formData = new FormData()
@@ -42,9 +41,7 @@ function CreatePost({ open, setOpen}) {
                 }
             }
             const res = await dispatch(createPost(formData))
-            console.log(res)
             if(res?.payload?.error?.response?.data ==="File size Error"){
-                console.log('res?.payload?.error?.response?.data: ', res?.payload?.error?.response?.data);
                 throw Error(res.payload.error.response.data)
             }
             setData({})
@@ -53,7 +50,6 @@ function CreatePost({ open, setOpen}) {
             setIsLoading(false)
         } catch (error) {
             setIsLoading(false)
-            console.log(error)
         }
 
     }
